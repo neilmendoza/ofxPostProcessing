@@ -41,8 +41,8 @@ namespace itg
             currentReadFbo = 0;
             if (resolution != ofNextPow2(resolution)) ofLogWarning() << "Resolution " << resolution << " is not a power of two, using " << ofNextPow2(resolution);
             
-            xConv = ConvolutionPass::Ptr(new ConvolutionPass(xBlur));
-            yConv = ConvolutionPass::Ptr(new ConvolutionPass(yBlur));
+            xConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, xBlur));
+            yConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, yBlur));
             
             ofFbo::Settings s;
             s.width = ofNextPow2(resolution);

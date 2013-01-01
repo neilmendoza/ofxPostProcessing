@@ -65,10 +65,9 @@ namespace itg
         
         void PostProcessing::begin()
         {
-            // assume we are using standard OF view
-            ofCamera cam;
-            cam.move(ofGetWidth() / 2, ofGetHeight() / 2, 0);
-            throw new runtime_error("IMPLEMENT ME!!");
+            raw.begin(false);
+            glViewport(0, 0, raw.getWidth(), raw.getHeight());
+            glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         }
         
         void PostProcessing::begin(ofCamera& cam)
@@ -98,6 +97,8 @@ namespace itg
             
             glMatrixMode(GL_MODELVIEW);
             glPopMatrix();
+            
+            //glViewport(0, 0, ofGetWidth(), ofGetHeight());
             
             raw.end();
             
