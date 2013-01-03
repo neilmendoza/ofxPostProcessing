@@ -22,12 +22,13 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
+    // scene stuff
     ofxPostProcessing post;
-
     ofEasyCam cam;
     ofLight light;
-    ofVboMesh mesh;
-
-    vector<ofVec3f> boxes;
-
+    
+    // boxes
+    vector<ofVec3f> posns;
+    vector<ofColor> cols;
+    vector<ofVec3f> axes;
 };

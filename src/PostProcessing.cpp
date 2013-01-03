@@ -66,7 +66,15 @@ namespace itg
         void PostProcessing::begin()
         {
             raw.begin(false);
+            
+            glMatrixMode(GL_PROJECTION);
+            glPushMatrix();
+            
+            glMatrixMode(GL_MODELVIEW);
+            glPushMatrix();
+            
             glViewport(0, 0, raw.getWidth(), raw.getHeight());
+            
             glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         }
         
@@ -81,24 +89,25 @@ namespace itg
             glMatrixMode(GL_PROJECTION);
             glPushMatrix();
             glLoadMatrixf(cam.getProjectionMatrix(ofRectangle(0, 0, width, height)).getPtr());
-            glViewport(0, 0, raw.getWidth(), raw.getHeight());
             
             glMatrixMode(GL_MODELVIEW);
             glPushMatrix();
             glLoadMatrixf(cam.getModelViewMatrix().getPtr());
+            
+            glViewport(0, 0, raw.getWidth(), raw.getHeight());
             
             glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         }
 
         void PostProcessing::end(bool autoDraw)
         {
+            glViewport(0, 0, ofGetWidth(), ofGetHeight());
+            
             glMatrixMode(GL_PROJECTION);
             glPopMatrix();
             
             glMatrixMode(GL_MODELVIEW);
             glPopMatrix();
-            
-            //glViewport(0, 0, ofGetWidth(), ofGetHeight());
             
             raw.end();
             
