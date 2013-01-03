@@ -70,13 +70,20 @@ namespace itg
             
             // for GUI
             bool& getEnabledRef();
-            
+
+#ifndef _ITG_TWEAKBLE
+            string getName() const { return name; }
+#endif
+
         protected:
             void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
             
             ofVec2f aspect;
         
         private:
+#ifndef _ITG_TWEAKBLE
+            string name;
+#endif
             bool enabled;
         };
     }
