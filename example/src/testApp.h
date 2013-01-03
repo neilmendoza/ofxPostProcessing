@@ -22,5 +22,4 @@ public:
     // boxes
     vector<ofVec3f> posns;
     vector<ofColor> cols;
-    vector<ofVec3f> axes;
 };

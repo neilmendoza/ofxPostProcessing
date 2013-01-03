@@ -23,7 +23,7 @@ void testApp::setup()
     }
     
     // Setup light
-	light.setPosition(0, 0, 3000);
+	light.setPosition(1000, 1000, 2000);
 }
 
 void testApp::update()
@@ -33,6 +33,7 @@ void testApp::update()
 
 void testApp::draw()
 {
+    // draw boxes
     glPushAttrib(GL_ENABLE_BIT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -46,8 +47,9 @@ void testApp::draw()
     post.end();
     glPopAttrib();
     
-    
-    ofDrawBitmapString("Number keys toggle effects", 10, 20);
+    // draw help
+    ofSetColor(0, 255, 255);
+    ofDrawBitmapString("Number keys toggle effects, mouse rotates scene", 10, 20);
     for (unsigned i = 0; i < post.size(); ++i)
     {
         if (post[i]->getEnabled()) ofSetColor(0, 255, 255);
