@@ -41,13 +41,12 @@ namespace itg
             this->width = width;
             this->height = height;
             
-            // TODO make it so post-processing chain controls FBO settings
             ofFbo::Settings s;
             s.width = ofNextPow2(width);
             s.height = ofNextPow2(height);
             s.textureTarget = GL_TEXTURE_2D;
             
-            // no need to use depth or multisample ping pongs
+            // no need to use depth for ping pongs
             for (int i = 0; i < 2; ++i)
             {
                 pingPong[i].allocate(s);
@@ -112,9 +111,12 @@ namespace itg
             raw.end();
             
             ofPushStyle();
+            glPushAttrib(GL_ENABLE_BIT);
+            glDisable(GL_LIGHTING);
             ofSetColor(255, 255, 255);
             process();
             if (autoDraw) draw();
+            glPopAttrib();
             ofPopStyle();
         }
         

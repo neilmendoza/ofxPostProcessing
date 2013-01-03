@@ -11,7 +11,7 @@ void testApp::setup()
     post.init(ofGetWidth(), ofGetHeight());
     //post.createPass<EdgePass>();
     post.createPass<FxaaPass>();
-    //post.createPass<BokehPass>();
+    post.createPass<BokehPass>();
     //post.createPass<KaleidoscopePass>();
     post.createPass<BloomPass>();
     
@@ -21,12 +21,14 @@ void testApp::setup()
         //posns.push_back(ofVec3f(ofRandom(100, ofGetWidth() - 100), ofRandom(100, ofGetHeight() - 100), ofRandom(-100, 100)));
         posns.push_back(ofVec3f(ofRandom(-200, 200), ofRandom(-100, 100), ofRandom(-100, 100)));
         cols.push_back(ofColor::fromHsb(255 * i / (float)NUM_BOXES, 255, 255, 255));
-        
     }
     
     // Setup light
 	light.setPosition(0, 0, 3000);
     light.enable();
+    
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
 }
 
 //--------------------------------------------------------------
@@ -38,10 +40,6 @@ void testApp::update()
 //--------------------------------------------------------------
 void testApp::draw()
 {
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    
-    
     post.begin(cam);
     for (unsigned i = 0; i < posns.size(); ++i)
     {
@@ -49,10 +47,6 @@ void testApp::draw()
         ofBox(posns[i], 20);
     }
     post.end();
-    
-    
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
 }
 
 //--------------------------------------------------------------
