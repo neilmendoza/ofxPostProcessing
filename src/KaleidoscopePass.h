@@ -42,7 +42,7 @@ namespace itg
         public:
             typedef shared_ptr<KaleidoscopePass> Ptr;
             
-            KaleidoscopePass(const ofVec2f& aspect);
+            KaleidoscopePass(const ofVec2f& aspect, float segments = 2.f);
             
             void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
             

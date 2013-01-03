@@ -9,17 +9,18 @@ void testApp::setup()
     
     // Setup post-processing chain
     post.init(ofGetWidth(), ofGetHeight());
-    //post.createPass<EdgePass>();
-    post.createPass<FxaaPass>();
-    post.createPass<BokehPass>();
-    //post.createPass<KaleidoscopePass>();
     post.createPass<BloomPass>();
+    post.createPass<BokehPass>();
+    post.createPass<KaleidoscopePass>();
+    post.createPass<NoiseWarpPass>();
+    //post.createPass<EdgePass>();
+    //post.createPass<FxaaPass>();
     
     // Setup box positions
     for (unsigned i = 0; i < NUM_BOXES; ++i)
     {
         //posns.push_back(ofVec3f(ofRandom(100, ofGetWidth() - 100), ofRandom(100, ofGetHeight() - 100), ofRandom(-100, 100)));
-        posns.push_back(ofVec3f(ofRandom(-200, 200), ofRandom(-100, 100), ofRandom(-100, 100)));
+        posns.push_back(ofVec3f(ofRandom(-300, 300), ofRandom(-300, 300), ofRandom(-300, 300)));
         cols.push_back(ofColor::fromHsb(255 * i / (float)NUM_BOXES, 255, 255, 255));
     }
     

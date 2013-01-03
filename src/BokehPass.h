@@ -49,7 +49,7 @@ namespace itg
         public:
             typedef shared_ptr<BokehPass> Ptr;
             
-            BokehPass(const ofVec2f& aspect, float focus = 2, float bias = 0.041016, float maxBlur = 0.0253910, float nearClip = 1, float farClip = 100);
+            BokehPass(const ofVec2f& aspect, float focus = 0.985, float aperture = 0.8, float maxBlur = 0.6, float nearClip = 1, float farClip = 100);
             
             void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex);
             

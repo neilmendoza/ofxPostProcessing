@@ -1,5 +1,5 @@
 /*
- *  ofxPostProcessing.h
+ *  NoiseWarpPass.h
  *
  *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
@@ -31,18 +31,27 @@
  */
 #pragma once
 
-#include "BloomPass.h"
-#include "BokehPass.h"
-#include "ConvolutionPass.h"
-#include "DofPass.h"
-#include "EdgePass.h"
-#include "FxaaPass.h"
-#include "KaleidoscopePass.h"
-#include "NoiseWarpPass.h"
-#include "PostProcessing.h"
 #include "RenderPass.h"
 
-typedef itg::gl::PostProcessing ofxPostProcessing;
-
-using namespace itg;
-using namespace gl;
+namespace itg
+{
+    namespace gl
+    {
+        class NoiseWarpPass : public RenderPass
+        {
+        public:
+            typedef shared_ptr<NoiseWarpPass> Ptr;
+            
+            NoiseWarpPass(const ofVec2f& aspect, float frequency = 4.f, float amplitude = .1f, float speed = 1.f);
+            
+            void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+            
+        private:
+            ofShader shader;
+            float frequency;
+            float amplitude;
+            float speed;
+        };
+        
+    }
+}
