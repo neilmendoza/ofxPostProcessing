@@ -33,11 +33,13 @@ void testApp::update()
 
 void testApp::draw()
 {
-    // draw boxes
+    // setup gl state
     glPushAttrib(GL_ENABLE_BIT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     light.enable();
+    
+    // draw boxes
     post.begin(cam);
     for (unsigned i = 0; i < posns.size(); ++i)
     {
@@ -45,6 +47,8 @@ void testApp::draw()
         ofBox(posns[i], 20);
     }
     post.end();
+    
+    // reset gl state
     glPopAttrib();
     
     // draw help
