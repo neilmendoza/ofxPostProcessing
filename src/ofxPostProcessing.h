@@ -32,9 +32,9 @@
 #pragma once
 
 #include "BloomPass.h"
-#include "BokehPass.h"
 #include "ConvolutionPass.h"
 #include "DofPass.h"
+#include "DofAltPass.h"
 #include "EdgePass.h"
 #include "FxaaPass.h"
 #include "KaleidoscopePass.h"

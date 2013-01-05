@@ -33,48 +33,20 @@
 
 #include "RenderPass.h"
 #include "ofShader.h"
-#include <tr1/memory>
 
 namespace itg
 {
     namespace gl
     {
-        using namespace tr1;
-        
-        /**
-         * DOF render pass.
-         */
-        class BokehPass : public RenderPass
+        class DofAltPass : public RenderPass
         {
         public:
-            typedef shared_ptr<BokehPass> Ptr;
+            DofAltPass(const ofVec2f& aspect);
             
-            BokehPass(const ofVec2f& aspect, float focus = 0.985, float aperture = 0.8, float maxBlur = 0.6, float nearClip = 1, float farClip = 100);
-            
-            void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex);
-            
-            float getFocus() const { return focus; }
-            void setFocus(float focus) { this->focus = focus; }
-            
-            float getAperture() const { return aperture; }
-            void setAperture(float aperture) { this->aperture = aperture; }
-            
-            float getMaxBlur() const { return maxBlur; }
-            void setMaxBlur(float maxBlur) { this->maxBlur = maxBlur; }
-            
-            // for GUI, in future these should be ofParams
-            float& getFocusRef() { return focus; }
-            float& getApertureRef() { return aperture; }
-            float& getMaxBlurRef() { return maxBlur; }
-            
+            void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+        
         private:
             ofShader shader;
-            
-            float focus;
-            float aperture;
-            float maxBlur;
-            float nearClip;
-            float farClip;
         };
     }
 }
