@@ -35,7 +35,7 @@ namespace itg
 {
     namespace gl
     {
-        EdgePass::EdgePass(const ofVec2f& aspect, Type type) : RenderPass(aspect, "edge")
+        EdgePass::EdgePass(const ofVec2f& aspect) : RenderPass(aspect, "edge")
         {
             string fragShaderSrc = STRINGIFY(
                 uniform sampler2D tex;

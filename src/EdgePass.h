@@ -44,21 +44,14 @@ namespace itg
         class EdgePass : public RenderPass
         {
         public:
-            enum Type
-            {
-                FREICHEN,
-                SOBEL
-            };
-            
             typedef shared_ptr<EdgePass> Ptr;
             
-            EdgePass(const ofVec2f& aspect, Type type = FREICHEN);
+            EdgePass(const ofVec2f& aspect);
             
             void render(ofFbo& readFbo, ofFbo& writeFbo);
             
         private:
             ofShader shader;
-            Type type;
         };
     }
 }

@@ -39,8 +39,7 @@ namespace itg
     namespace gl
     {
         /*
-         * Convolution shader based on three.js convolution shader
-         * @see https://github.com/mrdoob/three.js/blob/master/examples/js/ShaderExtras.js
+         * @see http://github.com/mrdoob/three.js/blob/master/examples/js/ShaderExtras.js 
          */
         class ConvolutionPass : public RenderPass
         {

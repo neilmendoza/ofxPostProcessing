@@ -38,15 +38,34 @@ namespace itg
 {
     namespace gl
     {
+        /*
+         * @see http://blenderartists.org/forum/showthread.php?237488-GLSL-depth-of-field-with-bokeh-v2-4-(update)
+         */
         class DofAltPass : public RenderPass
         {
         public:
-            DofAltPass(const ofVec2f& aspect);
+            DofAltPass(const ofVec2f& aspect, float focalDepth = 1.f, float focalLength = 500.f, float fStop = 3.f, bool showFocus = false);
             
             void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+            
+            float getFocalDepth() const { return focalDepth; }
+            void setFocalDepth(float focalDepth) { this->focalDepth = focalDepth; }
+            
+            float getFocalLength() const { return focalLength; }
+            void setFocalLength(float focalLength) { this->focalLength = focalLength; }
         
+            float getFStop() const { return fStop; }
+            void setFStop(float fStop) { this->fStop = fStop; }
+            
+            bool getShowFocus() const { return showFocus; }
+            void setShowFocus(bool showFocus) { this->showFocus = showFocus; }
+            
         private:
             ofShader shader;
+            float focalDepth; //focal distance value in meters, but you may use autofocus option below
+            float focalLength; //focal length in mm
+            float fStop; //f-stop value
+            bool showFocus; //show debug focus point and focal range (red = focal point, green = focal range
         };
     }
 }

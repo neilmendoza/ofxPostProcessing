@@ -162,9 +162,6 @@ namespace itg
             
             shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
             shader.linkProgram();
-#ifdef _ITG_TWEAKABLE
-            addParameter("segments", segments, "min=-20 max=20");
-#endif
         }
         
         void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)

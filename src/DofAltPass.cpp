@@ -35,7 +35,8 @@ namespace itg
 {
     namespace gl
     {
-        DofAltPass::DofAltPass(const ofVec2f& aspect) : RenderPass(aspect, "dofalt")
+        DofAltPass::DofAltPass(const ofVec2f& aspect, float focalDepth, float focalLength, float fStop, bool showFocus) :
+            focalDepth(focalDepth), focalLength(focalLength), fStop(fStop), showFocus(showFocus), RenderPass(aspect, "dofalt")
         {
             string fragShaderSrc = STRINGIFY(
                 /*
@@ -396,10 +397,10 @@ namespace itg
             shader.setUniform1f("bgl_RenderedTextureWidth", aspect.x);
             shader.setUniform1f("bgl_RenderedTextureHeight", aspect.y);
             
-            shader.setUniform1f("focalDepth", 1);  //focal distance value in meters, but you may use autofocus option below
-            shader.setUniform1f("focalLength", 500); //focal length in mm
-            shader.setUniform1f("fstop", 3); //f-stop value
-            shader.setUniform1f("showFocus", true); //show debug focus point and focal range (red = focal point, green = focal range)
+            shader.setUniform1f("focalDepth", focalDepth);  //focal distance value in meters, but you may use autofocus option below
+            shader.setUniform1f("focalLength", focalLength); //focal length in mm
+            shader.setUniform1f("fstop", fStop); //f-stop value
+            shader.setUniform1f("showFocus", showFocus); //show debug focus point and focal range (red = focal point, green = focal range)
 
             texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
             

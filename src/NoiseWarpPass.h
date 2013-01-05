@@ -46,6 +46,15 @@ namespace itg
             
             void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
             
+            float getFrequency() const { return frequency; }
+            void setFrequency(float frequency) { this->frequency = frequency; }
+            
+            float getAmplitude() const { return amplitude; }
+            void setAmplitude(float amplitude) { this->amplitude = amplitude; }
+            
+            float getSpeed() const { return speed; }
+            void setSpeed(float speed) { this->speed = speed; }
+            
         private:
             ofShader shader;
             float frequency;

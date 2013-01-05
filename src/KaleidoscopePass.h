@@ -46,6 +46,9 @@ namespace itg
             
             void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
             
+            float getSegments() const { return segments; }
+            void setSegments(float segments) { this->segments = segments; }
+            
         private:
             ofShader shader;
             float segments;
