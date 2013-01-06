@@ -37,21 +37,18 @@ namespace itg
 {
     namespace gl
     {
-        /*
-         * Frei-Chen edge detector ported from code here
-         * @see http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/
-         */
         class PixelatePass : public RenderPass
         {
         public:
             typedef shared_ptr<PixelatePass> Ptr;
             
-            PixelatePass(const ofVec2f& aspect);
+            PixelatePass(const ofVec2f& aspect, const ofVec2f& resolution = ofVec2f(100.f, 100.f));
             
             void render(ofFbo& readFbo, ofFbo& writeFbo);
             
         private:
             ofShader shader;
+            ofVec2f resolution;
         };
     }
 }

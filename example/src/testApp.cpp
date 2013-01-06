@@ -13,6 +13,7 @@ void testApp::setup()
     post.createPass<DofAltPass>()->setEnabled(false);
     post.createPass<KaleidoscopePass>()->setEnabled(false);
     post.createPass<NoiseWarpPass>()->setEnabled(false);
+    post.createPass<PixelatePass>()->setEnabled(false);
     post.createPass<EdgePass>()->setEnabled(false);
     
     // Setup box positions
@@ -33,22 +34,28 @@ void testApp::update()
 
 void testApp::draw()
 {
-    // setup gl state
+    // copy enable part of gl state
     glPushAttrib(GL_ENABLE_BIT);
+    
+    // setup gl state
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     light.enable();
     
-    // draw boxes
+    // begin scene to post process
     post.begin(cam);
+    
+    // draw boxes
     for (unsigned i = 0; i < posns.size(); ++i)
     {
         ofSetColor(cols[i]);
         ofBox(posns[i], 20);
     }
+    
+    // end scene and draw
     post.end();
     
-    // reset gl state
+    // set gl state back to original
     glPopAttrib();
     
     // draw help

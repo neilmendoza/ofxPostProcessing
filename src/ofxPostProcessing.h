@@ -39,6 +39,7 @@
 #include "FxaaPass.h"
 #include "KaleidoscopePass.h"
 #include "NoiseWarpPass.h"
+#include "PixelatePass.h"
 #include "PostProcessing.h"
 #include "RenderPass.h"
 

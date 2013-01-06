@@ -35,10 +35,22 @@ namespace itg
 {
     namespace gl
     {
-        PixelatePass::PixelatePass(const ofVec2f& aspect) : RenderPass(aspect, "pixelate")
+        PixelatePass::PixelatePass(const ofVec2f& aspect, const ofVec2f& resolution) :
+            resolution(resolution), RenderPass(aspect, "pixelate")
         {
-            string fragShaderSrc = STRINGIFY( );
+            string fragShaderSrc = STRINGIFY(
+                uniform sampler2D tex;
+                uniform float xPixels;
+                uniform float yPixels;
+                
+                void main()
+                {
+                    vec2 texCoords = vec2(floor(gl_TexCoord[0].s * xPixels) / xPixels, floor(gl_TexCoord[0].t * yPixels) / yPixels);
+                    gl_FragColor = texture2D(tex, texCoords);
+                }
+            );
             
+            shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
             shader.linkProgram();
         }
         
@@ -48,7 +60,8 @@ namespace itg
             
             shader.begin();
             shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
-            shader.setUniform2f("aspect", aspect.x, aspect.y);
+            shader.setUniform1f("xPixels", resolution.x);
+            shader.setUniform1f("yPixels", resolution.y);
             
             texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
             

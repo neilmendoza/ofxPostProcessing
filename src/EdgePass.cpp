@@ -44,6 +44,7 @@ namespace itg
                                       
                 vec2 texel = vec2(1.0 / aspect.x, 1.0 / aspect.y);
 
+                // TODO: hard code matrix values!!!!
                 mat3 G[9] = mat3[](1.0/(2.0*sqrt(2.0)) * mat3( 1.0, sqrt(2.0), 1.0, 0.0, 0.0, 0.0, -1.0, -sqrt(2.0), -1.0 ),
                                     1.0/(2.0*sqrt(2.0)) * mat3( 1.0, 0.0, -1.0, sqrt(2.0), 0.0, -sqrt(2.0), 1.0, 0.0, -1.0 ),
                                     1.0/(2.0*sqrt(2.0)) * mat3( 0.0, -1.0, sqrt(2.0), 1.0, 0.0, -1.0, -sqrt(2.0), 1.0, 0.0 ),
