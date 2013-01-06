@@ -11,6 +11,7 @@
 		114c00b13f753e59bb0984bb58de9d1c /* DofAltPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = e837debfaea1cad833a377dfcbf9b85a /* DofAltPass.cpp */; };
 		1e615236d6d182ded6c8a8b2aea75a6b /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54f36382628e4d0ff07206d7ed509357 /* RenderPass.cpp */; };
 		2809A1BB1695F0ED00D9B152 /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */; };
+		28922FFE169A033D0015BF7C /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28922FFC169A033D0015BF7C /* PixelatePass.cpp */; };
 		3a499904889c490dcf533c6e4582d0a5 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = d41ed8c8083845703aa1fdfaed737ec1 /* BloomPass.cpp */; };
 		778dca6792476e5b9f57f1758fec4ffc /* ConvolutionPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3aacd9661af21261e24a05a4f729537b /* ConvolutionPass.cpp */; };
 		884cb4d049e35c51e949a5650d4f48df /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108c4db0c398388d000270915197e88f /* KaleidoscopePass.cpp */; };
@@ -79,6 +80,8 @@
 		2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NoiseWarpPass.cpp; path = ../src/NoiseWarpPass.cpp; sourceTree = "<group>"; };
 		2809A1BA1695F0ED00D9B152 /* NoiseWarpPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoiseWarpPass.h; path = ../src/NoiseWarpPass.h; sourceTree = "<group>"; };
 		2809A1BC1695F0F600D9B152 /* ofxPostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxPostProcessing.h; path = ../src/ofxPostProcessing.h; sourceTree = "<group>"; };
+		28922FFC169A033D0015BF7C /* PixelatePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PixelatePass.cpp; path = ../src/PixelatePass.cpp; sourceTree = "<group>"; };
+		28922FFD169A033D0015BF7C /* PixelatePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelatePass.h; path = ../src/PixelatePass.h; sourceTree = "<group>"; };
 		3aacd9661af21261e24a05a4f729537b /* ConvolutionPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ConvolutionPass.cpp; path = ../../../addons/ofxPostProcessing/src/ConvolutionPass.cpp; sourceTree = SOURCE_ROOT; };
 		484f662699dfe8176e1b750fba6a2e2d /* PostProcessing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PostProcessing.cpp; path = ../../../addons/ofxPostProcessing/src/PostProcessing.cpp; sourceTree = SOURCE_ROOT; };
 		49cae27dc1d138037cf88acf57723c77 /* FxaaPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FxaaPass.h; path = ../../../addons/ofxPostProcessing/src/FxaaPass.h; sourceTree = SOURCE_ROOT; };
@@ -252,6 +255,8 @@
 				50800dab6c4b18e4f92166fc20b84656 /* KaleidoscopePass.h */,
 				2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */,
 				2809A1BA1695F0ED00D9B152 /* NoiseWarpPass.h */,
+				28922FFC169A033D0015BF7C /* PixelatePass.cpp */,
+				28922FFD169A033D0015BF7C /* PixelatePass.h */,
 				484f662699dfe8176e1b750fba6a2e2d /* PostProcessing.cpp */,
 				dacacdf2f37260a0bff826e2dab2dff8 /* PostProcessing.h */,
 				54f36382628e4d0ff07206d7ed509357 /* RenderPass.cpp */,
@@ -364,6 +369,7 @@
 				be5ed1fdb18d5092cf3aaca09495e626 /* PostProcessing.cpp in Sources */,
 				1e615236d6d182ded6c8a8b2aea75a6b /* RenderPass.cpp in Sources */,
 				2809A1BB1695F0ED00D9B152 /* NoiseWarpPass.cpp in Sources */,
+				28922FFE169A033D0015BF7C /* PixelatePass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
