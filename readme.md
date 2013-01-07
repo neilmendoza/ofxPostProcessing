@@ -26,7 +26,7 @@ In your OF app declare an instance of **ofxPostProcessing**...
 ofxPostProcessing post;
 ```
 
-In your **setup()** function initialise the post-processing and then add some effects...
+In your **setup()** function initialise the post-processing class and then add some effects...
 
 ```cpp
 post.init(ofGetWidth(), ofGetHeight());
@@ -34,7 +34,7 @@ post.createPass<FxaaPass>();
 post.createPass<BloomPass>();
 ```
 
-Before call **post.begin()** and **post.end()** around the the scene that you want to render:
+Call **post.begin()** and **post.end()** around the the scene that you want to render...
 
 ```cpp
 post.begin();
@@ -42,8 +42,7 @@ post.begin();
 post.end();
 ```
 
-If you are using an **ofCamera** pass this to post.begin and it takes care of the rest for you:
-
+If you are using an **ofCamera** pass this to post.begin and it takes care of the rest for you...
 
 ```cpp
 post.begin(cam);
