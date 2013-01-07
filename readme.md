@@ -1,6 +1,6 @@
 # ofxPostProcessing
 
-This openFrameworks addon gives you an easy way of putting together a chain of GLSL shaders.
+This openFrameworks addon gives you an easy way of putting together a chain of GLSL post-processing effects.
 
 www.neilmendoza.com/ofxpostprocessing
 
