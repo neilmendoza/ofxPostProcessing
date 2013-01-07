@@ -6,7 +6,7 @@ www.neilmendoza.com/ofxpostprocessing
 
 ## Features
 
-At the moment, it comes with the following effects (both ported from various other sources as well as some original ones) that I'll gradually add to over time:
+At the moment, it comes with the following effects (some ported from other sources and some original) that I'll gradually add to over time:
 
 * Bloom
 * Convolution
