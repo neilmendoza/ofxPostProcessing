@@ -45,46 +45,43 @@
 
 namespace itg
 {
-    namespace gl
-    {
-        using namespace tr1;
-        
-        class RenderPass
+    using namespace tr1;
+    
+    class RenderPass
 #ifdef _ITG_TWEAKBLE
-            : public Tweakable
+        : public Tweakable
 #endif
-        {
-        public:
-            typedef shared_ptr<RenderPass> Ptr;
-            
-            RenderPass(const ofVec2f& aspect, const string& name);
-            
-            virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-            virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
-            
-            void setEnabled(bool enabled) { this->enabled = enabled; }
-            bool getEnabled() const { return enabled; }
-            
-            void enable() { enabled = true; }
-            void disable() { enabled = false; }
-            
-            // for GUI
-            bool& getEnabledRef();
-
-#ifndef _ITG_TWEAKBLE
-            string getName() const { return name; }
-#endif
-
-        protected:
-            void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-            
-            ofVec2f aspect;
+    {
+    public:
+        typedef shared_ptr<RenderPass> Ptr;
         
-        private:
+        RenderPass(const ofVec2f& aspect, const string& name);
+        
+        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        
+        void setEnabled(bool enabled) { this->enabled = enabled; }
+        bool getEnabled() const { return enabled; }
+        
+        void enable() { enabled = true; }
+        void disable() { enabled = false; }
+        
+        // for GUI
+        bool& getEnabledRef();
+
 #ifndef _ITG_TWEAKBLE
-            string name;
+        string getName() const { return name; }
 #endif
-            bool enabled;
-        };
-    }
+
+    protected:
+        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
+        
+        ofVec2f aspect;
+    
+    private:
+#ifndef _ITG_TWEAKBLE
+        string name;
+#endif
+        bool enabled;
+    };
 }

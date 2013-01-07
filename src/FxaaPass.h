@@ -36,24 +36,19 @@
 
 namespace itg
 {
-    namespace gl
+    /*
+     * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/FXAAShader.js
+     */
+    class FxaaPass : public RenderPass
     {
-        using namespace tr1;
+    public:
+        typedef shared_ptr<FxaaPass> Ptr;
+    
+        FxaaPass(const ofVec2f& aspect);
         
-        /*
-         * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/FXAAShader.js
-         */
-        class FxaaPass : public RenderPass
-        {
-        public:
-            typedef shared_ptr<FxaaPass> Ptr;
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
         
-            FxaaPass(const ofVec2f& aspect);
-            
-            void render(ofFbo& readFbo, ofFbo& writeFbo);
-            
-        private:
-            ofShader shader;
-        };
-    }
+    private:
+        ofShader shader;
+    };
 }

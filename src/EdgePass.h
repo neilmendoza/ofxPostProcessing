@@ -35,23 +35,20 @@
 
 namespace itg
 {
-    namespace gl
+    /*
+     * Frei-Chen edge detector ported from code here 
+     * @see http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/
+     */
+    class EdgePass : public RenderPass
     {
-        /*
-         * Frei-Chen edge detector ported from code here 
-         * @see http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/
-         */
-        class EdgePass : public RenderPass
-        {
-        public:
-            typedef shared_ptr<EdgePass> Ptr;
-            
-            EdgePass(const ofVec2f& aspect);
-            
-            void render(ofFbo& readFbo, ofFbo& writeFbo);
-            
-        private:
-            ofShader shader;
-        };
-    }
+    public:
+        typedef shared_ptr<EdgePass> Ptr;
+        
+        EdgePass(const ofVec2f& aspect);
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+    private:
+        ofShader shader;
+    };
 }

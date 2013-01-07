@@ -43,7 +43,6 @@
 #include "PostProcessing.h"
 #include "RenderPass.h"
 
-typedef itg::gl::PostProcessing ofxPostProcessing;
+typedef itg::PostProcessing ofxPostProcessing;
 
 using namespace itg;
-using namespace gl;

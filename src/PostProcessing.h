@@ -36,60 +36,57 @@
 
 namespace itg
 {
-    namespace gl
+    class PostProcessing : public ofBaseDraws
     {
-        class PostProcessing : public ofBaseDraws
+    public:
+        typedef shared_ptr<PostProcessing> Ptr;
+        
+        void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight());
+        void begin();
+        void begin(ofCamera& cam);
+        void end(bool autoDraw = true);
+        
+        // float rather than int and not const to override ofBaseDraws
+        void draw(float x = 0.f, float y = 0.f);
+        void draw(float x, float y, float w, float h);
+        float getWidth() { return width; }
+        float getHeight() { return height; }
+        
+        void debugDraw();
+        
+        template<class T>
+        shared_ptr<T> createPass()
         {
-        public:
-            typedef shared_ptr<PostProcessing> Ptr;
-            
-            void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight());
-            void begin();
-            void begin(ofCamera& cam);
-            void end(bool autoDraw = true);
-            
-            // float rather than int and not const to override ofBaseDraws
-            void draw(float x = 0.f, float y = 0.f);
-            void draw(float x, float y, float w, float h);
-            float getWidth() { return width; }
-            float getHeight() { return height; }
-            
-            void debugDraw();
-            
-            template<class T>
-            shared_ptr<T> createPass()
-            {
-                shared_ptr<T> pass = shared_ptr<T>(new T(ofVec2f(width, height)));
-                passes.push_back(pass);
-                return pass;
-            }
+            shared_ptr<T> pass = shared_ptr<T>(new T(ofVec2f(width, height)));
+            passes.push_back(pass);
+            return pass;
+        }
 
-            ofTexture& getProcessedTextureReference();
-            
-            // advanced
-            void process(ofFbo& raw);
-            
-            /**
-             * Set flip.
-             * Turn on if using ofEasyCam to fix flipping bug.
-             */
-            void setFlip(bool flip) { this->flip = flip; }
-            
-            unsigned size() const { return passes.size(); }
-            RenderPass::Ptr operator[](unsigned i) const { return passes[i]; }
-            vector<RenderPass::Ptr>& getPasses() { return passes; }
-            
-        private:
-            void process();
-            
-            unsigned currentReadFbo;
-            unsigned numPasses;
-            unsigned width, height;
-            bool flip;
-            
-            ofFbo raw;
-            ofFbo pingPong[2];
-            vector<RenderPass::Ptr> passes;
-        };
-    }
+        ofTexture& getProcessedTextureReference();
+        
+        // advanced
+        void process(ofFbo& raw);
+        
+        /**
+         * Set flip.
+         * Turn on if using ofEasyCam to fix flipping bug.
+         */
+        void setFlip(bool flip) { this->flip = flip; }
+        
+        unsigned size() const { return passes.size(); }
+        RenderPass::Ptr operator[](unsigned i) const { return passes[i]; }
+        vector<RenderPass::Ptr>& getPasses() { return passes; }
+        
+    private:
+        void process();
+        
+        unsigned currentReadFbo;
+        unsigned numPasses;
+        unsigned width, height;
+        bool flip;
+        
+        ofFbo raw;
+        ofFbo pingPong[2];
+        vector<RenderPass::Ptr> passes;
+    };
 }

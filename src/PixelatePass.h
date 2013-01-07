@@ -35,20 +35,17 @@
 
 namespace itg
 {
-    namespace gl
+    class PixelatePass : public RenderPass
     {
-        class PixelatePass : public RenderPass
-        {
-        public:
-            typedef shared_ptr<PixelatePass> Ptr;
-            
-            PixelatePass(const ofVec2f& aspect, const ofVec2f& resolution = ofVec2f(100.f, 100.f));
-            
-            void render(ofFbo& readFbo, ofFbo& writeFbo);
-            
-        private:
-            ofShader shader;
-            ofVec2f resolution;
-        };
-    }
+    public:
+        typedef shared_ptr<PixelatePass> Ptr;
+        
+        PixelatePass(const ofVec2f& aspect, const ofVec2f& resolution = ofVec2f(100.f, 100.f));
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+    private:
+        ofShader shader;
+        ofVec2f resolution;
+    };
 }

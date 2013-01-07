@@ -35,23 +35,20 @@
 
 namespace itg
 {
-    namespace gl
+    class KaleidoscopePass : public RenderPass
     {
-        class KaleidoscopePass : public RenderPass
-        {
-        public:
-            typedef shared_ptr<KaleidoscopePass> Ptr;
-            
-            KaleidoscopePass(const ofVec2f& aspect, float segments = 2.f);
-            
-            void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-            
-            float getSegments() const { return segments; }
-            void setSegments(float segments) { this->segments = segments; }
-            
-        private:
-            ofShader shader;
-            float segments;
-        };
-    }
+    public:
+        typedef shared_ptr<KaleidoscopePass> Ptr;
+        
+        KaleidoscopePass(const ofVec2f& aspect, float segments = 2.f);
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+        
+        float getSegments() const { return segments; }
+        void setSegments(float segments) { this->segments = segments; }
+        
+    private:
+        ofShader shader;
+        float segments;
+    };
 }
