@@ -2,6 +2,8 @@
 
 This openFrameworks addon gives you an easy way of putting together a chain of GLSL shaders.
 
+www.neilmendoza.com/ofxpostprocessing
+
 ## Features
 
 At the moment, it comes with the following effects (both ported from various other sources as well as some original ones) that I'll gradually add to over time:
