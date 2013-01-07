@@ -37,7 +37,7 @@ namespace itg
     namespace gl
     {
         DofPass::DofPass(const ofVec2f& aspect, float focus, float aperture, float maxBlur) :
-            focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, "bokeh")
+            focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, "dof")
         {
             string fragShaderSrc = STRINGIFY(
                 uniform sampler2D tColor;
