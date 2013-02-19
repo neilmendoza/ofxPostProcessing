@@ -31,13 +31,11 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKBLE
-
 #include "ofFbo.h"
 #include "ofVec3f.h"
 #include <tr1/memory>
 #include "ofShader.h"
-#ifdef _ITG_TWEAKBLE
+#ifdef _ITG_TWEAKABLE
     #include "Tweakable.h"
 #endif
 
@@ -48,7 +46,7 @@ namespace itg
     using namespace tr1;
     
     class RenderPass
-#ifdef _ITG_TWEAKBLE
+#ifdef _ITG_TWEAKABLE
         : public Tweakable
 #endif
     {
@@ -69,7 +67,7 @@ namespace itg
         // for GUI
         bool& getEnabledRef();
 
-#ifndef _ITG_TWEAKBLE
+#ifndef _ITG_TWEAKABLE
         string getName() const { return name; }
 #endif
 
@@ -79,7 +77,7 @@ namespace itg
         ofVec2f aspect;
     
     private:
-#ifndef _ITG_TWEAKBLE
+#ifndef _ITG_TWEAKABLE
         string name;
 #endif
         bool enabled;

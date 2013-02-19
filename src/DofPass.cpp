@@ -118,7 +118,7 @@ namespace itg
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
 
-#ifdef _ITG_TWEAKBLE
+#ifdef _ITG_TWEAKABLE
         addParameter("focus", this->focus, "min=0.95 max=1");
         addParameter("aperture", this->aperture, "min=0 max=1");
         addParameter("maxBlur", this->maxBlur, "min=0 max=1");
