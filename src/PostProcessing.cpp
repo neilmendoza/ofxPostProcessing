@@ -73,6 +73,9 @@ namespace itg
         glViewport(0, 0, raw.getWidth(), raw.getHeight());
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        
+        ofPushStyle();
+        glPushAttrib(GL_ENABLE_BIT);
     }
     
     void PostProcessing::begin(ofCamera& cam)
@@ -94,10 +97,16 @@ namespace itg
         glViewport(0, 0, raw.getWidth(), raw.getHeight());
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        
+        ofPushStyle();
+        glPushAttrib(GL_ENABLE_BIT);
     }
 
     void PostProcessing::end(bool autoDraw)
     {
+        glPopAttrib();
+        ofPopStyle();
+        
         glViewport(0, 0, ofGetWidth(), ofGetHeight());
         
         glMatrixMode(GL_PROJECTION);
