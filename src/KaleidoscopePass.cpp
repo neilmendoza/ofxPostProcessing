@@ -34,7 +34,7 @@
 namespace itg
 {
     KaleidoscopePass::KaleidoscopePass(const ofVec2f& aspect, float segments) :
-        segments(segments), RenderPass(aspect, "kaleidoscope")
+        segments(segments), RenderPass(aspect, "kaleido")
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tex;
@@ -57,7 +57,7 @@ namespace itg
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
 #ifdef _ITG_TWEAKABLE
-        addParameter("segments", segments, "min=-20 max=20");
+        addParameter("segs", this->segments, "min=-20 max=20");
 #endif
     }
     
