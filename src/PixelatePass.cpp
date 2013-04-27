@@ -50,6 +50,11 @@ namespace itg
         
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
+#ifdef _ITG_TWEAKABLE
+        addParameter("x res", this->resolution.x, "min=1 max=200");
+        addParameter("y res", this->resolution.y, "min=1 max=200");
+#endif
+        
     }
     
     void PixelatePass::render(ofFbo& readFbo, ofFbo& writeFbo)
