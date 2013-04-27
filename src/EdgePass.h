@@ -48,7 +48,14 @@ namespace itg
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         
+        float getHue() const { return hue; }
+        void setHue(float hue) { this->hue = hue; }
+        
+        float getSaturation() const { return saturation; }
+        void setSaturation(float saturation) { this->saturation = saturation; }
+        
     private:
         ofShader shader;
+        float hue, saturation;
     };
 }
