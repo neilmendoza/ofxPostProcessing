@@ -33,13 +33,15 @@
 
 namespace itg
 {
-    EdgePass::EdgePass(const ofVec2f& aspect) : RenderPass(aspect, "edge")
+    EdgePass::EdgePass(const ofVec2f& aspect) :
+        RenderPass(aspect, "edge"), hue(0.5f), saturation(0.f)
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tex;
-            
             uniform vec2 aspect;
-                                  
+            uniform float hue;
+            uniform float saturation;
+                                         
             vec2 texel = vec2(1.0 / aspect.x, 1.0 / aspect.y);
 
             // hard coded matrix values
@@ -52,7 +54,9 @@ namespace itg
                                 mat3( 0.1666666716337204, -0.3333333432674408, 0.1666666716337204, -0.3333333432674408, 0.6666666865348816, -0.3333333432674408, 0.1666666716337204, -0.3333333432674408, 0.1666666716337204 ),
                                 mat3( -0.3333333432674408, 0.1666666716337204, -0.3333333432674408, 0.1666666716337204, 0.6666666865348816, 0.1666666716337204, -0.3333333432674408, 0.1666666716337204, -0.3333333432674408 ),
                                 mat3( 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408, 0.3333333432674408 ));
-                                  
+            
+            vec3 hsv(float h,float s,float v) { return mix(vec3(1.),clamp((abs(fract(h+vec3(3.,2.,1.)/3.)*6.-3.)-1.),0.,1.),s)*v; }
+                                         
             void main(void)
             {
                 mat3 I;
@@ -79,12 +83,16 @@ namespace itg
                 float M = (cnv[0] + cnv[1]) + (cnv[2] + cnv[3]);
                 float S = (cnv[4] + cnv[5]) + (cnv[6] + cnv[7]) + (cnv[8] + M); 
 
-                gl_FragColor = vec4(vec3(sqrt(M/S)), 1.0);
+                gl_FragColor = vec4(hsv(hue, saturation, sqrt(M/S)), 1.0);
             }
         );
         
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, "#version 120\n" + fragShaderSrc);
         shader.linkProgram();
+#ifdef _ITG_TWEAKABLE
+        addParameter("hue", this->hue, "min=0 max=1");
+        addParameter("saturation", this->saturation, "min=0 max=1");
+#endif
     }
     
     void EdgePass::render(ofFbo& readFbo, ofFbo& writeFbo)
@@ -94,6 +102,8 @@ namespace itg
         shader.begin();
         shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
         shader.setUniform2f("aspect", aspect.x, aspect.y);
+        shader.setUniform1f("hue", hue);
+        shader.setUniform1f("saturation", saturation);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

@@ -160,6 +160,11 @@ namespace itg
         
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
+#ifdef _ITG_TWEAKABLE
+        addParameter("amplitude", this->frequency, "min=0 max=10");
+        addParameter("frequency", this->frequency, "min=0 max=20");
+        addParameter("speed", this->speed, "min=0 max=10");
+#endif
     }
     
     void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
