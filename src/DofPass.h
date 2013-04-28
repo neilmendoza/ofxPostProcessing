@@ -33,7 +33,6 @@
 
 #include "RenderPass.h"
 #include "ofShader.h"
-#include <tr1/memory>
 
 namespace itg
 {

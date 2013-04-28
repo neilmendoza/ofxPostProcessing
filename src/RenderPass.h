@@ -33,7 +33,6 @@
 
 #include "ofFbo.h"
 #include "ofVec3f.h"
-#include <tr1/memory>
 #include "ofShader.h"
 #ifdef _ITG_TWEAKABLE
     #include "Tweakable.h"
