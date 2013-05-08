@@ -51,8 +51,8 @@ namespace itg
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
 #ifdef _ITG_TWEAKABLE
-        addParameter("x", this->resolution.x, "min=1 max=200");
-        addParameter("y", this->resolution.y, "min=1 max=200");
+        addParameter("x", this->resolution.x, "min=1 max=1000");
+        addParameter("y", this->resolution.y, "min=1 max=1000");
 #endif
     }
     
