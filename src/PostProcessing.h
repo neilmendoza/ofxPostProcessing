@@ -88,5 +88,7 @@ namespace itg
         ofFbo raw;
         ofFbo pingPong[2];
         vector<RenderPass::Ptr> passes;
+		
+		ofRectangle viewRect;
     };
 }
