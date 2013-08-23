@@ -48,6 +48,7 @@
 #include "HorizontalTiltShifPass.h"
 #include "VerticalTiltShifPass.h"
 #include "RGBShiftPass.h"
+#include "FakeSSSPass.h"
 
 typedef itg::PostProcessing ofxPostProcessing;
 
