@@ -42,6 +42,7 @@ namespace itg
         ofFbo::Settings s;
         s.width = ofNextPow2(width);
         s.height = ofNextPow2(height);
+        s.internalformat = GL_RGBA16F;
         s.textureTarget = GL_TEXTURE_2D;
         
         // no need to use depth for ping pongs

@@ -34,7 +34,7 @@
 namespace itg
 {
     HorizontalTiltShifPass::HorizontalTiltShifPass(const ofVec2f& aspect) :
-        RenderPass(aspect, "horizontaltiltshift"), h(1.0/512.0), r(0.5)
+        RenderPass(aspect, "horizontaltiltshift"), h(2.0/512.0), r(0.5)
     {
         string fragShaderSrc = STRINGIFY(
              uniform sampler2D tDiffuse;

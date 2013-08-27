@@ -1,7 +1,7 @@
 /*
- *  ofxPostProcessing.h
+ *  GodRaysPass.h
  *
- *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,29 +31,31 @@
  */
 #pragma once
 
-#include "BloomPass.h"
-#include "ConvolutionPass.h"
-#include "DofPass.h"
-#include "DofAltPass.h"
-#include "EdgePass.h"
-#include "FxaaPass.h"
-#include "KaleidoscopePass.h"
-#include "NoiseWarpPass.h"
-#include "PixelatePass.h"
-#include "PostProcessing.h"
 #include "RenderPass.h"
-#include "LUTPass.h"
-#include "ContrastPass.h"
-#include "SSAOPass.h"
-#include "HorizontalTiltShifPass.h"
-#include "VerticalTiltShifPass.h"
-#include "RGBShiftPass.h"
-#include "FakeSSSPass.h"
-#include "ZoomBlurPass.h"
-#include "BleachBypassPass.h"
-#include "ToonPass.h"
-#include "GodRaysPass.h"
+#include "ofShader.h"
 
-typedef itg::PostProcessing ofxPostProcessing;
-
-using namespace itg;
+namespace itg
+{
+    class GodRaysPass : public RenderPass
+    {
+    public:
+        //http://code.google.com/p/natureal/source/browse/trunk/PGR2project/shaders/godrays/godrays_fs.glsl?r=18
+        typedef shared_ptr<GodRaysPass> Ptr;
+        
+        GodRaysPass(const ofVec2f& aspect, const ofVec3f & lightPositionOnScreen = ofVec3f(0.5,0.5,0.5), float lightDirDOTviewDir = 0.3 );
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
+        
+        void setLightPositionOnScreen(const ofVec3f & val) { lightPositionOnScreen = val; }
+        const ofVec3f getlightPositionOnScreen() { return lightPositionOnScreen; }
+        
+        void setLightDirDOTviewDir(float val) { lightDirDOTviewDir = val; }
+        float getLightDirDOTviewDir() { return lightDirDOTviewDir; }
+    private:
+        
+        ofShader shader;
+        
+        ofVec3f lightPositionOnScreen;
+        float lightDirDOTviewDir;
+    };
+}
