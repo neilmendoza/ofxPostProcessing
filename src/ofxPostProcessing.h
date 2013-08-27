@@ -51,6 +51,7 @@
 #include "FakeSSSPass.h"
 #include "ZoomBlurPass.h"
 #include "BleachBypassPass.h"
+#include "ToonPass.h"
 
 typedef itg::PostProcessing ofxPostProcessing;
 
