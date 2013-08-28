@@ -1,7 +1,7 @@
 /*
- *  ofxPostProcessing.h
+ *  RimHighlightingPass.h
  *
- *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,31 +31,39 @@
  */
 #pragma once
 
-#include "BloomPass.h"
-#include "ConvolutionPass.h"
-#include "DofPass.h"
-#include "DofAltPass.h"
-#include "EdgePass.h"
-#include "FxaaPass.h"
-#include "KaleidoscopePass.h"
-#include "NoiseWarpPass.h"
-#include "PixelatePass.h"
-#include "PostProcessing.h"
 #include "RenderPass.h"
-#include "LUTPass.h"
-#include "ContrastPass.h"
-#include "SSAOPass.h"
-#include "HorizontalTiltShifPass.h"
-#include "VerticalTiltShifPass.h"
-#include "RGBShiftPass.h"
-#include "FakeSSSPass.h"
-#include "ZoomBlurPass.h"
-#include "BleachBypassPass.h"
-#include "ToonPass.h"
-#include "GodRaysPass.h"
-#include "RimHighlightingPass.h"
-#include "LimbDarkeningPass.h"
 
-typedef itg::PostProcessing ofxPostProcessing;
-
-using namespace itg;
+namespace itg
+{
+    class LimbDarkeningPass : public RenderPass
+    {
+    public:
+        typedef shared_ptr<LimbDarkeningPass> Ptr;
+        
+        LimbDarkeningPass(const ofVec2f& aspect,
+                          float radialScale = 1.2,
+                          float brightness = 2.5,
+                          const ofVec3f & startColor = ofVec3f(1.0,1.0,1.0),
+                          const ofVec3f & endColor = ofVec3f(1.0,1.0,1.0));
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+        void setRadialScale(float val) { radialScale = val; };
+        float getRadialScale() { return radialScale; }
+        
+        void setBrightness(float val) { brightness = val; }
+        float getBrightness() { return brightness; }
+        
+        void setStartColor(const ofVec3f & val) { startColor = val; }
+        const ofVec3f getStartColor() { return startColor; }
+        
+        void setEndColor(const ofVec3f & val) { endColor = val; }
+        const ofVec3f getEndColor() { return endColor; }
+    private:
+        ofShader shader;
+        ofVec3f startColor;
+        ofVec3f endColor;
+        float radialScale;
+        float brightness;
+    };
+}

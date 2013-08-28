@@ -1,7 +1,7 @@
 /*
- *  ofxPostProcessing.h
+ *  RimHighlightingPass.h
  *
- *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,31 +31,21 @@
  */
 #pragma once
 
-#include "BloomPass.h"
-#include "ConvolutionPass.h"
-#include "DofPass.h"
-#include "DofAltPass.h"
-#include "EdgePass.h"
-#include "FxaaPass.h"
-#include "KaleidoscopePass.h"
-#include "NoiseWarpPass.h"
-#include "PixelatePass.h"
-#include "PostProcessing.h"
 #include "RenderPass.h"
-#include "LUTPass.h"
-#include "ContrastPass.h"
-#include "SSAOPass.h"
-#include "HorizontalTiltShifPass.h"
-#include "VerticalTiltShifPass.h"
-#include "RGBShiftPass.h"
-#include "FakeSSSPass.h"
-#include "ZoomBlurPass.h"
-#include "BleachBypassPass.h"
-#include "ToonPass.h"
-#include "GodRaysPass.h"
-#include "RimHighlightingPass.h"
-#include "LimbDarkeningPass.h"
 
-typedef itg::PostProcessing ofxPostProcessing;
-
-using namespace itg;
+namespace itg
+{
+    //http://irrlicht.sourceforge.net/forum/viewtopic.php?f=4&t=47888
+    class RimHighlightingPass : public RenderPass
+    {
+    public:
+        typedef shared_ptr<RimHighlightingPass> Ptr;
+        
+        RimHighlightingPass(const ofVec2f& aspect);
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+    private:
+        ofShader shader;
+    };
+}
