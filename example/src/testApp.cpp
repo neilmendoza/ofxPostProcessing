@@ -25,6 +25,10 @@ void testApp::setup()
     
     // Setup light
 	light.setPosition(1000, 1000, 2000);
+    
+    // create our own box mesh as there is a bug with
+    // normal scaling and ofDrawBox() at the moment
+    boxMesh = ofMesh::box(20, 20, 20);
 }
 
 void testApp::update()
@@ -49,8 +53,13 @@ void testApp::draw()
     for (unsigned i = 0; i < posns.size(); ++i)
     {
         ofSetColor(cols[i]);
-        ofBox(posns[i], 20);
+        ofPushMatrix();
+        ofTranslate(posns[i]);
+        boxMesh.draw();
+        ofPopMatrix();
     }
+    
+    ofDrawAxis(100);
     
     // end scene and draw
     post.end();

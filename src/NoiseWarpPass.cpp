@@ -173,9 +173,9 @@ namespace itg
         shader.begin();
         shader.setUniform1f("time", ofGetElapsedTimef());
         shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
-        shader.setUniform1f("frequency", 4);
-        shader.setUniform1f("amplitude", 0.1);
-        shader.setUniform1f("speed", 0.1);
+        shader.setUniform1f("frequency", frequency);
+        shader.setUniform1f("amplitude", amplitude);
+        shader.setUniform1f("speed", speed);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

@@ -22,4 +22,5 @@ public:
     // boxes
     vector<ofVec3f> posns;
     vector<ofColor> cols;
+    ofVboMesh boxMesh;
 };
