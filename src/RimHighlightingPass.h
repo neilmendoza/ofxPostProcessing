@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  RimHighlightingPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,21 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
-#include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
+#include "RenderPass.h"
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    //http://irrlicht.sourceforge.net/forum/viewtopic.php?f=4&t=47888
+    class RimHighlightingPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
+        typedef shared_ptr<RimHighlightingPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        RimHighlightingPass(const ofVec2f& aspect);
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
-        
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
-        
-        // for GUI
-        bool& getEnabledRef();
-        
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-        
-        ofVec2f aspect;
-    
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        ofShader shader;
     };
 }

@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  ZoomBlurPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,54 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
+#include "RenderPass.h"
 #include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    class ZoomBlurPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        typedef shared_ptr<ZoomBlurPass> Ptr;
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        ZoomBlurPass(const ofVec2f& aspect, float centerX = 0.5, float centerY = 0.5,
+                       float exposure = 0.48, float decay = 0.9, float density = 0.25,
+                       float weight = 0.25, float clamp = 1);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
+        void setCenterX(float v){ centerX = v; }
+        float getCenterX() { return centerX; }
         
-        // for GUI
-        bool& getEnabledRef();
+        void setCenterY(float v){ centerY = v; }
+        float getCenterY() { return centerY; }
         
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
+        void setExposure(float v){ exposure = v; }
+        float getExposure() { return exposure; }
         
-        ofVec2f aspect;
-    
+        void setDecay(float v){ decay = v; }
+        float getDecay() { return decay; }
+        
+        void setDensity(float v){ density = v; }
+        float getDensity() { return density; }
+        
+        void setWeight(float v){ weight = v; }
+        float getWeight() { return weight; }
+        
+        void setClamp(float v){ clamp = v; }
+        float getClamp() { return clamp; }
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        
+        ofShader shader;
+        
+        float centerX;
+        float centerY;
+        float exposure;
+        float decay;
+        float density;
+        float weight;
+        float clamp;
+        
     };
 }

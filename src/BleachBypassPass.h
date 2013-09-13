@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  BleachBypassPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,28 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
+#include "RenderPass.h"
 #include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    class BleachBypassPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
+        //http://code.google.com/p/pyppet/source/browse/pyppet/javascripts/shaders/BleachBypassShader.js?r=a321c4707804bb4b7448c29082f867e18212a9ee&spec=svn3673066e0f453e27af02a82b917b3a426487dfd9
+        typedef shared_ptr<BleachBypassPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        BleachBypassPass(const ofVec2f& aspect, float opacity = 1);
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
-        
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
-        
-        // for GUI
-        bool& getEnabledRef();
-        
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-        
-        ofVec2f aspect;
-    
+        void setOpacity(float v){ opacity = v; }
+        float getOpacity() { return opacity; }
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        
+        ofShader shader;
+        
+        float opacity;
+        
     };
 }

@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  RimHighlightingPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,39 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
-#include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
+#include "RenderPass.h"
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    class LimbDarkeningPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
+        typedef shared_ptr<LimbDarkeningPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        LimbDarkeningPass(const ofVec2f& aspect,
+                          float radialScale = 1.2,
+                          float brightness = 2.5,
+                          const ofVec3f & startColor = ofVec3f(1.0,1.0,1.0),
+                          const ofVec3f & endColor = ofVec3f(1.0,1.0,1.0));
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
+        void setRadialScale(float val) { radialScale = val; };
+        float getRadialScale() { return radialScale; }
         
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
+        void setBrightness(float val) { brightness = val; }
+        float getBrightness() { return brightness; }
         
-        // for GUI
-        bool& getEnabledRef();
+        void setStartColor(const ofVec3f & val) { startColor = val; }
+        const ofVec3f getStartColor() { return startColor; }
         
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-        
-        ofVec2f aspect;
-    
+        void setEndColor(const ofVec3f & val) { endColor = val; }
+        const ofVec3f getEndColor() { return endColor; }
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        ofShader shader;
+        ofVec3f startColor;
+        ofVec3f endColor;
+        float radialScale;
+        float brightness;
     };
 }

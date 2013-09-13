@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  GodRaysPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,31 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
+#include "RenderPass.h"
 #include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    class GodRaysPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
+        //http://code.google.com/p/natureal/source/browse/trunk/PGR2project/shaders/godrays/godrays_fs.glsl?r=18
+        typedef shared_ptr<GodRaysPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        GodRaysPass(const ofVec2f& aspect, const ofVec3f & lightPositionOnScreen = ofVec3f(0.5,0.5,0.5), float lightDirDOTviewDir = 0.3 );
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
+        void setLightPositionOnScreen(const ofVec3f & val) { lightPositionOnScreen = val; }
+        const ofVec3f getlightPositionOnScreen() { return lightPositionOnScreen; }
         
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
-        
-        // for GUI
-        bool& getEnabledRef();
-        
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-        
-        ofVec2f aspect;
-    
+        void setLightDirDOTviewDir(float val) { lightDirDOTviewDir = val; }
+        float getLightDirDOTviewDir() { return lightDirDOTviewDir; }
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        
+        ofShader shader;
+        
+        ofVec3f lightPositionOnScreen;
+        float lightDirDOTviewDir;
     };
 }

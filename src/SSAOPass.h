@@ -1,7 +1,7 @@
 /*
- *  RenderPass.h
+ *  SSAOPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -31,59 +31,44 @@
  */
 #pragma once
 
-//#define _ITG_TWEAKABLE
-
-#include "ofFbo.h"
-#include "ofVec3f.h"
-#include <tr1/memory>
+#include "RenderPass.h"
 #include "ofShader.h"
-#ifdef _ITG_TWEAKABLE
-    #include "Tweakable.h"
-#endif
-
-#define STRINGIFY(A) #A
 
 namespace itg
 {
-    using namespace tr1;
-    
-    class RenderPass
-#ifdef _ITG_TWEAKABLE
-        : public Tweakable
-#endif
+    /*
+     * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/SSAOShader.js
+     */
+    class SSAOPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        typedef shared_ptr<SSAOPass> Ptr;
         
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        SSAOPass(const ofVec2f& aspect, float cameraNear = 1, float cameraFar = 1000, float fogNear = 1, float fogFar = 1000, bool fogEnabled = false, bool onlyAO = false, float aoClamp = 0.5, float lumInfluence = 0.9);
         
-        void setEnabled(bool enabled) { this->enabled = enabled; }
-        bool getEnabled() const { return enabled; }
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
-        void enable() { enabled = true; }
-        void disable() { enabled = false; }
-        
-        // for GUI
-        bool& getEnabledRef();
-        
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
-
-#ifndef _ITG_TWEAKABLE
-        string getName() const { return name; }
-#endif
-
-    protected:
-        void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
-        
-        ofVec2f aspect;
-    
+        void setCameraNear(float v){ cameraNear = v; }
+        void setCameraFar(float v){ cameraFar = v; }
+        void setFogNear(float v){ fogNear = v; }
+        void setFogFar(float v){ fogFar = v; }
+        void setFogEnabled(bool v){ fogEnabled = v; }
+        void setOnlyAO(bool v){ onlyAO = v; }
+        void setAoClamp(float v){ aoClamp = v; }
+        void setLumInfluence(float v){ lumInfluence = v; }
     private:
-#ifndef _ITG_TWEAKABLE
-        string name;
-#endif
-        bool enabled;
+        
+        ofShader shader;
+        
+        float cameraNear;
+        float cameraFar;
+        float fogNear;
+        float fogFar;
+        bool fogEnabled;
+        bool onlyAO;
+        float aoClamp;
+        float lumInfluence;
+        
     };
 }

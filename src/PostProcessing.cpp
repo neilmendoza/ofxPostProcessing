@@ -42,6 +42,7 @@ namespace itg
         ofFbo::Settings s;
         s.width = ofNextPow2(width);
         s.height = ofNextPow2(height);
+        s.internalformat = GL_RGBA16F;
         s.textureTarget = GL_TEXTURE_2D;
         
         // no need to use depth for ping pongs
@@ -58,6 +59,9 @@ namespace itg
         numPasses = 0;
         currentReadFbo = 0;
         flip = true;
+		
+		viewRect.set(0, 0, width, height);
+		viewRect.scaleTo(ofRectangle(0, 0, raw.getWidth(), raw.getHeight()), OF_SCALEMODE_FIT);
     }
     
     void PostProcessing::begin()
@@ -70,7 +74,7 @@ namespace itg
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         
-        glViewport(0, 0, raw.getWidth(), raw.getHeight());
+        glViewport(viewRect.x, viewRect.y, viewRect.width, viewRect.height);
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         
@@ -93,8 +97,8 @@ namespace itg
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadMatrixf(cam.getModelViewMatrix().getPtr());
-        
-        glViewport(0, 0, raw.getWidth(), raw.getHeight());
+		
+        glViewport(viewRect.x, viewRect.y, viewRect.width, viewRect.height);
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         
@@ -148,8 +152,8 @@ namespace itg
             glScalef(1, -1, 1);
         }
         else glTranslatef(x, y, 0);
-        if (numPasses == 0) raw.draw(0, 0, w, h);
-        else pingPong[currentReadFbo].draw(0, 0, w, h);
+		if (numPasses == 0) raw.getTextureReference().drawSubsection(0, 0, w, h, viewRect.x, viewRect.y, viewRect.width, viewRect.height);
+        else pingPong[currentReadFbo].getTextureReference().drawSubsection(0, 0, w, h, viewRect.x, viewRect.y, viewRect.width, viewRect.height);
         if (flip) glPopMatrix();
     }
     
