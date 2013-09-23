@@ -69,7 +69,7 @@ namespace itg
         // for GUI
         bool& getEnabledRef();
         
-        void setAspect(const ofVec2f& _aspect){ aspect = _aspect; }
+        void setAspect(const ofVec2f& aspect){ this->aspect = aspect; }
 
 #ifndef _ITG_TWEAKABLE
         string getName() const { return name; }
