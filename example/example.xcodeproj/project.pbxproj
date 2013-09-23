@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04c13eea813a786cc1d8137adc963df1 /* FxaaPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9425843aec3118b8fdef1b0b1b0cbbc5 /* FxaaPass.cpp */; };
-		114c00b13f753e59bb0984bb58de9d1c /* DofAltPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = e837debfaea1cad833a377dfcbf9b85a /* DofAltPass.cpp */; };
-		1e615236d6d182ded6c8a8b2aea75a6b /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54f36382628e4d0ff07206d7ed509357 /* RenderPass.cpp */; };
-		2809A1BB1695F0ED00D9B152 /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */; };
-		28922FFE169A033D0015BF7C /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28922FFC169A033D0015BF7C /* PixelatePass.cpp */; };
-		3a499904889c490dcf533c6e4582d0a5 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = d41ed8c8083845703aa1fdfaed737ec1 /* BloomPass.cpp */; };
-		778dca6792476e5b9f57f1758fec4ffc /* ConvolutionPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3aacd9661af21261e24a05a4f729537b /* ConvolutionPass.cpp */; };
-		884cb4d049e35c51e949a5650d4f48df /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 108c4db0c398388d000270915197e88f /* KaleidoscopePass.cpp */; };
+		2843D7B917F057C400DC03BB /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D78817F057C400DC03BB /* BleachBypassPass.cpp */; };
+		2843D7BA17F057C400DC03BB /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D78A17F057C400DC03BB /* BloomPass.cpp */; };
+		2843D7BB17F057C400DC03BB /* ContrastPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D78C17F057C400DC03BB /* ContrastPass.cpp */; };
+		2843D7BC17F057C400DC03BB /* ConvolutionPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D78E17F057C400DC03BB /* ConvolutionPass.cpp */; };
+		2843D7BD17F057C400DC03BB /* DofAltPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79017F057C400DC03BB /* DofAltPass.cpp */; };
+		2843D7BE17F057C400DC03BB /* DofPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79217F057C400DC03BB /* DofPass.cpp */; };
+		2843D7BF17F057C400DC03BB /* EdgePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79417F057C400DC03BB /* EdgePass.cpp */; };
+		2843D7C017F057C400DC03BB /* FakeSSSPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79617F057C400DC03BB /* FakeSSSPass.cpp */; };
+		2843D7C117F057C400DC03BB /* FxaaPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79817F057C400DC03BB /* FxaaPass.cpp */; };
+		2843D7C217F057C400DC03BB /* GodRaysPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79A17F057C400DC03BB /* GodRaysPass.cpp */; };
+		2843D7C317F057C400DC03BB /* HorizontalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79C17F057C400DC03BB /* HorizontalTiltShifPass.cpp */; };
+		2843D7C417F057C400DC03BB /* KaleidoscopePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D79E17F057C400DC03BB /* KaleidoscopePass.cpp */; };
+		2843D7C517F057C400DC03BB /* LimbDarkeningPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7A017F057C400DC03BB /* LimbDarkeningPass.cpp */; };
+		2843D7C617F057C400DC03BB /* LUTPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7A217F057C400DC03BB /* LUTPass.cpp */; };
+		2843D7C717F057C400DC03BB /* NoiseWarpPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7A417F057C400DC03BB /* NoiseWarpPass.cpp */; };
+		2843D7C817F057C400DC03BB /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7A717F057C400DC03BB /* PixelatePass.cpp */; };
+		2843D7C917F057C400DC03BB /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7A917F057C400DC03BB /* PostProcessing.cpp */; };
+		2843D7CA17F057C400DC03BB /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7AB17F057C400DC03BB /* RenderPass.cpp */; };
+		2843D7CB17F057C400DC03BB /* RGBShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7AD17F057C400DC03BB /* RGBShiftPass.cpp */; };
+		2843D7CC17F057C400DC03BB /* RimHighlightingPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7AF17F057C400DC03BB /* RimHighlightingPass.cpp */; };
+		2843D7CD17F057C400DC03BB /* SSAOPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7B117F057C400DC03BB /* SSAOPass.cpp */; };
+		2843D7CE17F057C400DC03BB /* ToonPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7B317F057C400DC03BB /* ToonPass.cpp */; };
+		2843D7CF17F057C400DC03BB /* VerticalTiltShifPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7B517F057C400DC03BB /* VerticalTiltShifPass.cpp */; };
+		2843D7D017F057C400DC03BB /* ZoomBlurPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2843D7B717F057C400DC03BB /* ZoomBlurPass.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -35,9 +51,6 @@
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
-		ac13e63609d5e3f0786df5122f3e0cfd /* DofPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27d13aaed39cda1a5f5446ad277e7e29 /* DofPass.cpp */; };
-		ae65c02fec934514466a8d67fd7fff94 /* EdgePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ac8b4de8cd341280fde798aec549cd6 /* EdgePass.cpp */; };
-		be5ed1fdb18d5092cf3aaca09495e626 /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484f662699dfe8176e1b750fba6a2e2d /* PostProcessing.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,24 +84,55 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0217829e621698e1fd8d9876b21e2963 /* EdgePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EdgePass.h; path = ../../../addons/ofxPostProcessing/src/EdgePass.h; sourceTree = SOURCE_ROOT; };
-		044d4b2a1a607f88fef2b610b1a29c6f /* ConvolutionPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ConvolutionPass.h; path = ../../../addons/ofxPostProcessing/src/ConvolutionPass.h; sourceTree = SOURCE_ROOT; };
-		0453a7c309e8ae8f8c1cc6e8b21ed6f3 /* DofAltPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DofAltPass.h; path = ../../../addons/ofxPostProcessing/src/DofAltPass.h; sourceTree = SOURCE_ROOT; };
-		0ac8b4de8cd341280fde798aec549cd6 /* EdgePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EdgePass.cpp; path = ../../../addons/ofxPostProcessing/src/EdgePass.cpp; sourceTree = SOURCE_ROOT; };
-		108c4db0c398388d000270915197e88f /* KaleidoscopePass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = KaleidoscopePass.cpp; path = ../../../addons/ofxPostProcessing/src/KaleidoscopePass.cpp; sourceTree = SOURCE_ROOT; };
-		27d13aaed39cda1a5f5446ad277e7e29 /* DofPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DofPass.cpp; path = ../../../addons/ofxPostProcessing/src/DofPass.cpp; sourceTree = SOURCE_ROOT; };
-		2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NoiseWarpPass.cpp; path = ../src/NoiseWarpPass.cpp; sourceTree = "<group>"; };
-		2809A1BA1695F0ED00D9B152 /* NoiseWarpPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoiseWarpPass.h; path = ../src/NoiseWarpPass.h; sourceTree = "<group>"; };
-		2809A1BC1695F0F600D9B152 /* ofxPostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxPostProcessing.h; path = ../src/ofxPostProcessing.h; sourceTree = "<group>"; };
-		28922FFC169A033D0015BF7C /* PixelatePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PixelatePass.cpp; path = ../src/PixelatePass.cpp; sourceTree = "<group>"; };
-		28922FFD169A033D0015BF7C /* PixelatePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PixelatePass.h; path = ../src/PixelatePass.h; sourceTree = "<group>"; };
-		3aacd9661af21261e24a05a4f729537b /* ConvolutionPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ConvolutionPass.cpp; path = ../../../addons/ofxPostProcessing/src/ConvolutionPass.cpp; sourceTree = SOURCE_ROOT; };
-		484f662699dfe8176e1b750fba6a2e2d /* PostProcessing.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PostProcessing.cpp; path = ../../../addons/ofxPostProcessing/src/PostProcessing.cpp; sourceTree = SOURCE_ROOT; };
-		49cae27dc1d138037cf88acf57723c77 /* FxaaPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FxaaPass.h; path = ../../../addons/ofxPostProcessing/src/FxaaPass.h; sourceTree = SOURCE_ROOT; };
-		50800dab6c4b18e4f92166fc20b84656 /* KaleidoscopePass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KaleidoscopePass.h; path = ../../../addons/ofxPostProcessing/src/KaleidoscopePass.h; sourceTree = SOURCE_ROOT; };
-		54f36382628e4d0ff07206d7ed509357 /* RenderPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RenderPass.cpp; path = ../../../addons/ofxPostProcessing/src/RenderPass.cpp; sourceTree = SOURCE_ROOT; };
-		5a00e58dc16d2151dd82a26c86380fca /* DofPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DofPass.h; path = ../../../addons/ofxPostProcessing/src/DofPass.h; sourceTree = SOURCE_ROOT; };
-		9425843aec3118b8fdef1b0b1b0cbbc5 /* FxaaPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FxaaPass.cpp; path = ../../../addons/ofxPostProcessing/src/FxaaPass.cpp; sourceTree = SOURCE_ROOT; };
+		2843D78817F057C400DC03BB /* BleachBypassPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BleachBypassPass.cpp; sourceTree = "<group>"; };
+		2843D78917F057C400DC03BB /* BleachBypassPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleachBypassPass.h; sourceTree = "<group>"; };
+		2843D78A17F057C400DC03BB /* BloomPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomPass.cpp; sourceTree = "<group>"; };
+		2843D78B17F057C400DC03BB /* BloomPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloomPass.h; sourceTree = "<group>"; };
+		2843D78C17F057C400DC03BB /* ContrastPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContrastPass.cpp; sourceTree = "<group>"; };
+		2843D78D17F057C400DC03BB /* ContrastPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContrastPass.h; sourceTree = "<group>"; };
+		2843D78E17F057C400DC03BB /* ConvolutionPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConvolutionPass.cpp; sourceTree = "<group>"; };
+		2843D78F17F057C400DC03BB /* ConvolutionPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvolutionPass.h; sourceTree = "<group>"; };
+		2843D79017F057C400DC03BB /* DofAltPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DofAltPass.cpp; sourceTree = "<group>"; };
+		2843D79117F057C400DC03BB /* DofAltPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DofAltPass.h; sourceTree = "<group>"; };
+		2843D79217F057C400DC03BB /* DofPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DofPass.cpp; sourceTree = "<group>"; };
+		2843D79317F057C400DC03BB /* DofPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DofPass.h; sourceTree = "<group>"; };
+		2843D79417F057C400DC03BB /* EdgePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgePass.cpp; sourceTree = "<group>"; };
+		2843D79517F057C400DC03BB /* EdgePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgePass.h; sourceTree = "<group>"; };
+		2843D79617F057C400DC03BB /* FakeSSSPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FakeSSSPass.cpp; sourceTree = "<group>"; };
+		2843D79717F057C400DC03BB /* FakeSSSPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeSSSPass.h; sourceTree = "<group>"; };
+		2843D79817F057C400DC03BB /* FxaaPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FxaaPass.cpp; sourceTree = "<group>"; };
+		2843D79917F057C400DC03BB /* FxaaPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FxaaPass.h; sourceTree = "<group>"; };
+		2843D79A17F057C400DC03BB /* GodRaysPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GodRaysPass.cpp; sourceTree = "<group>"; };
+		2843D79B17F057C400DC03BB /* GodRaysPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GodRaysPass.h; sourceTree = "<group>"; };
+		2843D79C17F057C400DC03BB /* HorizontalTiltShifPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HorizontalTiltShifPass.cpp; sourceTree = "<group>"; };
+		2843D79D17F057C400DC03BB /* HorizontalTiltShifPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTiltShifPass.h; sourceTree = "<group>"; };
+		2843D79E17F057C400DC03BB /* KaleidoscopePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KaleidoscopePass.cpp; sourceTree = "<group>"; };
+		2843D79F17F057C400DC03BB /* KaleidoscopePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaleidoscopePass.h; sourceTree = "<group>"; };
+		2843D7A017F057C400DC03BB /* LimbDarkeningPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LimbDarkeningPass.cpp; sourceTree = "<group>"; };
+		2843D7A117F057C400DC03BB /* LimbDarkeningPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimbDarkeningPass.h; sourceTree = "<group>"; };
+		2843D7A217F057C400DC03BB /* LUTPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LUTPass.cpp; sourceTree = "<group>"; };
+		2843D7A317F057C400DC03BB /* LUTPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LUTPass.h; sourceTree = "<group>"; };
+		2843D7A417F057C400DC03BB /* NoiseWarpPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoiseWarpPass.cpp; sourceTree = "<group>"; };
+		2843D7A517F057C400DC03BB /* NoiseWarpPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoiseWarpPass.h; sourceTree = "<group>"; };
+		2843D7A617F057C400DC03BB /* ofxPostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPostProcessing.h; sourceTree = "<group>"; };
+		2843D7A717F057C400DC03BB /* PixelatePass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelatePass.cpp; sourceTree = "<group>"; };
+		2843D7A817F057C400DC03BB /* PixelatePass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelatePass.h; sourceTree = "<group>"; };
+		2843D7A917F057C400DC03BB /* PostProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PostProcessing.cpp; sourceTree = "<group>"; };
+		2843D7AA17F057C400DC03BB /* PostProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostProcessing.h; sourceTree = "<group>"; };
+		2843D7AB17F057C400DC03BB /* RenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderPass.cpp; sourceTree = "<group>"; };
+		2843D7AC17F057C400DC03BB /* RenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderPass.h; sourceTree = "<group>"; };
+		2843D7AD17F057C400DC03BB /* RGBShiftPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RGBShiftPass.cpp; sourceTree = "<group>"; };
+		2843D7AE17F057C400DC03BB /* RGBShiftPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBShiftPass.h; sourceTree = "<group>"; };
+		2843D7AF17F057C400DC03BB /* RimHighlightingPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RimHighlightingPass.cpp; sourceTree = "<group>"; };
+		2843D7B017F057C400DC03BB /* RimHighlightingPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RimHighlightingPass.h; sourceTree = "<group>"; };
+		2843D7B117F057C400DC03BB /* SSAOPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SSAOPass.cpp; sourceTree = "<group>"; };
+		2843D7B217F057C400DC03BB /* SSAOPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAOPass.h; sourceTree = "<group>"; };
+		2843D7B317F057C400DC03BB /* ToonPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ToonPass.cpp; sourceTree = "<group>"; };
+		2843D7B417F057C400DC03BB /* ToonPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToonPass.h; sourceTree = "<group>"; };
+		2843D7B517F057C400DC03BB /* VerticalTiltShifPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VerticalTiltShifPass.cpp; sourceTree = "<group>"; };
+		2843D7B617F057C400DC03BB /* VerticalTiltShifPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalTiltShifPass.h; sourceTree = "<group>"; };
+		2843D7B717F057C400DC03BB /* ZoomBlurPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZoomBlurPass.cpp; sourceTree = "<group>"; };
+		2843D7B817F057C400DC03BB /* ZoomBlurPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomBlurPass.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -113,11 +157,6 @@
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
-		b5cef0b83529626c7e8410b7d4d89920 /* BloomPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BloomPass.h; path = ../../../addons/ofxPostProcessing/src/BloomPass.h; sourceTree = SOURCE_ROOT; };
-		d41ed8c8083845703aa1fdfaed737ec1 /* BloomPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BloomPass.cpp; path = ../../../addons/ofxPostProcessing/src/BloomPass.cpp; sourceTree = SOURCE_ROOT; };
-		dacacdf2f37260a0bff826e2dab2dff8 /* PostProcessing.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PostProcessing.h; path = ../../../addons/ofxPostProcessing/src/PostProcessing.h; sourceTree = SOURCE_ROOT; };
-		e837debfaea1cad833a377dfcbf9b85a /* DofAltPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DofAltPass.cpp; path = ../../../addons/ofxPostProcessing/src/DofAltPass.cpp; sourceTree = SOURCE_ROOT; };
-		f5db1ac24b8010fc3c556aacbd936041 /* RenderPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RenderPass.h; path = ../../../addons/ofxPostProcessing/src/RenderPass.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +187,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2843D78717F057C400DC03BB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2843D78817F057C400DC03BB /* BleachBypassPass.cpp */,
+				2843D78917F057C400DC03BB /* BleachBypassPass.h */,
+				2843D78A17F057C400DC03BB /* BloomPass.cpp */,
+				2843D78B17F057C400DC03BB /* BloomPass.h */,
+				2843D78C17F057C400DC03BB /* ContrastPass.cpp */,
+				2843D78D17F057C400DC03BB /* ContrastPass.h */,
+				2843D78E17F057C400DC03BB /* ConvolutionPass.cpp */,
+				2843D78F17F057C400DC03BB /* ConvolutionPass.h */,
+				2843D79017F057C400DC03BB /* DofAltPass.cpp */,
+				2843D79117F057C400DC03BB /* DofAltPass.h */,
+				2843D79217F057C400DC03BB /* DofPass.cpp */,
+				2843D79317F057C400DC03BB /* DofPass.h */,
+				2843D79417F057C400DC03BB /* EdgePass.cpp */,
+				2843D79517F057C400DC03BB /* EdgePass.h */,
+				2843D79617F057C400DC03BB /* FakeSSSPass.cpp */,
+				2843D79717F057C400DC03BB /* FakeSSSPass.h */,
+				2843D79817F057C400DC03BB /* FxaaPass.cpp */,
+				2843D79917F057C400DC03BB /* FxaaPass.h */,
+				2843D79A17F057C400DC03BB /* GodRaysPass.cpp */,
+				2843D79B17F057C400DC03BB /* GodRaysPass.h */,
+				2843D79C17F057C400DC03BB /* HorizontalTiltShifPass.cpp */,
+				2843D79D17F057C400DC03BB /* HorizontalTiltShifPass.h */,
+				2843D79E17F057C400DC03BB /* KaleidoscopePass.cpp */,
+				2843D79F17F057C400DC03BB /* KaleidoscopePass.h */,
+				2843D7A017F057C400DC03BB /* LimbDarkeningPass.cpp */,
+				2843D7A117F057C400DC03BB /* LimbDarkeningPass.h */,
+				2843D7A217F057C400DC03BB /* LUTPass.cpp */,
+				2843D7A317F057C400DC03BB /* LUTPass.h */,
+				2843D7A417F057C400DC03BB /* NoiseWarpPass.cpp */,
+				2843D7A517F057C400DC03BB /* NoiseWarpPass.h */,
+				2843D7A617F057C400DC03BB /* ofxPostProcessing.h */,
+				2843D7A717F057C400DC03BB /* PixelatePass.cpp */,
+				2843D7A817F057C400DC03BB /* PixelatePass.h */,
+				2843D7A917F057C400DC03BB /* PostProcessing.cpp */,
+				2843D7AA17F057C400DC03BB /* PostProcessing.h */,
+				2843D7AB17F057C400DC03BB /* RenderPass.cpp */,
+				2843D7AC17F057C400DC03BB /* RenderPass.h */,
+				2843D7AD17F057C400DC03BB /* RGBShiftPass.cpp */,
+				2843D7AE17F057C400DC03BB /* RGBShiftPass.h */,
+				2843D7AF17F057C400DC03BB /* RimHighlightingPass.cpp */,
+				2843D7B017F057C400DC03BB /* RimHighlightingPass.h */,
+				2843D7B117F057C400DC03BB /* SSAOPass.cpp */,
+				2843D7B217F057C400DC03BB /* SSAOPass.h */,
+				2843D7B317F057C400DC03BB /* ToonPass.cpp */,
+				2843D7B417F057C400DC03BB /* ToonPass.h */,
+				2843D7B517F057C400DC03BB /* VerticalTiltShifPass.cpp */,
+				2843D7B617F057C400DC03BB /* VerticalTiltShifPass.h */,
+				2843D7B717F057C400DC03BB /* ZoomBlurPass.cpp */,
+				2843D7B817F057C400DC03BB /* ZoomBlurPass.h */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,40 +331,10 @@
 			name = openFrameworks;
 			sourceTree = "<group>";
 		};
-		aff78a8eb1a778f89bad18094a50e144 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				2809A1BC1695F0F600D9B152 /* ofxPostProcessing.h */,
-				d41ed8c8083845703aa1fdfaed737ec1 /* BloomPass.cpp */,
-				b5cef0b83529626c7e8410b7d4d89920 /* BloomPass.h */,
-				27d13aaed39cda1a5f5446ad277e7e29 /* DofPass.cpp */,
-				5a00e58dc16d2151dd82a26c86380fca /* DofPass.h */,
-				3aacd9661af21261e24a05a4f729537b /* ConvolutionPass.cpp */,
-				044d4b2a1a607f88fef2b610b1a29c6f /* ConvolutionPass.h */,
-				e837debfaea1cad833a377dfcbf9b85a /* DofAltPass.cpp */,
-				0453a7c309e8ae8f8c1cc6e8b21ed6f3 /* DofAltPass.h */,
-				0ac8b4de8cd341280fde798aec549cd6 /* EdgePass.cpp */,
-				0217829e621698e1fd8d9876b21e2963 /* EdgePass.h */,
-				9425843aec3118b8fdef1b0b1b0cbbc5 /* FxaaPass.cpp */,
-				49cae27dc1d138037cf88acf57723c77 /* FxaaPass.h */,
-				108c4db0c398388d000270915197e88f /* KaleidoscopePass.cpp */,
-				50800dab6c4b18e4f92166fc20b84656 /* KaleidoscopePass.h */,
-				2809A1B91695F0ED00D9B152 /* NoiseWarpPass.cpp */,
-				2809A1BA1695F0ED00D9B152 /* NoiseWarpPass.h */,
-				28922FFC169A033D0015BF7C /* PixelatePass.cpp */,
-				28922FFD169A033D0015BF7C /* PixelatePass.h */,
-				484f662699dfe8176e1b750fba6a2e2d /* PostProcessing.cpp */,
-				dacacdf2f37260a0bff826e2dab2dff8 /* PostProcessing.h */,
-				54f36382628e4d0ff07206d7ed509357 /* RenderPass.cpp */,
-				f5db1ac24b8010fc3c556aacbd936041 /* RenderPass.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
 		bd52ec6dce402d90869a80a1e581f15f /* ofxPostProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				aff78a8eb1a778f89bad18094a50e144 /* src */,
+				2843D78717F057C400DC03BB /* src */,
 			);
 			name = ofxPostProcessing;
 			sourceTree = "<group>";
@@ -359,17 +425,30 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
-				3a499904889c490dcf533c6e4582d0a5 /* BloomPass.cpp in Sources */,
-				ac13e63609d5e3f0786df5122f3e0cfd /* DofPass.cpp in Sources */,
-				778dca6792476e5b9f57f1758fec4ffc /* ConvolutionPass.cpp in Sources */,
-				114c00b13f753e59bb0984bb58de9d1c /* DofAltPass.cpp in Sources */,
-				ae65c02fec934514466a8d67fd7fff94 /* EdgePass.cpp in Sources */,
-				04c13eea813a786cc1d8137adc963df1 /* FxaaPass.cpp in Sources */,
-				884cb4d049e35c51e949a5650d4f48df /* KaleidoscopePass.cpp in Sources */,
-				be5ed1fdb18d5092cf3aaca09495e626 /* PostProcessing.cpp in Sources */,
-				1e615236d6d182ded6c8a8b2aea75a6b /* RenderPass.cpp in Sources */,
-				2809A1BB1695F0ED00D9B152 /* NoiseWarpPass.cpp in Sources */,
-				28922FFE169A033D0015BF7C /* PixelatePass.cpp in Sources */,
+				2843D7B917F057C400DC03BB /* BleachBypassPass.cpp in Sources */,
+				2843D7BA17F057C400DC03BB /* BloomPass.cpp in Sources */,
+				2843D7BB17F057C400DC03BB /* ContrastPass.cpp in Sources */,
+				2843D7BC17F057C400DC03BB /* ConvolutionPass.cpp in Sources */,
+				2843D7BD17F057C400DC03BB /* DofAltPass.cpp in Sources */,
+				2843D7BE17F057C400DC03BB /* DofPass.cpp in Sources */,
+				2843D7BF17F057C400DC03BB /* EdgePass.cpp in Sources */,
+				2843D7C017F057C400DC03BB /* FakeSSSPass.cpp in Sources */,
+				2843D7C117F057C400DC03BB /* FxaaPass.cpp in Sources */,
+				2843D7C217F057C400DC03BB /* GodRaysPass.cpp in Sources */,
+				2843D7C317F057C400DC03BB /* HorizontalTiltShifPass.cpp in Sources */,
+				2843D7C417F057C400DC03BB /* KaleidoscopePass.cpp in Sources */,
+				2843D7C517F057C400DC03BB /* LimbDarkeningPass.cpp in Sources */,
+				2843D7C617F057C400DC03BB /* LUTPass.cpp in Sources */,
+				2843D7C717F057C400DC03BB /* NoiseWarpPass.cpp in Sources */,
+				2843D7C817F057C400DC03BB /* PixelatePass.cpp in Sources */,
+				2843D7C917F057C400DC03BB /* PostProcessing.cpp in Sources */,
+				2843D7CA17F057C400DC03BB /* RenderPass.cpp in Sources */,
+				2843D7CB17F057C400DC03BB /* RGBShiftPass.cpp in Sources */,
+				2843D7CC17F057C400DC03BB /* RimHighlightingPass.cpp in Sources */,
+				2843D7CD17F057C400DC03BB /* SSAOPass.cpp in Sources */,
+				2843D7CE17F057C400DC03BB /* ToonPass.cpp in Sources */,
+				2843D7CF17F057C400DC03BB /* VerticalTiltShifPass.cpp in Sources */,
+				2843D7D017F057C400DC03BB /* ZoomBlurPass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
