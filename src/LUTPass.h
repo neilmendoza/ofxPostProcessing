@@ -32,7 +32,6 @@
 #pragma once
 
 #include "RenderPass.h"
-#include <tr1/memory>
 
 namespace itg
 {

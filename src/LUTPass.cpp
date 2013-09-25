@@ -95,7 +95,7 @@ namespace itg
                 }
             }
 
-            assert(lut.size() == (LUT_3D_SIZE * LUT_3D_SIZE * LUT_3D_SIZE));
+			if (lut.size() != (LUT_3D_SIZE * LUT_3D_SIZE * LUT_3D_SIZE)) ofLogError() << "LUT size is incorrect.";
         }
 
         // gen texture
