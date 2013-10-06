@@ -9,7 +9,7 @@ www.neilmendoza.com/ofxpostprocessing
 At the moment, it comes with the following effects (some ported from other sources and some original) that I'll gradually add to over time:
 
 * Bloom
-* Convolution
+* Convolution (Blur)
 * Depth of field (with bokeh)
 * Depth of field alternative (more features but heavier)
 * Frei-Chen Edge Detector
