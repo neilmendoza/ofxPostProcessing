@@ -17,6 +17,12 @@ At the moment, it comes with the following effects (some ported from other sourc
 * Kaleidoscope
 * Noise warp
 * Pixelate
+* SSAO
+* Toon
+* Godrays
+* Tilt shift
+* Fake subsurface scattering
+* Many others, please see src directory
 
 ## Usage
 
