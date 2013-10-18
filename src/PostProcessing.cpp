@@ -55,7 +55,7 @@ namespace itg
         s.depthStencilAsTexture = true;
         raw.allocate(s);
         
-        numPasses = 0;
+        numProcessedPasses = 0;
         currentReadFbo = 0;
         flip = true;
     }
@@ -148,29 +148,29 @@ namespace itg
             glScalef(1, -1, 1);
         }
         else glTranslatef(x, y, 0);
-        if (numPasses == 0) raw.draw(0, 0, w, h);
+        if (numProcessedPasses == 0) raw.draw(0, 0, w, h);
         else pingPong[currentReadFbo].draw(0, 0, w, h);
         if (flip) glPopMatrix();
     }
     
     ofTexture& PostProcessing::getProcessedTextureReference()
     {
-        if (numPasses) return pingPong[currentReadFbo].getTextureReference();
+        if (numProcessedPasses) return pingPong[currentReadFbo].getTextureReference();
         else return raw.getTextureReference();
     }
     
     // need to have depth enabled for some fx
     void PostProcessing::process(ofFbo& raw)
     {
-        numPasses = 0;
+        numProcessedPasses = 0;
         for (int i = 0; i < passes.size(); ++i)
         {
             if (passes[i]->getEnabled())
             {
-                if (numPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
                 else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
                 currentReadFbo = 1 - currentReadFbo;
-                numPasses++;
+                numProcessedPasses++;
             }
         }
     }

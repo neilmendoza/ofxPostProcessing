@@ -76,12 +76,15 @@ namespace itg
         unsigned size() const { return passes.size(); }
         RenderPass::Ptr operator[](unsigned i) const { return passes[i]; }
         vector<RenderPass::Ptr>& getPasses() { return passes; }
+        unsigned getNumProcessedPasses() const { return numProcessedPasses; }
+        
+        ofFbo& getRawRef() { return raw; }
         
     private:
         void process();
         
         unsigned currentReadFbo;
-        unsigned numPasses;
+        unsigned numProcessedPasses;
         unsigned width, height;
         bool flip;
         
