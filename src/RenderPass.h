@@ -69,6 +69,8 @@ namespace itg
         bool& getEnabledRef() { return enabled; }
         
         void setAspect(const ofVec2f& aspect){ this->aspect = aspect; }
+        
+        virtual bool hasArbShader() { return false; }
 
 #ifndef _ITG_TWEAKABLE
         string getName() const { return name; }

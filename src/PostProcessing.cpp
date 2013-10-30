@@ -34,15 +34,26 @@
 
 namespace itg
 {
-    void PostProcessing::init(unsigned width, unsigned height)
+    void PostProcessing::init(unsigned width, unsigned height, bool useArb)
     {
         this->width = width;
         this->height = height;
+        this->useArb = useArb;
         
         ofFbo::Settings s;
-        s.width = ofNextPow2(width);
-        s.height = ofNextPow2(height);
-        s.textureTarget = GL_TEXTURE_2D;
+        
+        if (useArb)
+        {
+            s.width = width;
+            s.height = height;
+            s.textureTarget = GL_TEXTURE_RECTANGLE_ARB;
+        }
+        else
+        {
+            s.width = ofNextPow2(width);
+            s.height = ofNextPow2(height);
+            s.textureTarget = GL_TEXTURE_2D;
+        }
         
         // no need to use depth for ping pongs
         for (int i = 0; i < 2; ++i)
@@ -167,10 +178,14 @@ namespace itg
         {
             if (passes[i]->getEnabled())
             {
-                if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
-                else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
-                currentReadFbo = 1 - currentReadFbo;
-                numProcessedPasses++;
+                if (useArb && !passes[i]->hasArbShader()) ofLogError() << "Arb mode is enabled but pass " << passes[i]->getName() << " does not have an arb shader.";
+                else
+                {
+                    if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                    else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                    currentReadFbo = 1 - currentReadFbo;
+                    numProcessedPasses++;
+                }
             }
         }
     }
