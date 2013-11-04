@@ -34,15 +34,15 @@
 
 namespace itg
 {
-    void PostProcessing::init(unsigned width, unsigned height, bool useArb)
+    void PostProcessing::init(unsigned width, unsigned height, bool arb)
     {
         this->width = width;
         this->height = height;
-        this->useArb = useArb;
+        this->arb = arb;
         
         ofFbo::Settings s;
         
-        if (useArb)
+        if (arb)
         {
             s.width = width;
             s.height = height;
@@ -178,7 +178,7 @@ namespace itg
         {
             if (passes[i]->getEnabled())
             {
-                if (useArb && !passes[i]->hasArbShader()) ofLogError() << "Arb mode is enabled but pass " << passes[i]->getName() << " does not have an arb shader.";
+                if (arb && !passes[i]->hasArbShader()) ofLogError() << "Arb mode is enabled but pass " << passes[i]->getName() << " does not have an arb shader.";
                 else
                 {
                     if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());

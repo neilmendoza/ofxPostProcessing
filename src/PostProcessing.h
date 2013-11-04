@@ -41,7 +41,7 @@ namespace itg
     public:
         typedef shared_ptr<PostProcessing> Ptr;
         
-        void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight(), bool useArb = false);
+        void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight(), bool arb = false);
         void begin();
         void begin(ofCamera& cam);
         void end(bool autoDraw = true);
@@ -58,6 +58,7 @@ namespace itg
         shared_ptr<T> createPass()
         {
             shared_ptr<T> pass = shared_ptr<T>(new T(ofVec2f(width, height)));
+            pass->setArb(arb);
             passes.push_back(pass);
             return pass;
         }
@@ -87,7 +88,7 @@ namespace itg
         unsigned numProcessedPasses;
         unsigned width, height;
         bool flip;
-        bool useArb;
+        bool arb;
         
         ofFbo raw;
         ofFbo pingPong[2];

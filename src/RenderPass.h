@@ -70,6 +70,8 @@ namespace itg
         
         void setAspect(const ofVec2f& aspect){ this->aspect = aspect; }
         
+        void setArb(bool arb) { this->arb = arb; }
+        
         virtual bool hasArbShader() { return false; }
 
 #ifndef _ITG_TWEAKABLE
@@ -80,6 +82,8 @@ namespace itg
         void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
         
         ofVec2f aspect;
+        
+        bool arb;
     
     private:
 #ifndef _ITG_TWEAKABLE
