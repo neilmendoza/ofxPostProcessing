@@ -46,7 +46,7 @@ namespace itg
     public:
         typedef shared_ptr<DofPass> Ptr;
         
-        DofPass(const ofVec2f& aspect, float focus = 0.985, float aperture = 0.8, float maxBlur = 0.6);
+        DofPass(const ofVec2f& aspect, bool arb, float focus = 0.985, float aperture = 0.8, float maxBlur = 0.6);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex);
         

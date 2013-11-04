@@ -35,6 +35,7 @@
 namespace itg
 {
     FakeSSSPass::FakeSSSPass(const ofVec2f& aspect,
+                             bool arb,
                              const ofPoint& lightPosition,
                              const ofVec4f& extinctionCoefficient,
                              const ofVec4f& lightColor,
@@ -45,7 +46,7 @@ namespace itg
     extinctionCoefficient(extinctionCoefficient), lightColor(lightColor),
     specularColor(specularColor), specular(specular), rimScale(rimScale),
     attenuationOffset(attenuationOffset), materialThickness(materialThickness),
-    RenderPass(aspect, "SSS")
+    RenderPass(aspect, arb, "SSS")
     {
         baseColor.set(1.0, 1.0, 1.0, 1.0);
         

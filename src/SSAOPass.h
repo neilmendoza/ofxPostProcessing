@@ -45,7 +45,7 @@ namespace itg
         
         typedef shared_ptr<SSAOPass> Ptr;
         
-        SSAOPass(const ofVec2f& aspect, float cameraNear = 1, float cameraFar = 1000, float fogNear = 1, float fogFar = 1000, bool fogEnabled = false, bool onlyAO = false, float aoClamp = 0.5, float lumInfluence = 0.9);
+        SSAOPass(const ofVec2f& aspect, bool arb, float cameraNear = 1, float cameraFar = 1000, float fogNear = 1, float fogFar = 1000, bool fogEnabled = false, bool onlyAO = false, float aoClamp = 0.5, float lumInfluence = 0.9);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         

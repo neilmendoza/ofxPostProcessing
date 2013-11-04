@@ -57,8 +57,7 @@ namespace itg
         template<class T>
         shared_ptr<T> createPass()
         {
-            shared_ptr<T> pass = shared_ptr<T>(new T(ofVec2f(width, height)));
-            pass->setArb(arb);
+            shared_ptr<T> pass = shared_ptr<T>(new T(ofVec2f(width, height), arb));
             passes.push_back(pass);
             return pass;
         }

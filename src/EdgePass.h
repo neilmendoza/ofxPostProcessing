@@ -44,7 +44,7 @@ namespace itg
     public:
         typedef shared_ptr<EdgePass> Ptr;
         
-        EdgePass(const ofVec2f& aspect);
+        EdgePass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

@@ -34,11 +34,12 @@
 namespace itg
 {
     LimbDarkeningPass::LimbDarkeningPass(const ofVec2f& aspect,
+                                         bool arb,
                                          float radialScale,
                                          float brightness,
                                          const ofVec3f & startColor,
                                          const ofVec3f & endColor) :
-    radialScale(radialScale), brightness(brightness), startColor(startColor), endColor(endColor), RenderPass(aspect, "limbdarkening")
+    radialScale(radialScale), brightness(brightness), startColor(startColor), endColor(endColor), RenderPass(aspect, arb, "limbdarkening")
     {
         
         string fragShaderSrc = STRINGIFY(

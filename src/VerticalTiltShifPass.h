@@ -44,7 +44,7 @@ namespace itg
     public:
         typedef shared_ptr<VerticalTiltShifPass> Ptr;
         
-        VerticalTiltShifPass(const ofVec2f& aspect);
+        VerticalTiltShifPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

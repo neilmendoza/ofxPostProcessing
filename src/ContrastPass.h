@@ -43,7 +43,7 @@ namespace itg
         
         typedef shared_ptr<ContrastPass> Ptr;
         
-        ContrastPass(const ofVec2f& aspect, float contrast = 1.0f, float brightness = 1.0f);
+        ContrastPass(const ofVec2f& aspect, bool arb, float contrast = 1.0f, float brightness = 1.0f);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

@@ -34,12 +34,12 @@
 
 namespace itg
 {
-    ToonPass::ToonPass(const ofVec2f& aspect, float edgeThreshold, float level,
+    ToonPass::ToonPass(const ofVec2f& aspect, bool arb, float edgeThreshold, float level,
                        const ofVec4f& ambientColor,
                        const ofVec4f& diffuseColor,
                        const ofVec4f& specularColor,
                        bool isSpecular, float shinyness) :
-        edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness), RenderPass(aspect, "toon")
+        edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness), RenderPass(aspect, arb, "toon")
     {
         string vertShaderSrc = STRINGIFY(
             varying vec3 v;

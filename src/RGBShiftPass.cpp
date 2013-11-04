@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    RGBShiftPass::RGBShiftPass(const ofVec2f& aspect, float amount, float angle) :
-        amount(amount), angle(angle), RenderPass(aspect, "RGBShift")
+    RGBShiftPass::RGBShiftPass(const ofVec2f& aspect, bool arb, float amount, float angle) :
+        amount(amount), angle(angle), RenderPass(aspect, arb, "RGBShift")
     {
         
         string fragShaderSrc = STRINGIFY(

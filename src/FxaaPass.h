@@ -43,9 +43,11 @@ namespace itg
     public:
         typedef shared_ptr<FxaaPass> Ptr;
     
-        FxaaPass(const ofVec2f& aspect);
+        FxaaPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+        bool hasArbShader() { return true; }
         
     private:
         ofShader shader;

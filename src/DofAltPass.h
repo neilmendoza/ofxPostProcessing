@@ -42,7 +42,7 @@ namespace itg
     class DofAltPass : public RenderPass
     {
     public:
-        DofAltPass(const ofVec2f& aspect, float focalDepth = 1.f, float focalLength = 500.f, float fStop = 3.f, bool showFocus = false);
+        DofAltPass(const ofVec2f& aspect, bool arb, float focalDepth = 1.f, float focalLength = 500.f, float fStop = 3.f, bool showFocus = false);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         

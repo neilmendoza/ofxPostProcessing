@@ -34,13 +34,13 @@
 
 namespace itg
 {
-    BloomPass::BloomPass(const ofVec2f& aspect, const ofVec2f& xBlur, const ofVec2f& yBlur, unsigned resolution, bool aspectCorrect) : RenderPass(aspect, "bloom")
+    BloomPass::BloomPass(const ofVec2f& aspect, bool arb, const ofVec2f& xBlur, const ofVec2f& yBlur, unsigned resolution, bool aspectCorrect) : RenderPass(aspect, arb, "bloom")
     {
         currentReadFbo = 0;
         if (resolution != ofNextPow2(resolution)) ofLogWarning() << "Resolution " << resolution << " is not a power of two, using " << ofNextPow2(resolution);
         
-        xConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, xBlur));
-        yConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, (aspectCorrect?aspect.x / aspect.y:1.f) * yBlur));
+        xConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, arb, xBlur));
+        yConv = ConvolutionPass::Ptr(new ConvolutionPass(aspect, arb, (aspectCorrect?aspect.x / aspect.y:1.f) * yBlur));
         
         ofFbo::Settings s;
         s.width = ofNextPow2(resolution);

@@ -33,7 +33,7 @@
 
 namespace itg
 {
-    FxaaPass::FxaaPass(const ofVec2f& aspect) : RenderPass(aspect, "fxaa")
+    FxaaPass::FxaaPass(const ofVec2f& aspect, bool arb) : RenderPass(aspect, arb, "fxaa")
     {
         string fragShaderSrc = STRINGIFY(
              uniform sampler2D tDiffuse;
@@ -109,7 +109,8 @@ namespace itg
         shader.begin();
         
         shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
-        shader.setUniform2f("resolution", 1.f / writeFbo.getWidth(), 1.f / writeFbo.getHeight());
+        if (arb) shader.setUniform2f("resolution", 1.f, 1.f);
+        else shader.setUniform2f("resolution", 1.f / writeFbo.getWidth(), 1.f / writeFbo.getHeight());
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

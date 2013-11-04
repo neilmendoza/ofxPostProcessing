@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    DofPass::DofPass(const ofVec2f& aspect, float focus, float aperture, float maxBlur) :
-        focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, "dof")
+    DofPass::DofPass(const ofVec2f& aspect, bool arb, float focus, float aperture, float maxBlur) :
+        focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, arb, "dof")
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tColor;

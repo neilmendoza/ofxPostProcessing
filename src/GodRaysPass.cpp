@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    GodRaysPass::GodRaysPass(const ofVec2f& aspect, const ofVec3f & lightPositionOnScreen, float lightDirDOTviewDir) :
-        lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir), RenderPass(aspect, "godrays")
+    GodRaysPass::GodRaysPass(const ofVec2f& aspect, bool arb, const ofVec3f & lightPositionOnScreen, float lightDirDOTviewDir) :
+        lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir), RenderPass(aspect, arb, "godrays")
     {
         
         string vertShaderSrc = STRINGIFY(

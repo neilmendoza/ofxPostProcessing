@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    NoiseWarpPass::NoiseWarpPass(const ofVec2f& aspect, float frequency, float amplitude, float speed) :
-        frequency(frequency), amplitude(amplitude), speed(speed), RenderPass(aspect, "noisewarp")
+    NoiseWarpPass::NoiseWarpPass(const ofVec2f& aspect, bool arb, float frequency, float amplitude, float speed) :
+        frequency(frequency), amplitude(amplitude), speed(speed), RenderPass(aspect, arb, "noisewarp")
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tex;

@@ -42,7 +42,7 @@ namespace itg
         
         typedef shared_ptr<ZoomBlurPass> Ptr;
         
-        ZoomBlurPass(const ofVec2f& aspect, float centerX = 0.5, float centerY = 0.5,
+        ZoomBlurPass(const ofVec2f& aspect, bool arb, float centerX = 0.5, float centerY = 0.5,
                        float exposure = 0.48, float decay = 0.9, float density = 0.25,
                        float weight = 0.25, float clamp = 1);
         

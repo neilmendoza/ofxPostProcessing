@@ -45,7 +45,7 @@ namespace itg
         
         typedef shared_ptr<RGBShiftPass> Ptr;
         
-        RGBShiftPass(const ofVec2f& aspect, float amount = 0.005, float angle = 0.0);
+        RGBShiftPass(const ofVec2f& aspect, bool arb, float amount = 0.005, float angle = 0.0);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         

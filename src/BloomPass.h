@@ -41,7 +41,7 @@ namespace itg
     public:
         typedef shared_ptr<BloomPass> Ptr;
         
-        BloomPass(const ofVec2f& aspect, const ofVec2f& xBlur = ofVec2f(0.001953125, 0.0), const ofVec2f& yBlur = ofVec2f(0.0, 0.001953125), unsigned resolution = 256, bool aspectCorrect = true);
+        BloomPass(const ofVec2f& aspect, bool arb, const ofVec2f& xBlur = ofVec2f(0.001953125, 0.0), const ofVec2f& yBlur = ofVec2f(0.0, 0.001953125), unsigned resolution = 256, bool aspectCorrect = true);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

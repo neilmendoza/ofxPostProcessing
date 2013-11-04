@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    VerticalTiltShifPass::VerticalTiltShifPass(const ofVec2f& aspect) :
-        RenderPass(aspect, "verticaltiltshift"), v(2.0/512.0), r(0.5)
+    VerticalTiltShifPass::VerticalTiltShifPass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "verticaltiltshift"), v(2.0/512.0), r(0.5)
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tDiffuse;

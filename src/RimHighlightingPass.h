@@ -41,7 +41,7 @@ namespace itg
     public:
         typedef shared_ptr<RimHighlightingPass> Ptr;
         
-        RimHighlightingPass(const ofVec2f& aspect);
+        RimHighlightingPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         
