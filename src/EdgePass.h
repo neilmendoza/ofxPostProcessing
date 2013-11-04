@@ -54,6 +54,8 @@ namespace itg
         float getSaturation() const { return saturation; }
         void setSaturation(float saturation) { this->saturation = saturation; }
         
+        bool hasArbShader() { return true; }
+        
     private:
         ofShader shader;
         float hue, saturation;
