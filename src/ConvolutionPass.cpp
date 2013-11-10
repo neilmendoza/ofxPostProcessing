@@ -37,51 +37,51 @@ namespace itg
     ConvolutionPass::ConvolutionPass(const ofVec2f& aspect, bool arb, const ofVec2f& imageIncrement, float sigma, unsigned kernelSize) :
         imageIncrement(imageIncrement), RenderPass(aspect, arb, "convolution")
     {
-        // set up shader
+        string vertShaderSrc = STRINGIFY(
+            uniform vec2 imageIncrement;
+            
+            varying vec2 vUv;
+            
+            void main()
+            {
+                gl_TexCoord[0] = gl_MultiTexCoord0;
+                vUv = gl_TexCoord[0].st - ( ( KERNEL_SIZE - 1.0 ) / 2.0 ) * imageIncrement;
+                gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+            }
+        );
+        
+        string fragShaderSrc = STRINGIFY(
+            uniform float kernel[KERNEL_SIZE];
+            uniform sampler2D readTex;
+            uniform vec2 imageIncrement;
+            
+            varying vec2 vUv;
+            
+            void main()
+            {
+            
+                vec2 imageCoord = vUv;
+                vec4 sum = vec4( 0.0, 0.0, 0.0, 0.0 );
+                
+                for( int i = 0; i < KERNEL_SIZE; i++ )
+                {
+                    sum += texture2D( readTex, imageCoord ) * kernel[ i ];
+                    imageCoord += imageIncrement;
+                }
+                
+                gl_FragColor = sum;
+            }
+        );
+        
         ostringstream oss;
-        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << ".0\n";
-        
-        string vertShaderSrc =
-        oss.str() + 
-        "uniform vec2 imageIncrement;"
-        
-        "varying vec2 vUv;"
-        
-        "void main()"
-        "{"
-            "gl_TexCoord[0] = gl_MultiTexCoord0;"
-            "vUv = gl_TexCoord[0].st - ( ( KERNEL_SIZE - 1.0 ) / 2.0 ) * imageIncrement;"
-            "gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;"
-        "}";
+        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << ".0\n" << vertShaderSrc;
+        cout << oss.str() << endl;
+        shader.setupShaderFromSource(GL_VERTEX_SHADER, oss.str());
         
         oss.str("");
-        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << "\n";
-        string fragShaderSrc = 
-        oss.str() + 
-        "\n "
-        "uniform float kernel[KERNEL_SIZE];"
-        "uniform sampler2D readTex;"
-        "uniform vec2 imageIncrement;"
-        
-        "varying vec2 vUv;"
-        
-        "void main()"
-        "{"
-        
-            "vec2 imageCoord = vUv;"
-            "vec4 sum = vec4( 0.0, 0.0, 0.0, 0.0 );"
-            
-            "for( int i = 0; i < KERNEL_SIZE; i++ )"
-            "{"
-                "sum += texture2D( readTex, imageCoord ) * kernel[ i ];"
-                "imageCoord += imageIncrement;"
-            "}"
-            
-            "gl_FragColor = sum;"
-        "}";
-        
-        shader.setupShaderFromSource(GL_VERTEX_SHADER, vertShaderSrc);
-        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
+        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << "\n" << fragShaderSrc;
+        cout << oss.str() << endl;
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, oss.str());
         shader.linkProgram();
         
         // build kernel
