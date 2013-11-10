@@ -39,24 +39,28 @@ namespace itg
     {
         string vertShaderSrc = STRINGIFY(
             uniform vec2 imageIncrement;
-            
+            uniform vec2 resolution;
+                                         
             varying vec2 vUv;
+            varying vec2 scaledImageIncrement;
             
             void main()
             {
                 gl_TexCoord[0] = gl_MultiTexCoord0;
-                vUv = gl_TexCoord[0].st - ( ( KERNEL_SIZE - 1.0 ) / 2.0 ) * imageIncrement;
+                scaledImageIncrement = imageIncrement * resolution;
+                vUv = gl_TexCoord[0].st - ( ( KERNEL_SIZE - 1.0 ) / 2.0 ) * scaledImageIncrement;
                 gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
             }
         );
         
         string fragShaderSrc = STRINGIFY(
             uniform float kernel[KERNEL_SIZE];
-            uniform sampler2D readTex;
+            uniform SAMPLER_TYPE readTex;
             uniform vec2 imageIncrement;
             
             varying vec2 vUv;
-            
+            varying vec2 scaledImageIncrement;
+                                         
             void main()
             {
             
@@ -65,8 +69,8 @@ namespace itg
                 
                 for( int i = 0; i < KERNEL_SIZE; i++ )
                 {
-                    sum += texture2D( readTex, imageCoord ) * kernel[ i ];
-                    imageCoord += imageIncrement;
+                    sum += TEXTURE_FN( readTex, imageCoord ) * kernel[ i ];
+                    imageCoord += scaledImageIncrement;
                 }
                 
                 gl_FragColor = sum;
@@ -74,13 +78,22 @@ namespace itg
         );
         
         ostringstream oss;
-        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << ".0\n" << vertShaderSrc;
-        cout << oss.str() << endl;
+        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << ".0" << endl << vertShaderSrc;
         shader.setupShaderFromSource(GL_VERTEX_SHADER, oss.str());
         
         oss.str("");
-        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << "\n" << fragShaderSrc;
-        cout << oss.str() << endl;
+        oss << "#version 120\n#define KERNEL_SIZE " << kernelSize << endl;
+        if (arb)
+        {
+            oss << "#define SAMPLER_TYPE sampler2DRect" << endl;
+            oss << "#define TEXTURE_FN texture2DRect" << endl;
+        }
+        else
+        {
+            oss << "#define SAMPLER_TYPE sampler2D" << endl;
+            oss << "#define TEXTURE_FN texture2D" << endl;
+        }
+        oss << fragShaderSrc;
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, oss.str());
         shader.linkProgram();
         
@@ -105,8 +118,11 @@ namespace itg
         shader.setUniformTexture("readTex", readFbo, 0);
         shader.setUniform2f("imageIncrement", imageIncrement.x, imageIncrement.y);
         shader.setUniform1fv("kernel", kernel.data(), kernel.size());
+        if (arb) shader.setUniform2f("resolution", readFbo.getWidth(), readFbo.getHeight());
+        else shader.setUniform2f("resolution", 1.f, 1.f);
         
-        texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
+        if (arb) texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight(), readFbo.getWidth(), readFbo.getHeight());
+        else texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         
         shader.end();
         writeFbo.end();

@@ -51,6 +51,8 @@ namespace itg
         
         void debugDraw();
         
+        bool hasArbShader() { return true; }
+        
     private:
         ConvolutionPass::Ptr xConv;
         ConvolutionPass::Ptr yConv;
