@@ -171,7 +171,7 @@ namespace itg
     }
     
     // need to have depth enabled for some fx
-    void PostProcessing::process(ofFbo& raw)
+    void PostProcessing::process(ofFbo& raw, bool hasDepthAsTexture)
     {
         numProcessedPasses = 0;
         for (int i = 0; i < passes.size(); ++i)
@@ -181,8 +181,16 @@ namespace itg
                 if (arb && !passes[i]->hasArbShader()) ofLogError() << "Arb mode is enabled but pass " << passes[i]->getName() << " does not have an arb shader.";
                 else
                 {
-                    if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
-                    else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                    if (hasDepthAsTexture)
+                    {
+                        if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                        else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                    }
+                    else
+                    {
+                        if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo]);
+                        else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo]);
+                    }
                     currentReadFbo = 1 - currentReadFbo;
                     numProcessedPasses++;
                 }

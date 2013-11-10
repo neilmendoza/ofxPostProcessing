@@ -65,7 +65,7 @@ namespace itg
         ofTexture& getProcessedTextureReference();
         
         // advanced
-        void process(ofFbo& raw);
+        void process(ofFbo& raw, bool hasDepthAsTexture = true);
         
         /**
          * Set flip.
