@@ -46,19 +46,19 @@ namespace itg
                  vec2 vUv = gl_TexCoord[0].st;
                  vec4 sum = vec4( 0.0 );
                  
-                 float hh = amount * length(vUv - node);
+                 float hh = amount * (1.0 - length(vUv - node));
                  
                  sum += texture2D( tDiffuse, vec2( vUv.x - 4.0 * hh, vUv.y ) ) * 0.051;
                  sum += texture2D( tDiffuse, vec2( vUv.x - 3.0 * hh, vUv.y ) ) * 0.0918;
                  sum += texture2D( tDiffuse, vec2( vUv.x - 2.0 * hh, vUv.y ) ) * 0.12245;
                  sum += texture2D( tDiffuse, vec2( vUv.x - 1.0 * hh, vUv.y ) ) * 0.1531;
-                 //sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y ) ) * 0.1633;
+                 sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y ) ) * 0.1633;
                  sum += texture2D( tDiffuse, vec2( vUv.x + 1.0 * hh, vUv.y ) ) * 0.1531;
                  sum += texture2D( tDiffuse, vec2( vUv.x + 2.0 * hh, vUv.y ) ) * 0.12245;
                  sum += texture2D( tDiffuse, vec2( vUv.x + 3.0 * hh, vUv.y ) ) * 0.0918;
                  sum += texture2D( tDiffuse, vec2( vUv.x + 4.0 * hh, vUv.y ) ) * 0.051;
                  
-                 gl_FragColor = sum;
+                 gl_FragColor = vec4(sum.rgb, 1.0);
              }
         );
         

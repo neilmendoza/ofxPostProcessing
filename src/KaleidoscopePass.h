@@ -47,6 +47,9 @@ namespace itg
         float getSegments() const { return segments; }
         void setSegments(float segments) { this->segments = segments; }
         
+        // gui
+        float& getSegmentsRef() { return segments; }
+        
     private:
         ofShader shader;
         float segments;

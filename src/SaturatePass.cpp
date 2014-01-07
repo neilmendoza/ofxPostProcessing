@@ -1,5 +1,5 @@
 /*
- *  NodeShiftPass.h
+ *  SaturatePass.cpp
  *
  *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
@@ -29,33 +29,50 @@
  *  POSSIBILITY OF SUCH DAMAGE. 
  *
  */
-#pragma once
-
-#include "RenderPass.h"
+#include "SaturatePass.h"
+#include "ofMain.h"
 
 namespace itg
 {
-    class NodeShiftPass : public RenderPass
+    SaturatePass::SaturatePass(const ofVec2f& aspect) :
+        RenderPass(aspect, "saturate"), threshold(.5f), colour(1.f, 1.f, 1.f, 1.f)
     {
-    public:
-        typedef shared_ptr<NodeShiftPass> Ptr;
         
-        NodeShiftPass(const ofVec2f& aspect);
+        string fragShaderSrc = STRINGIFY(
+             uniform sampler2D tex;
+             uniform float threshold;
+             uniform vec3 colour;
+             uniform float darken;
+             
+             void main()
+             {
+                 vec4 texColour = texture2D(tex, gl_TexCoord[0].st);
+                 float brightness = (texColour.r + texColour.g + texColour.b) / 3.0;
+                 gl_FragColor = step(threshold, brightness) * vec4(colour, 1.0) + (1.0 - step(threshold, brightness)) * vec4(darken * texColour.rgb, 1.0);
+             }
+        );
         
-        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
+        shader.linkProgram();
+#ifdef _ITG_TWEAKABLE
+        addParameter("threshold", this->threshold, "min=0 max=1");
+        addParameter("darken", this->threshold, "min=0 max=1");
+#endif
+    }
+    
+    void SaturatePass::render(ofFbo& readFbo, ofFbo& writeFbo)
+    {
+        writeFbo.begin();
+        ofClear(255, 255, 255, 255);
         
-        float getAmount() const { return amount; }
-        void setAmount(float amount) { this->amount = amount; }
+        shader.begin();
+        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniform1f("threshold", threshold);
+        shader.setUniform1f("darken", darken);
+        shader.setUniform3f("colour", colour.r, colour.g, colour.b);
+        texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
+        shader.end();
         
-        ofVec2f getNode() const { return node; }
-        void setNode(const ofVec2f& node) { this->node = node; }
-        
-        // gui
-        float& getAmountRef() { return amount; }
-
-    private:
-        ofShader shader;
-        float amount;
-        ofVec2f node;
-    };
+        writeFbo.end();
+    }
 }

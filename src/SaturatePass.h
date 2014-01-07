@@ -1,5 +1,5 @@
 /*
- *  NodeShiftPass.h
+ *  SaturatePass.h
  *
  *  Copyright (c) 2013, satcy, http://satcy.net
  *  All rights reserved. 
@@ -35,27 +35,32 @@
 
 namespace itg
 {
-    class NodeShiftPass : public RenderPass
+    class SaturatePass : public RenderPass
     {
     public:
-        typedef shared_ptr<NodeShiftPass> Ptr;
+        typedef shared_ptr<SaturatePass> Ptr;
         
-        NodeShiftPass(const ofVec2f& aspect);
+        SaturatePass(const ofVec2f& aspect);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         
-        float getAmount() const { return amount; }
-        void setAmount(float amount) { this->amount = amount; }
+        float getThreshold() const { return threshold; }
+        void setThreshold(float threshold) { this->threshold = threshold; }
         
-        ofVec2f getNode() const { return node; }
-        void setNode(const ofVec2f& node) { this->node = node; }
+        float getDarken() const { return darken; }
+        void setDarken(float darken) { this->darken = darken; }
+        
+        ofFloatColor getColour() const { return colour; }
+        void setColour(ofFloatColor& colour) { this->colour = colour; }
         
         // gui
-        float& getAmountRef() { return amount; }
-
+        float& getThresholdRef() { return threshold; }
+        float& getDarkenRef() { return darken; }
+        
     private:
         ofShader shader;
-        float amount;
-        ofVec2f node;
+        float threshold;
+        float darken;
+        ofFloatColor colour;
     };
 }

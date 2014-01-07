@@ -35,10 +35,6 @@
 
 namespace itg
 {
-    /*
-     * Frei-Chen edge detector ported from code here 
-     * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/HorizontalTiltShiftShader.js
-     */
     class WeirdShiftPass : public RenderPass
     {
     public:
