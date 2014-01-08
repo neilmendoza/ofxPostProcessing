@@ -51,6 +51,7 @@ namespace itg
         void setNode(const ofVec2f& node) { this->node = node; }
         
         // gui
+        ofVec2f& getNodeRef() { return node; }
         float& getAmountRef() { return amount; }
 
     private:
