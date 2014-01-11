@@ -70,7 +70,7 @@ namespace itg
 
     }
 
-    void BleachBypassPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void BleachBypassPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 

@@ -43,8 +43,8 @@ namespace itg
                              float attenuationOffset,
                              float materialThickness) : RenderPass(aspect, "SSS"), lightPosition(lightPosition),
     extinctionCoefficient(extinctionCoefficient), lightColor(lightColor),
-    specularColor(specularColor), specular(specular), rimScale(rimScale),
-    attenuationOffset(attenuationOffset), materialThickness(materialThickness)
+    specularColor(specularColor), materialThickness(materialThickness),
+    specular(specular), rimScale(rimScale), attenuationOffset(attenuationOffset)
     {
         baseColor.set(1.0, 1.0, 1.0, 1.0);
 
@@ -133,7 +133,7 @@ namespace itg
     }
 
 
-    void FakeSSSPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void FakeSSSPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 
