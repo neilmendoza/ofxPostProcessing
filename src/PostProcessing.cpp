@@ -170,7 +170,7 @@ namespace itg
                 if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
                 else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
                 currentReadFbo = 1 - currentReadFbo;
-                numProcessedPasses++;
+                ++numProcessedPasses;
             }
         }
     }
