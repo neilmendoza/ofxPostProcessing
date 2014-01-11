@@ -38,7 +38,7 @@ namespace itg
     class KaleidoscopePass : public RenderPass
     {
     public:
-        typedef shared_ptr<KaleidoscopePass> Ptr;
+        typedef std::shared_ptr<KaleidoscopePass> Ptr;
 
         KaleidoscopePass(const ofVec2f& aspect, float segments = 2.f);
 

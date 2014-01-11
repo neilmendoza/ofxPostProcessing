@@ -41,7 +41,7 @@ namespace itg
     public:
         static const int MAX_KERNEL_SIZE = 25;
 
-        typedef shared_ptr<ContrastPass> Ptr;
+        typedef std::shared_ptr<ContrastPass> Ptr;
 
         ContrastPass(const ofVec2f& aspect, float contrast = 1.0f, float brightness = 1.0f);
 

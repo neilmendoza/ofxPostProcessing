@@ -38,7 +38,7 @@ namespace itg
     class NoiseWarpPass : public RenderPass
     {
     public:
-        typedef shared_ptr<NoiseWarpPass> Ptr;
+        typedef std::shared_ptr<NoiseWarpPass> Ptr;
 
         NoiseWarpPass(const ofVec2f& aspect, float frequency = 4.f, float amplitude = .1f, float speed = .1f);
 

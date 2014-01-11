@@ -40,7 +40,7 @@ namespace itg
     {
     public:
         //http://code.google.com/p/pyppet/source/browse/pyppet/javascripts/shaders/BleachBypassShader.js?r=a321c4707804bb4b7448c29082f867e18212a9ee&spec=svn3673066e0f453e27af02a82b917b3a426487dfd9
-        typedef shared_ptr<BleachBypassPass> Ptr;
+        typedef std::shared_ptr<BleachBypassPass> Ptr;
 
         BleachBypassPass(const ofVec2f& aspect, float opacity = 1);
 

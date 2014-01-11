@@ -39,7 +39,7 @@ namespace itg
     class BloomPass : public RenderPass
     {
     public:
-        typedef shared_ptr<BloomPass> Ptr;
+        typedef std::shared_ptr<BloomPass> Ptr;
 
         BloomPass(const ofVec2f& aspect, const ofVec2f& xBlur = ofVec2f(0.001953125, 0.0), const ofVec2f& yBlur = ofVec2f(0.0, 0.001953125), unsigned resolution = 256, bool aspectCorrect = true);
 

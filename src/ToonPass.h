@@ -40,7 +40,7 @@ namespace itg
     {
     public:
         //https://github.com/davertron/ToonCabinet
-        typedef shared_ptr<ToonPass> Ptr;
+        typedef std::shared_ptr<ToonPass> Ptr;
 
         ToonPass(const ofVec2f& aspect, float edgeThreshold = 0.2, float level = 1.0,
                  const ofVec4f& ambientColor = ofVec4f(0.1,0.1,0.1,1.0),

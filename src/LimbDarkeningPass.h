@@ -38,7 +38,7 @@ namespace itg
     class LimbDarkeningPass : public RenderPass
     {
     public:
-        typedef shared_ptr<LimbDarkeningPass> Ptr;
+        typedef std::shared_ptr<LimbDarkeningPass> Ptr;
 
         LimbDarkeningPass(const ofVec2f& aspect,
                           float radialScale = 1.2,

@@ -41,7 +41,7 @@ namespace itg
     class FxaaPass : public RenderPass
     {
     public:
-        typedef shared_ptr<FxaaPass> Ptr;
+        typedef std::shared_ptr<FxaaPass> Ptr;
 
         FxaaPass(const ofVec2f& aspect);
 

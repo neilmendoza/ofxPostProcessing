@@ -39,7 +39,7 @@ namespace itg
     class RimHighlightingPass : public RenderPass
     {
     public:
-        typedef shared_ptr<RimHighlightingPass> Ptr;
+        typedef std::shared_ptr<RimHighlightingPass> Ptr;
 
         RimHighlightingPass(const ofVec2f& aspect);
 

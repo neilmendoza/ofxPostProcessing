@@ -39,7 +39,7 @@ namespace itg
     class PostProcessing : public ofBaseDraws
     {
     public:
-        typedef shared_ptr<PostProcessing> Ptr;
+        typedef std::shared_ptr<PostProcessing> Ptr;
 
         void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight());
         void begin();

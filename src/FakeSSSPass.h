@@ -43,7 +43,7 @@ namespace itg
     {
     public:
 
-        typedef shared_ptr<FakeSSSPass> Ptr;
+        typedef std::shared_ptr<FakeSSSPass> Ptr;
 
         FakeSSSPass(const ofVec2f& aspect,
                     const ofPoint& lightPosition = ofPoint(0,0,0),

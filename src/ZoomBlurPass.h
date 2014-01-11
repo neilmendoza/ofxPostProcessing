@@ -40,7 +40,7 @@ namespace itg
     {
     public:
 
-        typedef shared_ptr<ZoomBlurPass> Ptr;
+        typedef std::shared_ptr<ZoomBlurPass> Ptr;
 
         ZoomBlurPass(const ofVec2f& aspect, float centerX = 0.5, float centerY = 0.5,
                        float exposure = 0.48, float decay = 0.9, float density = 0.25,
