@@ -35,7 +35,7 @@
 namespace itg
 {
     BleachBypassPass::BleachBypassPass(const ofVec2f& aspect, float opacity) :
-        opacity(opacity), RenderPass(aspect, "bleachbypass")
+        RenderPass(aspect, "bleachbypass"), opacity(opacity)
     {
 
         string fragShaderSrc = STRINGIFY(

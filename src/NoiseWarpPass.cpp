@@ -34,7 +34,7 @@
 namespace itg
 {
     NoiseWarpPass::NoiseWarpPass(const ofVec2f& aspect, float frequency, float amplitude, float speed) :
-        frequency(frequency), amplitude(amplitude), speed(speed), RenderPass(aspect, "noisewarp")
+        RenderPass(aspect, "noisewarp"), frequency(frequency), amplitude(amplitude), speed(speed)
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tex;
@@ -167,7 +167,7 @@ namespace itg
 #endif
     }
 
-    void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
+    void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
         shader.begin();

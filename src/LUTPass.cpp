@@ -95,7 +95,7 @@ namespace itg
                 }
             }
 
-			if (lut.size() != (LUT_3D_SIZE * LUT_3D_SIZE * LUT_3D_SIZE)) ofLogError() << "LUT size is incorrect.";
+			if (lut.size() != unsigned((LUT_3D_SIZE * LUT_3D_SIZE * LUT_3D_SIZE))) ofLogError() << "LUT size is incorrect.";
         }
 
         // gen texture
@@ -149,7 +149,7 @@ namespace itg
         if (lut_tex)
         {
             glDeleteTextures(1, &lut_tex);
-            lut_tex = NULL;
+            lut_tex = 0;
 
             shader.unload();
         }

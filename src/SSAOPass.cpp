@@ -35,7 +35,7 @@
 namespace itg
 {
     SSAOPass::SSAOPass(const ofVec2f& aspect, float cameraNear, float cameraFar, float fogNear, float fogFar, bool fogEnabled, bool onlyAO, float aoClamp, float lumInfluence) :
-        cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence), RenderPass(aspect, "SSAO")
+        RenderPass(aspect, "SSAO"), cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence)
     {
 
         string fragShaderSrc = STRINGIFY(

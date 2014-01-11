@@ -35,7 +35,7 @@
 namespace itg
 {
     GodRaysPass::GodRaysPass(const ofVec2f& aspect, const ofVec3f & lightPositionOnScreen, float lightDirDOTviewDir) :
-        lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir), RenderPass(aspect, "godrays")
+        RenderPass(aspect, "godrays"), lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir)
     {
 
         string vertShaderSrc = STRINGIFY(
@@ -96,7 +96,7 @@ namespace itg
 
     }
 
-    void GodRaysPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void GodRaysPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 

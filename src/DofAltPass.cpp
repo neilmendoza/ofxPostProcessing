@@ -34,7 +34,7 @@
 namespace itg
 {
     DofAltPass::DofAltPass(const ofVec2f& aspect, float focalDepth, float focalLength, float fStop, bool showFocus) :
-        focalDepth(focalDepth), focalLength(focalLength), fStop(fStop), showFocus(showFocus), RenderPass(aspect, "dofalt")
+        RenderPass(aspect, "dofalt"), focalDepth(focalDepth), focalLength(focalLength), fStop(fStop), showFocus(showFocus)
     {
         string fragShaderSrc = STRINGIFY(
             /*

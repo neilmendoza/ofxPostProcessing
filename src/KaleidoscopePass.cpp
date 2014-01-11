@@ -34,7 +34,7 @@
 namespace itg
 {
     KaleidoscopePass::KaleidoscopePass(const ofVec2f& aspect, float segments) :
-        segments(segments), RenderPass(aspect, "kaleido")
+        RenderPass(aspect, "kaleido"), segments(segments)
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tex;
@@ -61,7 +61,7 @@ namespace itg
 #endif
     }
 
-    void KaleidoscopePass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
+    void KaleidoscopePass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 

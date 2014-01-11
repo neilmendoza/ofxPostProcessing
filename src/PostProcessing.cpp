@@ -163,7 +163,7 @@ namespace itg
     void PostProcessing::process(ofFbo& raw)
     {
         numProcessedPasses = 0;
-        for (int i = 0; i < passes.size(); ++i)
+        for (std::size_t i = 0; i < passes.size(); ++i)
         {
             if (passes[i]->getEnabled())
             {

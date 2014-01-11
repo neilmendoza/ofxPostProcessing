@@ -35,7 +35,7 @@
 namespace itg
 {
     RGBShiftPass::RGBShiftPass(const ofVec2f& aspect, float amount, float angle) :
-        amount(amount), angle(angle), RenderPass(aspect, "RGBShift")
+        RenderPass(aspect, "RGBShift"), amount(amount), angle(angle)
     {
 
         string fragShaderSrc = STRINGIFY(
@@ -61,7 +61,7 @@ namespace itg
     }
 
 
-    void RGBShiftPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void RGBShiftPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 

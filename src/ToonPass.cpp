@@ -39,7 +39,7 @@ namespace itg
                        const ofVec4f& diffuseColor,
                        const ofVec4f& specularColor,
                        bool isSpecular, float shinyness) :
-        edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness), RenderPass(aspect, "toon")
+        RenderPass(aspect, "toon"), edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness)
     {
         string vertShaderSrc = STRINGIFY(
             varying vec3 v;
@@ -144,7 +144,7 @@ namespace itg
 
     }
 
-    void ToonPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void ToonPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
 
         writeFbo.begin();

@@ -40,24 +40,24 @@
     #include "Tweakable.h"
 #endif
 
+#include <memory>
+
 #define STRINGIFY(A) #A
 
 namespace itg
 {
-    using namespace tr1;
-
     class RenderPass
 #ifdef _ITG_TWEAKABLE
         : public Tweakable
 #endif
     {
     public:
-        typedef shared_ptr<RenderPass> Ptr;
+        typedef std::shared_ptr<RenderPass> Ptr;
 
         RenderPass(const ofVec2f& aspect, const string& name);
 
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
-        virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
+        virtual void render(ofFbo& /*readFbo*/, ofFbo& /*writeFbo*/) {}
 
         void setEnabled(bool enabled) { this->enabled = enabled; }
         bool getEnabled() const { return enabled; }
@@ -80,9 +80,10 @@ namespace itg
         ofVec2f aspect;
 
     private:
+        bool enabled;
+
 #ifndef _ITG_TWEAKABLE
         string name;
 #endif
-        bool enabled;
     };
 }

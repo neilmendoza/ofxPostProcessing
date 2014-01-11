@@ -37,7 +37,7 @@ namespace itg
     ZoomBlurPass::ZoomBlurPass(const ofVec2f& aspect, float centerX, float centerY,
                                    float exposure, float decay, float density,
                                    float weight, float clamp) :
-        centerX(centerX), centerY(centerY), exposure(exposure), decay(decay), density(density), weight(weight), clamp(clamp), RenderPass(aspect, "zoomblur")
+        RenderPass(aspect, "zoomblur"), centerX(centerX), centerY(centerY), exposure(exposure), decay(decay), density(density), weight(weight), clamp(clamp)
     {
 
         string fragShaderSrc = STRINGIFY(
@@ -83,7 +83,7 @@ namespace itg
 
     }
 
-    void ZoomBlurPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
+    void ZoomBlurPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depthTex*/)
     {
         writeFbo.begin();
 

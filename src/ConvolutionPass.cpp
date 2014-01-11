@@ -35,7 +35,7 @@
 namespace itg
 {
     ConvolutionPass::ConvolutionPass(const ofVec2f& aspect, const ofVec2f& imageIncrement, float sigma, unsigned kernelSize) :
-        imageIncrement(imageIncrement), RenderPass(aspect, "convolution")
+        RenderPass(aspect, "convolution"), imageIncrement(imageIncrement)
     {
         // set up shader
         ostringstream oss;

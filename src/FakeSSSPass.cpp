@@ -41,11 +41,10 @@ namespace itg
                              const ofVec4f& specularColor,
                              float specular, float rimScale,
                              float attenuationOffset,
-                             float materialThickness) : lightPosition(lightPosition),
+                             float materialThickness) : RenderPass(aspect, "SSS"), lightPosition(lightPosition),
     extinctionCoefficient(extinctionCoefficient), lightColor(lightColor),
     specularColor(specularColor), specular(specular), rimScale(rimScale),
-    attenuationOffset(attenuationOffset), materialThickness(materialThickness),
-    RenderPass(aspect, "SSS")
+    attenuationOffset(attenuationOffset), materialThickness(materialThickness)
     {
         baseColor.set(1.0, 1.0, 1.0, 1.0);
 

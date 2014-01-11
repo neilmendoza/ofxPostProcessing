@@ -44,7 +44,7 @@ namespace itg
 #endif
     }
 
-    void RenderPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
+    void RenderPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& /*depth*/)
     {
         render(readFbo, writeFbo);
     }
