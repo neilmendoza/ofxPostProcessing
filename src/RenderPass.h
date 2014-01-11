@@ -55,6 +55,7 @@ namespace itg
         typedef std::shared_ptr<RenderPass> Ptr;
 
         RenderPass(const ofVec2f& aspect, const string& name);
+        virtual ~RenderPass() {}
 
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         virtual void render(ofFbo& /*readFbo*/, ofFbo& /*writeFbo*/) {}
