@@ -2,31 +2,31 @@
  *  SSAOPass.h
  *
  *  Copyright (c) 2013, satcy, http://satcy.net
- *  All rights reserved. 
- *  
- *  Redistribution and use in source and binary forms, with or without 
- *  modification, are permitted provided that the following conditions are met: 
- *  
- *  * Redistributions of source code must retain the above copyright notice, 
- *    this list of conditions and the following disclaimer. 
- *  * Redistributions in binary form must reproduce the above copyright 
- *    notice, this list of conditions and the following disclaimer in the 
- *    documentation and/or other materials provided with the distribution. 
- *  * Neither the name of Neil Mendoza nor the names of its contributors may be used 
- *    to endorse or promote products derived from this software without 
- *    specific prior written permission. 
- *  
- *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
- *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
- *  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
- *  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
- *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
- *  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
- *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
- *  POSSIBILITY OF SUCH DAMAGE. 
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions are met:
+ *
+ *  * Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *  * Neither the name of Neil Mendoza nor the names of its contributors may be used
+ *    to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ *  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ *  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ *  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *  POSSIBILITY OF SUCH DAMAGE.
  *
  */
 #include "SSAOPass.h"
@@ -35,9 +35,9 @@
 namespace itg
 {
     SSAOPass::SSAOPass(const ofVec2f& aspect, float cameraNear, float cameraFar, float fogNear, float fogFar, bool fogEnabled, bool onlyAO, float aoClamp, float lumInfluence) :
-        cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence), RenderPass(aspect, "SSAO")
+        RenderPass(aspect, "SSAO"), cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence)
     {
-        
+
         string fragShaderSrc = STRINGIFY(
             uniform float cameraNear;
             uniform float cameraFar;
@@ -99,19 +99,19 @@ namespace itg
                 vec2 noise;
 
                 if ( useNoise ) {
-                 
+
                  float nx = dot ( coord, vec2( 12.9898, 78.233 ) );
                  float ny = dot ( coord, vec2( 12.9898, 78.233 ) * 2.0 );
-                 
+
                  noise = clamp( fract ( 43758.5453 * sin( vec2( nx, ny ) ) ), 0.0, 1.0 );
-                 
+
                 } else {
-                 
+
                  float ff = fract( 1.0 - coord.s * ( width / 2.0 ) );
                  float gg = fract( coord.t * ( height / 2.0 ) );
-                 
+
                  noise = vec2( 0.25, 0.75 ) * vec2( ff ) + vec2( 0.75, 0.25 ) * gg;
-                 
+
                 }
 
                 return ( noise * 2.0  - 1.0 ) * noiseAmount;
@@ -143,13 +143,13 @@ namespace itg
                 // reduce left bell width to avoid self-shadowing
 
                 if ( diff < gDisplace ) {
-                 
+
                  garea = diffArea;
-                 
+
                 } else {
-                 
+
                  far = 1;
-                 
+
                 }
 
                 float dd = diff - gDisplace;
@@ -215,21 +215,21 @@ namespace itg
                 gl_FragColor = vec4( final, 1.0 );
             }
         );
-        
-    
+
+
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
-        
+
     }
-    
+
 
     void SSAOPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depthTex)
     {
         writeFbo.begin();
-        
-        
+
+
         shader.begin();
-        
+
         shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
         shader.setUniformTexture("tDepth", depthTex, 1);
         shader.setUniform2f("size", writeFbo.getWidth(), writeFbo.getHeight());
@@ -241,9 +241,9 @@ namespace itg
         shader.setUniform1i("onlyAO", onlyAO ? 1 : 0);
         shader.setUniform1f("aoClamp", aoClamp);
         shader.setUniform1f("lumInfluence", lumInfluence);
-        
+
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
-        
+
         shader.end();
         writeFbo.end();
     }

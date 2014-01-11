@@ -38,7 +38,7 @@ namespace itg
 class LUTPass : public RenderPass
 {
 public:
-    typedef shared_ptr<LUTPass> Ptr;
+    typedef std::shared_ptr<LUTPass> Ptr;
 
     LUTPass(const ofVec2f& aspect);
     ~LUTPass();
