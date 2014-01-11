@@ -38,85 +38,85 @@ namespace itg
     {
         this->width = width;
         this->height = height;
-        
+
         ofFbo::Settings s;
         s.width = ofNextPow2(width);
         s.height = ofNextPow2(height);
         s.textureTarget = GL_TEXTURE_2D;
-        
+
         // no need to use depth for ping pongs
         for (int i = 0; i < 2; ++i)
         {
             pingPong[i].allocate(s);
         }
-        
+
         s.useDepth = true;
         s.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
         s.depthStencilAsTexture = true;
         raw.allocate(s);
-        
+
         numProcessedPasses = 0;
         currentReadFbo = 0;
         flip = true;
     }
-    
+
     void PostProcessing::begin()
     {
         raw.begin(false);
-        
+
         glMatrixMode(GL_PROJECTION);
         glPushMatrix();
-        
+
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
-        
+
         glViewport(0, 0, raw.getWidth(), raw.getHeight());
-        
+
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        
+
         ofPushStyle();
         glPushAttrib(GL_ENABLE_BIT);
     }
-    
+
     void PostProcessing::begin(ofCamera& cam)
     {
         // update camera matrices
         cam.begin();
         cam.end();
-        
+
         raw.begin(false);
-        
+
         glMatrixMode(GL_PROJECTION);
         glPushMatrix();
         glLoadMatrixf(cam.getProjectionMatrix(ofRectangle(0, 0, width, height)).getPtr());
-        
+
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadMatrixf(cam.getModelViewMatrix().getPtr());
-        
+
         glViewport(0, 0, raw.getWidth(), raw.getHeight());
-        
+
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        
+
         ofPushStyle();
         glPushAttrib(GL_ENABLE_BIT);
     }
-    
+
     void PostProcessing::end(bool autoDraw)
     {
         glPopAttrib();
         ofPopStyle();
-        
+
         glViewport(0, 0, ofGetWidth(), ofGetHeight());
-        
+
         glMatrixMode(GL_PROJECTION);
         glPopMatrix();
-        
+
         glMatrixMode(GL_MODELVIEW);
         glPopMatrix();
-        
+
         raw.end();
-        
+
         ofPushStyle();
         glPushAttrib(GL_ENABLE_BIT);
         glDisable(GL_LIGHTING);
@@ -126,19 +126,19 @@ namespace itg
         glPopAttrib();
         ofPopStyle();
     }
-    
+
     void PostProcessing::debugDraw()
     {
         raw.getTextureReference().draw(10, 10, 300, 300);
         raw.getDepthTexture().draw(320, 10, 300, 300);
         pingPong[currentReadFbo].draw(630, 10, 300, 300);
     }
-    
+
     void PostProcessing::draw(float x, float y)
     {
         draw(x, y, width, height);
     }
-    
+
     void PostProcessing::draw(float x, float y, float w, float h)
     {
         if (flip)
@@ -152,13 +152,13 @@ namespace itg
         else pingPong[currentReadFbo].draw(0, 0, w, h);
         if (flip) glPopMatrix();
     }
-    
+
     ofTexture& PostProcessing::getProcessedTextureReference()
     {
         if (numProcessedPasses) return pingPong[currentReadFbo].getTextureReference();
         else return raw.getTextureReference();
     }
-    
+
     // need to have depth enabled for some fx
     void PostProcessing::process(ofFbo& raw)
     {
@@ -174,7 +174,7 @@ namespace itg
             }
         }
     }
-    
+
     void PostProcessing::process()
     {
         process(raw);
