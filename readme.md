@@ -59,3 +59,7 @@ post.end();
 ## TODO
 * More FX
 * OpenGL ES, it's based around power of two textures so it should be fairly quick to get working. 
+
+---
+
+Feel free to give me some Bitcoins if you like the addon 1FxuEpubUwhPaqwmqABvwGmoMcEEMPgxjN
