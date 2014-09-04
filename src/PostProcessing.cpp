@@ -34,7 +34,7 @@
 
 namespace itg
 {
-    void PostProcessing::init(unsigned width, unsigned height, bool arb)
+    void PostProcessing::init(unsigned width, unsigned height, bool arb, bool multisample)
     {
         this->width = width;
         this->height = height;
@@ -61,9 +61,13 @@ namespace itg
             pingPong[i].allocate(s);
         }
         
-        s.useDepth = true;
-        s.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
-        s.depthStencilAsTexture = true;
+        if (multisample) s.numSamples = ofFbo::maxSamples();
+        else
+        {
+            s.useDepth = true;
+            s.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
+            s.depthStencilAsTexture = true;
+        }
         raw.allocate(s);
         
         numProcessedPasses = 0;
