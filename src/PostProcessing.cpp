@@ -39,6 +39,7 @@ namespace itg
         this->width = width;
         this->height = height;
         this->arb = arb;
+        this->multisample = multisample;
         
         ofFbo::Settings s;
         
@@ -204,6 +205,6 @@ namespace itg
     
     void PostProcessing::process()
     {
-        process(raw);
+        process(raw, !multisample);
     }
 }

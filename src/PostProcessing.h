@@ -88,6 +88,7 @@ namespace itg
         unsigned width, height;
         bool flip;
         bool arb;
+        bool multisample;
         
         ofFbo raw;
         ofFbo pingPong[2];
