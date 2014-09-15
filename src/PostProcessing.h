@@ -51,7 +51,9 @@ namespace itg
         void draw(float x, float y, float w, float h);
         float getWidth() { return width; }
         float getHeight() { return height; }
-        
+        void setWidth(float _w) { width = _w; }
+        void setHeight(float _h) { height = _h; }
+      
         void debugDraw();
         
         template<class T>
