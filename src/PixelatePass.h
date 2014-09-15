@@ -43,7 +43,11 @@ namespace itg
         PixelatePass(const ofVec2f& aspect, bool arb, const ofVec2f& resolution = ofVec2f(100.f, 100.f));
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
-        
+      
+        ofVec2f getResolution() const { return resolution; }
+        void setResolution(ofVec2f) { this->resolution = resolution; }
+        void setResolution(float _w, float _h) { this->resolution = ofVec2f(_w, _h); }
+      
     private:
         ofShader shader;
         ofVec2f resolution;
