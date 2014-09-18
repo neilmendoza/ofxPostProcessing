@@ -48,6 +48,11 @@ namespace itg
         void allocateSelectiveGlow(unsigned w, unsigned h);
         void beginSelectiveGlow(bool clear = true);
         void endSelectiveGlow();
+      
+      void setIncrements(float _x1, float _y1, float _x2, float _y2) {
+        xConv->setIncrement(_x1, _y1);
+        yConv->setIncrement(_x2, _y2);
+      }
         
         void debugDraw();
         
