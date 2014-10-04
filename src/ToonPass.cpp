@@ -154,8 +154,8 @@ namespace itg
         shader.setUniformTexture("normalImage", readFbo.getTextureReference(), 0);
         shader.setUniform1f("textureSizeX", writeFbo.getWidth());
         shader.setUniform1f("textureSizeY", writeFbo.getHeight());
-        shader.setUniform1f("normalEdgeThreshold", 0.2);
-        shader.setUniform1f("qLevel", 3.0);
+        shader.setUniform1f("normalEdgeThreshold", edgeThreshold);
+        shader.setUniform1f("qLevel", level);
         shader.setUniform1i("bSpecular", isSpecular ? 1 : 0);
         shader.setUniform4f("ambient", ambientColor.x, ambientColor.y, ambientColor.z, ambientColor.w);
         shader.setUniform4f("diffuse", diffuseColor.x, diffuseColor.y, diffuseColor.z, diffuseColor.w);
