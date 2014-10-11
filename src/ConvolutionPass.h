@@ -47,7 +47,12 @@ namespace itg
         typedef shared_ptr<ConvolutionPass> Ptr;
         
         ConvolutionPass(const ofVec2f& aspect, bool arb, const ofVec2f& imageIncrement = ofVec2f(0.001953125, 0), float sigma = 4, unsigned kernelSize = 25);
-        
+      
+      void setIncrement(float _x, float _y) {
+        imageIncrement.x = _x;
+        imageIncrement.y = _y;
+      }
+      
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         
         bool hasArbShader() { return true; }
