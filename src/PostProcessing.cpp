@@ -145,12 +145,12 @@ namespace itg
         pingPong[currentReadFbo].draw(630, 10, 300, 300);
     }
     
-    void PostProcessing::draw(float x, float y)
+    void PostProcessing::draw(float x, float y) const
     {
         draw(x, y, width, height);
     }
     
-    void PostProcessing::draw(float x, float y, float w, float h)
+    void PostProcessing::draw(float x, float y, float w, float h) const
     {
         if (flip)
         {
