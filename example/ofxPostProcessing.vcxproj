@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E3040E83-F855-4BEA-842A-0D0DCB3F0087}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ofxPostProcessing</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\libs\openFrameworksCompiled\project\vs\openFrameworksDebug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>..\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\BleachBypassPass.cpp" />
+    <ClCompile Include="..\src\BloomPass.cpp" />
+    <ClCompile Include="..\src\ContrastPass.cpp" />
+    <ClCompile Include="..\src\ConvolutionPass.cpp" />
+    <ClCompile Include="..\src\DofAltPass.cpp" />
+    <ClCompile Include="..\src\DofPass.cpp" />
+    <ClCompile Include="..\src\EdgePass.cpp" />
+    <ClCompile Include="..\src\FakeSSSPass.cpp" />
+    <ClCompile Include="..\src\FxaaPass.cpp" />
+    <ClCompile Include="..\src\GodRaysPass.cpp" />
+    <ClCompile Include="..\src\HorizontalTiltShifPass.cpp" />
+    <ClCompile Include="..\src\KaleidoscopePass.cpp" />
+    <ClCompile Include="..\src\LimbDarkeningPass.cpp" />
+    <ClCompile Include="..\src\LUTPass.cpp" />
+    <ClCompile Include="..\src\NoiseWarpPass.cpp" />
+    <ClCompile Include="..\src\PixelatePass.cpp" />
+    <ClCompile Include="..\src\PostProcessing.cpp" />
+    <ClCompile Include="..\src\RenderPass.cpp" />
+    <ClCompile Include="..\src\RGBShiftPass.cpp" />
+    <ClCompile Include="..\src\RimHighlightingPass.cpp" />
+    <ClCompile Include="..\src\SSAOPass.cpp" />
+    <ClCompile Include="..\src\ToonPass.cpp" />
+    <ClCompile Include="..\src\VerticalTiltShifPass.cpp" />
+    <ClCompile Include="..\src\ZoomBlurPass.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\testApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\BleachBypassPass.h" />
+    <ClInclude Include="..\src\BloomPass.h" />
+    <ClInclude Include="..\src\ContrastPass.h" />
+    <ClInclude Include="..\src\ConvolutionPass.h" />
+    <ClInclude Include="..\src\DofAltPass.h" />
+    <ClInclude Include="..\src\DofPass.h" />
+    <ClInclude Include="..\src\EdgePass.h" />
+    <ClInclude Include="..\src\FakeSSSPass.h" />
+    <ClInclude Include="..\src\FxaaPass.h" />
+    <ClInclude Include="..\src\GodRaysPass.h" />
+    <ClInclude Include="..\src\HorizontalTiltShifPass.h" />
+    <ClInclude Include="..\src\KaleidoscopePass.h" />
+    <ClInclude Include="..\src\LimbDarkeningPass.h" />
+    <ClInclude Include="..\src\LUTPass.h" />
+    <ClInclude Include="..\src\NoiseWarpPass.h" />
+    <ClInclude Include="..\src\ofxPostProcessing.h" />
+    <ClInclude Include="..\src\PixelatePass.h" />
+    <ClInclude Include="..\src\PostProcessing.h" />
+    <ClInclude Include="..\src\RenderPass.h" />
+    <ClInclude Include="..\src\RGBShiftPass.h" />
+    <ClInclude Include="..\src\RimHighlightingPass.h" />
+    <ClInclude Include="..\src\SSAOPass.h" />
+    <ClInclude Include="..\src\ToonPass.h" />
+    <ClInclude Include="..\src\VerticalTiltShifPass.h" />
+    <ClInclude Include="..\src\ZoomBlurPass.h" />
+    <ClInclude Include="src\testApp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
+      <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
