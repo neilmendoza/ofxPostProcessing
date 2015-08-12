@@ -67,7 +67,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniform1f("segments", segments);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());

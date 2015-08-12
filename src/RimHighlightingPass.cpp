@@ -93,7 +93,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("myTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("myTexture", readFbo.getTexture(), 0);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

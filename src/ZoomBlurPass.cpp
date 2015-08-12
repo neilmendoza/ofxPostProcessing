@@ -90,7 +90,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("fX", centerX);
         shader.setUniform1f("fY", centerY);
         shader.setUniform1f("fExposure", exposure);

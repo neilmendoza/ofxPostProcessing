@@ -61,7 +61,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniform1f("xPixels", resolution.x);
         shader.setUniform1f("yPixels", resolution.y);
         

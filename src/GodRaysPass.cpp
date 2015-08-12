@@ -101,8 +101,8 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("otex", readFbo.getTextureReference(), 0);
-        shader.setUniformTexture("rtex", readFbo.getTextureReference(), 1);
+        shader.setUniformTexture("otex", readFbo.getTexture(), 0);
+        shader.setUniformTexture("rtex", readFbo.getTexture(), 1);
         shader.setUniform2f("lightPositionOnScreen", lightPositionOnScreen.x, lightPositionOnScreen.y);
         shader.setUniform1f("lightDirDOTviewDir", lightDirDOTviewDir);
         

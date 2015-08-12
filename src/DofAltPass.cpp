@@ -390,7 +390,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("bgl_RenderedTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("bgl_RenderedTexture", readFbo.getTexture(), 0);
         shader.setUniformTexture("bgl_DepthTexture", depth, 1);
         shader.setUniform1f("bgl_RenderedTextureWidth", aspect.x);
         shader.setUniform1f("bgl_RenderedTextureHeight", aspect.y);

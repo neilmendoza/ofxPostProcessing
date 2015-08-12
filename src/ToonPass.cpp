@@ -151,7 +151,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("normalImage", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("normalImage", readFbo.getTexture(), 0);
         shader.setUniform1f("textureSizeX", writeFbo.getWidth());
         shader.setUniform1f("textureSizeY", writeFbo.getHeight());
         shader.setUniform1f("normalEdgeThreshold", edgeThreshold);

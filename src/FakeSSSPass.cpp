@@ -141,7 +141,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("Texture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("Texture", readFbo.getTexture(), 0);
         shader.setUniform3f("LightPosition", lightPosition.x, lightPosition.y, lightPosition.z);
         shader.setUniform1f("MaterialThickness", materialThickness);
         shader.setUniform3f("ExtinctionCoefficient", extinctionCoefficient.x, extinctionCoefficient.y, extinctionCoefficient.z);

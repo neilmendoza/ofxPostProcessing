@@ -82,7 +82,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("myTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("myTexture", readFbo.getTexture(), 0);
         shader.setUniform1f("fAspect", 1);
         shader.setUniform3f("startColor", 1, 1, 1);
         shader.setUniform3f("endColor", 0, 0, 0);

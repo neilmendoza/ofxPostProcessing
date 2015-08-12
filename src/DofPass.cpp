@@ -131,7 +131,7 @@ namespace itg
         
         shader.begin();
                     
-        shader.setUniformTexture("tColor", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tColor", readFbo.getTexture(), 0);
         shader.setUniformTexture("tDepth", depthTex, 1);
         shader.setUniform1f("aperture", aperture);
         shader.setUniform1f("focus", focus);

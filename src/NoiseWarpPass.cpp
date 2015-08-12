@@ -172,7 +172,7 @@ namespace itg
         writeFbo.begin();
         shader.begin();
         shader.setUniform1f("time", ofGetElapsedTimef());
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniform1f("frequency", frequency);
         shader.setUniform1f("amplitude", amplitude);
         shader.setUniform1f("speed", speed);

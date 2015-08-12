@@ -68,7 +68,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("amount", amount);
         shader.setUniform1f("angle", angle);
         

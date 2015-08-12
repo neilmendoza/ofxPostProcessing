@@ -74,7 +74,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("v", v);
         shader.setUniform1f("r", r);
         

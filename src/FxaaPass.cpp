@@ -122,7 +122,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         if (arb) shader.setUniform2f("resolution", 1.f, 1.f);
         else shader.setUniform2f("resolution", 1.f / writeFbo.getWidth(), 1.f / writeFbo.getHeight());
         

@@ -116,7 +116,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         if (arb) shader.setUniform2f("aspect", 1.f, 1.f);
         else shader.setUniform2f("aspect", aspect.x, aspect.y);
         shader.setUniform1f("hue", hue);

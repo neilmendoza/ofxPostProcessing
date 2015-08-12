@@ -230,7 +230,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniformTexture("tDepth", depthTex, 1);
         shader.setUniform2f("size", writeFbo.getWidth(), writeFbo.getHeight());
         shader.setUniform1f("cameraNear", cameraNear);
