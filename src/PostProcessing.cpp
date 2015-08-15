@@ -68,7 +68,7 @@ namespace itg
         
         numProcessedPasses = 0;
         currentReadFbo = 0;
-        flip = false;
+        flip = true;
     }
     
     void PostProcessing::begin()
