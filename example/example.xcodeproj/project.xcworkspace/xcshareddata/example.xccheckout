@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EDEC6A8D-F70C-4E19-AF11-7F280A239A96</string>
+	<key>IDESourceControlProjectName</key>
+	<string>example</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>95F70890EFD46183734FEDFE52CF53391DE6937E</key>
+		<string>github.com:neilmendoza/ofxPostProcessing.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example/example.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>95F70890EFD46183734FEDFE52CF53391DE6937E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:neilmendoza/ofxPostProcessing.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>95F70890EFD46183734FEDFE52CF53391DE6937E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>95F70890EFD46183734FEDFE52CF53391DE6937E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxPostProcessing</string>
+		</dict>
+	</array>
+</dict>
+</plist>

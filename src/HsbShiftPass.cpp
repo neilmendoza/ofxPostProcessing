@@ -72,7 +72,7 @@ namespace itg
     {
         writeFbo.begin();
         shader.begin();
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniform1f("hueShift", hueShift);
         shader.setUniform1f("saturationShift", saturationShift);
         shader.setUniform1f("brightnessShift", brightnessShift);

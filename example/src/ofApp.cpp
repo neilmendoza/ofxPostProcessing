@@ -3,8 +3,7 @@
 void ofApp::setup()
 {
     ofBackground(0);
-    
-    ofSetCoordHandedness(OF_RIGHT_HANDED);
+    ofSetFrameRate(60);
     
     // Setup post-processing chain
     post.init(ofGetWidth(), ofGetHeight());
@@ -40,12 +39,8 @@ void ofApp::update()
 
 void ofApp::draw()
 {
-    // copy enable part of gl state
-    glPushAttrib(GL_ENABLE_BIT);
-    
     // setup gl state
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+    ofEnableDepthTest();
     light.enable();
     
     // begin scene to post process
@@ -65,9 +60,6 @@ void ofApp::draw()
     
     // end scene and draw
     post.end();
-    
-    // set gl state back to original
-    glPopAttrib();
     
     // draw help
     ofSetColor(0, 255, 255);
