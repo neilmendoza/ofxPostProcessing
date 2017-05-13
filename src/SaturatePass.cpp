@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    SaturatePass::SaturatePass(const ofVec2f& aspect) :
-        RenderPass(aspect, "saturate"), threshold(.5f), colour(1.f, 1.f, 1.f, 1.f)
+    SaturatePass::SaturatePass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "saturate"), threshold(.5f), colour(1.f, 1.f, 1.f, 1.f)
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -66,7 +66,7 @@ namespace itg
         ofClear(255, 255, 255, 255);
         
         shader.begin();
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniform1f("threshold", threshold);
         shader.setUniform1f("darken", darken);
         shader.setUniform3f("colour", colour.r, colour.g, colour.b);

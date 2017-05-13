@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    NodeShiftPass::NodeShiftPass(const ofVec2f& aspect) :
-        RenderPass(aspect, "nodeshift"), amount(2.0/512.0)
+    NodeShiftPass::NodeShiftPass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "nodeshift"), amount(2.0/512.0)
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -74,7 +74,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("amount", amount);
         shader.setUniform2fv("node", node.getPtr());
         

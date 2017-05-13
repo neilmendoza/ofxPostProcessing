@@ -40,7 +40,7 @@ namespace itg
     public:
         typedef shared_ptr<WeirdShiftPass> Ptr;
         
-        WeirdShiftPass(const ofVec2f& aspect);
+        WeirdShiftPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

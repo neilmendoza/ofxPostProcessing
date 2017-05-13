@@ -40,7 +40,7 @@ namespace itg
     public:
         typedef shared_ptr<NodeShiftPass> Ptr;
         
-        NodeShiftPass(const ofVec2f& aspect);
+        NodeShiftPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         

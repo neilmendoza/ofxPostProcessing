@@ -40,7 +40,7 @@ namespace itg
     public:
         typedef shared_ptr<SaturatePass> Ptr;
         
-        SaturatePass(const ofVec2f& aspect);
+        SaturatePass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
         
