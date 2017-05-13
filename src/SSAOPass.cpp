@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    SSAOPass::SSAOPass(const ofVec2f& aspect, float cameraNear, float cameraFar, float fogNear, float fogFar, bool fogEnabled, bool onlyAO, float aoClamp, float lumInfluence) :
-        cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence), RenderPass(aspect, "SSAO")
+    SSAOPass::SSAOPass(const ofVec2f& aspect, bool arb, float cameraNear, float cameraFar, float fogNear, float fogFar, bool fogEnabled, bool onlyAO, float aoClamp, float lumInfluence) :
+        cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence), RenderPass(aspect, arb, "SSAO")
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -230,7 +230,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniformTexture("tDepth", depthTex, 1);
         shader.setUniform2f("size", writeFbo.getWidth(), writeFbo.getHeight());
         shader.setUniform1f("cameraNear", cameraNear);

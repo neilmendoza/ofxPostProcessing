@@ -34,10 +34,10 @@
 
 namespace itg
 {
-    ZoomBlurPass::ZoomBlurPass(const ofVec2f& aspect, float centerX, float centerY,
+    ZoomBlurPass::ZoomBlurPass(const ofVec2f& aspect, bool arb, float centerX, float centerY,
                                    float exposure, float decay, float density,
                                    float weight, float clamp) :
-        centerX(centerX), centerY(centerY), exposure(exposure), decay(decay), density(density), weight(weight), clamp(clamp), RenderPass(aspect, "zoomblur")
+        centerX(centerX), centerY(centerY), exposure(exposure), decay(decay), density(density), weight(weight), clamp(clamp), RenderPass(aspect, arb, "zoomblur")
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -90,7 +90,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("fX", centerX);
         shader.setUniform1f("fY", centerY);
         shader.setUniform1f("fExposure", exposure);

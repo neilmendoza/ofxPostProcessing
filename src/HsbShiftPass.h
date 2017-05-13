@@ -1,7 +1,7 @@
 /*
- *  EdgePass.h
+ *  HsbShiftPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -35,29 +35,29 @@
 
 namespace itg
 {
-    /*
-     * Frei-Chen edge detector ported from code here 
-     * @see http://rastergrid.com/blog/2011/01/frei-chen-edge-detector/
-     */
-    class EdgePass : public RenderPass
+    class HsbShiftPass : public RenderPass
     {
     public:
-        typedef shared_ptr<EdgePass> Ptr;
+        typedef shared_ptr<HsbShiftPass> Ptr;
         
-        EdgePass(const ofVec2f& aspect, bool arb);
+        HsbShiftPass(const ofVec2f& aspect, bool arb, float hueShift = 0.f, float saturationShift = 0.f, float brightnessShift = 0.f);
         
-        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
-        float getHue() const { return hue; }
-        void setHue(float hue) { this->hue = hue; }
+        float getHueShift() const { return hueShift; }
+        void setHueShift(float hueShift) { this->hueShift = hueShift; }
         
-        float getSaturation() const { return saturation; }
-        void setSaturation(float saturation) { this->saturation = saturation; }
+        float getSaturationShift() const { return saturationShift; }
+        void setSaturationShift(float saturationShift) { this->saturationShift = saturationShift; }
         
-        bool hasArbShader() { return true; }
+        float getBrightnessShift() const { return brightnessShift; }
+        void setSpeed(float brightnessShift) { this->brightnessShift = brightnessShift; }
         
     private:
         ofShader shader;
-        float hue, saturation;
+        float hueShift;
+        float saturationShift;
+        float brightnessShift;
     };
+    
 }

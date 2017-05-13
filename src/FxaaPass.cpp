@@ -33,10 +33,10 @@
 
 namespace itg
 {
-    FxaaPass::FxaaPass(const ofVec2f& aspect) : RenderPass(aspect, "fxaa")
+    FxaaPass::FxaaPass(const ofVec2f& aspect, bool arb) : RenderPass(aspect, arb, "fxaa")
     {
         string fragShaderSrc = STRINGIFY(
-             uniform sampler2D tDiffuse;
+             uniform SAMPLER_TYPE tDiffuse;
              uniform vec2 resolution;
              
              varying vec2 vUv;
@@ -47,11 +47,11 @@ namespace itg
              
              void main() {
                  
-                 vec3 rgbNW = texture2D( tDiffuse, ( gl_FragCoord.xy + vec2( -1.0, -1.0 ) ) * resolution ).xyz;
-                 vec3 rgbNE = texture2D( tDiffuse, ( gl_FragCoord.xy + vec2( 1.0, -1.0 ) ) * resolution ).xyz;
-                 vec3 rgbSW = texture2D( tDiffuse, ( gl_FragCoord.xy + vec2( -1.0, 1.0 ) ) * resolution ).xyz;
-                 vec3 rgbSE = texture2D( tDiffuse, ( gl_FragCoord.xy + vec2( 1.0, 1.0 ) ) * resolution ).xyz;
-                 vec4 rgbaM  = texture2D( tDiffuse,  gl_FragCoord.xy  * resolution );
+                 vec3 rgbNW = TEXTURE_FN( tDiffuse, ( gl_FragCoord.xy + vec2( -1.0, -1.0 ) ) * resolution ).xyz;
+                 vec3 rgbNE = TEXTURE_FN( tDiffuse, ( gl_FragCoord.xy + vec2( 1.0, -1.0 ) ) * resolution ).xyz;
+                 vec3 rgbSW = TEXTURE_FN( tDiffuse, ( gl_FragCoord.xy + vec2( -1.0, 1.0 ) ) * resolution ).xyz;
+                 vec3 rgbSE = TEXTURE_FN( tDiffuse, ( gl_FragCoord.xy + vec2( 1.0, 1.0 ) ) * resolution ).xyz;
+                 vec4 rgbaM  = TEXTURE_FN( tDiffuse,  gl_FragCoord.xy  * resolution );
                  vec3 rgbM  = rgbaM.xyz;
                  float opacity  = rgbaM.w;
                  
@@ -77,12 +77,12 @@ namespace itg
                                dir * rcpDirMin)) * resolution;
                  
                  vec3 rgbA = 0.5 * (
-                                    texture2D( tDiffuse, gl_FragCoord.xy  * resolution + dir * ( 1.0 / 3.0 - 0.5 ) ).xyz +
-                                    texture2D( tDiffuse, gl_FragCoord.xy  * resolution + dir * ( 2.0 / 3.0 - 0.5 ) ).xyz );
+                                    TEXTURE_FN( tDiffuse, gl_FragCoord.xy  * resolution + dir * ( 1.0 / 3.0 - 0.5 ) ).xyz +
+                                    TEXTURE_FN( tDiffuse, gl_FragCoord.xy  * resolution + dir * ( 2.0 / 3.0 - 0.5 ) ).xyz );
                  
                  vec3 rgbB = rgbA * 0.5 + 0.25 * (
-                                                  texture2D( tDiffuse, gl_FragCoord.xy  * resolution + dir * -0.5 ).xyz +
-                                                  texture2D( tDiffuse, gl_FragCoord.xy  * resolution + dir * 0.5 ).xyz );
+                                                  TEXTURE_FN( tDiffuse, gl_FragCoord.xy  * resolution + dir * -0.5 ).xyz +
+                                                  TEXTURE_FN( tDiffuse, gl_FragCoord.xy  * resolution + dir * 0.5 ).xyz );
                  
                  float lumaB = dot( rgbB, luma );
                  
@@ -98,7 +98,21 @@ namespace itg
                  
              }
         );
-        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
+        ostringstream oss;
+        oss << "#version 120" << endl;
+        if (arb)
+        {
+            oss << "#define SAMPLER_TYPE sampler2DRect" << endl;
+            oss << "#define TEXTURE_FN texture2DRect" << endl;
+            oss << fragShaderSrc;
+        }
+        else
+        {
+            oss << "#define SAMPLER_TYPE sampler2D" << endl;
+            oss << "#define TEXTURE_FN texture2D" << endl;
+            oss << fragShaderSrc;
+        }
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, oss.str());
         shader.linkProgram();
     }
     
@@ -108,8 +122,9 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
-        shader.setUniform2f("resolution", 1.f / writeFbo.getWidth(), 1.f / writeFbo.getHeight());
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
+        if (arb) shader.setUniform2f("resolution", 1.f, 1.f);
+        else shader.setUniform2f("resolution", 1.f / writeFbo.getWidth(), 1.f / writeFbo.getHeight());
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

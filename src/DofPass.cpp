@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    DofPass::DofPass(const ofVec2f& aspect, float focus, float aperture, float maxBlur) :
-        focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, "dof")
+    DofPass::DofPass(const ofVec2f& aspect, bool arb, float focus, float aperture, float maxBlur) :
+        focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, arb, "dof")
     {
         string fragShaderSrc = STRINGIFY(
             uniform sampler2D tColor;
@@ -131,7 +131,7 @@ namespace itg
         
         shader.begin();
                     
-        shader.setUniformTexture("tColor", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tColor", readFbo.getTexture(), 0);
         shader.setUniformTexture("tDepth", depthTex, 1);
         shader.setUniform1f("aperture", aperture);
         shader.setUniform1f("focus", focus);

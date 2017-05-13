@@ -34,7 +34,7 @@
 namespace itg
 {
 
-    LUTPass::LUTPass(const ofVec2f& aspect) : RenderPass(aspect, "lut"), lut_tex(0)
+    LUTPass::LUTPass(const ofVec2f& aspect, bool arb) : RenderPass(aspect, arb, "lut"), lut_tex(0)
     {
     }
 
@@ -161,7 +161,7 @@ namespace itg
 
         shader.begin();
 
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
         shader.setUniformTexture("lut_tex", GL_TEXTURE_3D, lut_tex, 1);
 
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());

@@ -33,11 +33,11 @@
 
 namespace itg
 {
-    EdgePass::EdgePass(const ofVec2f& aspect) :
-        RenderPass(aspect, "edge"), hue(0.5f), saturation(0.f)
+    EdgePass::EdgePass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "edge"), hue(0.5f), saturation(0.f)
     {
         string fragShaderSrc = STRINGIFY(
-            uniform sampler2D tex;
+            uniform SAMPLER_TYPE tex;
             uniform vec2 aspect;
             uniform float hue;
             uniform float saturation;
@@ -68,7 +68,7 @@ namespace itg
                 {
                     for (int j=0; j<3; j++)
                     {
-                        sample = texture2D(tex, gl_TexCoord[0].st + texel * vec2(i-1.0,j-1.0), 0 ).rgb;
+                        sample = TEXTURE_FN(tex, gl_TexCoord[0].st + texel * vec2(i-1.0,j-1.0)).rgb;
                         I[i][j] = length(sample); 
                     }
                 }
@@ -87,7 +87,23 @@ namespace itg
             }
         );
         
-        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, "#version 120\n" + fragShaderSrc);
+        ostringstream oss;
+        oss << "#version 120" << endl;
+        if (arb)
+        {
+            oss << "#define SAMPLER_TYPE sampler2DRect" << endl;
+            oss << "#define TEXTURE_FN texture2DRect" << endl;
+            oss << "#extension GL_ARB_texture_rectangle : enable" << endl;
+            oss << fragShaderSrc;
+        }
+        else
+        {
+            oss << "#define SAMPLER_TYPE sampler2D" << endl;
+            oss << "#define TEXTURE_FN texture2D" << endl;
+            oss << fragShaderSrc;
+        }
+        
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, oss.str());
         shader.linkProgram();
 #ifdef _ITG_TWEAKABLE
         addParameter("hue", this->hue, "min=0 max=1");
@@ -100,14 +116,17 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
-        shader.setUniform2f("aspect", aspect.x, aspect.y);
+        shader.setUniformTexture("tex", readFbo.getTexture(), 0);
+        if (arb) shader.setUniform2f("aspect", 1.f, 1.f);
+        else shader.setUniform2f("aspect", aspect.x, aspect.y);
         shader.setUniform1f("hue", hue);
         shader.setUniform1f("saturation", saturation);
         
-        texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
+        if (arb) texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight(), readFbo.getWidth(), readFbo.getHeight());
+        else texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         
         shader.end();
+        
         writeFbo.end();
     }
 }

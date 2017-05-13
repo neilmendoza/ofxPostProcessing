@@ -46,6 +46,7 @@ namespace itg
         typedef shared_ptr<FakeSSSPass> Ptr;
         
         FakeSSSPass(const ofVec2f& aspect,
+                    bool arb,
                     const ofPoint& lightPosition = ofPoint(0,0,0),
                     const ofVec4f& extinctionCoefficient = ofVec4f(0.8,0.3,0.1,1.0),
                     const ofVec4f& lightColor = ofVec4f(1.0, 1.0, 1.0, 1.0),

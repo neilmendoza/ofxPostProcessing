@@ -34,12 +34,12 @@
 
 namespace itg
 {
-    ToonPass::ToonPass(const ofVec2f& aspect, float edgeThreshold, float level,
+    ToonPass::ToonPass(const ofVec2f& aspect, bool arb, float edgeThreshold, float level,
                        const ofVec4f& ambientColor,
                        const ofVec4f& diffuseColor,
                        const ofVec4f& specularColor,
                        bool isSpecular, float shinyness) :
-        edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness), RenderPass(aspect, "toon")
+        edgeThreshold(edgeThreshold), level(level), ambientColor(ambientColor), diffuseColor(diffuseColor), specularColor(specularColor), isSpecular(isSpecular), shinyness(shinyness), RenderPass(aspect, arb, "toon")
     {
         string vertShaderSrc = STRINGIFY(
             varying vec3 v;
@@ -151,11 +151,11 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("normalImage", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("normalImage", readFbo.getTexture(), 0);
         shader.setUniform1f("textureSizeX", writeFbo.getWidth());
         shader.setUniform1f("textureSizeY", writeFbo.getHeight());
-        shader.setUniform1f("normalEdgeThreshold", 0.2);
-        shader.setUniform1f("qLevel", 3.0);
+        shader.setUniform1f("normalEdgeThreshold", edgeThreshold);
+        shader.setUniform1f("qLevel", level);
         shader.setUniform1i("bSpecular", isSpecular ? 1 : 0);
         shader.setUniform4f("ambient", ambientColor.x, ambientColor.y, ambientColor.z, ambientColor.w);
         shader.setUniform4f("diffuse", diffuseColor.x, diffuseColor.y, diffuseColor.z, diffuseColor.w);

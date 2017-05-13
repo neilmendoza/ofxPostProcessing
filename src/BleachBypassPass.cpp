@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    BleachBypassPass::BleachBypassPass(const ofVec2f& aspect, float opacity) :
-        opacity(opacity), RenderPass(aspect, "bleachbypass")
+    BleachBypassPass::BleachBypassPass(const ofVec2f& aspect, bool arb, float opacity) :
+        opacity(opacity), RenderPass(aspect, arb, "bleachbypass")
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -77,7 +77,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("opacity", opacity);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());

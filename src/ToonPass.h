@@ -42,7 +42,7 @@ namespace itg
         //https://github.com/davertron/ToonCabinet
         typedef shared_ptr<ToonPass> Ptr;
         
-        ToonPass(const ofVec2f& aspect, float edgeThreshold = 0.2, float level = 1.0,
+        ToonPass(const ofVec2f& aspect, bool arb, float edgeThreshold = 0.2, float level = 1.0,
                  const ofVec4f& ambientColor = ofVec4f(0.1,0.1,0.1,1.0),
                  const ofVec4f& diffuseColor = ofVec4f(0.9,0.9,0.9,1.0),
                  const ofVec4f& specularColor = ofVec4f(1,1,1,1),

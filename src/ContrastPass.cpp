@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    ContrastPass::ContrastPass(const ofVec2f& aspect, float contrast, float brightness) :
-        contrast(contrast), brightness(brightness), RenderPass(aspect, "contrast")
+    ContrastPass::ContrastPass(const ofVec2f& aspect, bool arb, float contrast, float brightness) :
+        contrast(contrast), brightness(brightness), RenderPass(aspect, arb, "contrast")
     {
         multiple = 1.0f;
         string fragShaderSrc = STRINGIFY(uniform sampler2D tex0;

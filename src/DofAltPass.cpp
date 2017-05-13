@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    DofAltPass::DofAltPass(const ofVec2f& aspect, float focalDepth, float focalLength, float fStop, bool showFocus) :
-        focalDepth(focalDepth), focalLength(focalLength), fStop(fStop), showFocus(showFocus), RenderPass(aspect, "dofalt")
+    DofAltPass::DofAltPass(const ofVec2f& aspect, bool arb, float focalDepth, float focalLength, float fStop, bool showFocus) :
+        focalDepth(focalDepth), focalLength(focalLength), fStop(fStop), showFocus(showFocus), RenderPass(aspect, arb, "dofalt")
     {
         string fragShaderSrc = STRINGIFY(
             /*
@@ -390,7 +390,7 @@ namespace itg
         
         shader.begin();
         
-        shader.setUniformTexture("bgl_RenderedTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("bgl_RenderedTexture", readFbo.getTexture(), 0);
         shader.setUniformTexture("bgl_DepthTexture", depth, 1);
         shader.setUniform1f("bgl_RenderedTextureWidth", aspect.x);
         shader.setUniform1f("bgl_RenderedTextureHeight", aspect.y);

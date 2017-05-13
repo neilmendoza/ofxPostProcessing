@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    HorizontalTiltShifPass::HorizontalTiltShifPass(const ofVec2f& aspect) :
-        RenderPass(aspect, "horizontaltiltshift"), h(2.0/512.0), r(0.5)
+    HorizontalTiltShifPass::HorizontalTiltShifPass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "horizontaltiltshift"), h(2.0/512.0), r(0.5)
     {
         string fragShaderSrc = STRINGIFY(
              uniform sampler2D tDiffuse;
@@ -74,7 +74,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("tDiffuse", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
         shader.setUniform1f("h", h);
         shader.setUniform1f("r", r);
         

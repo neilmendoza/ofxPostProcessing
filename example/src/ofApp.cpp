@@ -1,6 +1,6 @@
-#include "testApp.h"
+#include "ofApp.h"
 
-void testApp::setup()
+void ofApp::setup()
 {
     ofBackground(0);
     
@@ -33,12 +33,12 @@ void testApp::setup()
     boxMesh = ofMesh::box(20, 20, 20);
 }
 
-void testApp::update()
+void ofApp::update()
 {
     ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
 
-void testApp::draw()
+void ofApp::draw()
 {
     // copy enable part of gl state
     glPushAttrib(GL_ENABLE_BIT);
@@ -82,7 +82,7 @@ void testApp::draw()
     }
 }
 
-void testApp::keyPressed(int key)
+void ofApp::keyPressed(int key)
 {
     unsigned idx = key - '0';
     if (idx < post.size()) post[idx]->setEnabled(!post[idx]->getEnabled());

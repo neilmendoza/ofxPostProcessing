@@ -42,19 +42,25 @@ namespace itg
     class DofAltPass : public RenderPass
     {
     public:
-        DofAltPass(const ofVec2f& aspect, float focalDepth = 1.f, float focalLength = 500.f, float fStop = 3.f, bool showFocus = false);
+        typedef shared_ptr<DofAltPass> Ptr;
+        
+        DofAltPass(const ofVec2f& aspect, bool arb, float focalDepth = 1.f, float focalLength = 500.f, float fStop = 3.f, bool showFocus = false);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         
+        float& getFocalDepthRef() { return focalDepth; }
         float getFocalDepth() const { return focalDepth; }
         void setFocalDepth(float focalDepth) { this->focalDepth = focalDepth; }
         
+        float& getFocalLengthRef() { return focalLength; }
         float getFocalLength() const { return focalLength; }
         void setFocalLength(float focalLength) { this->focalLength = focalLength; }
     
+        float& getFStopRef() { return fStop; }
         float getFStop() const { return fStop; }
         void setFStop(float fStop) { this->fStop = fStop; }
         
+        bool& getShowFocusRef() { return showFocus; }
         bool getShowFocus() const { return showFocus; }
         void setShowFocus(bool showFocus) { this->showFocus = showFocus; }
         

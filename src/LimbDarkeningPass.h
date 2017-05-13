@@ -41,6 +41,7 @@ namespace itg
         typedef shared_ptr<LimbDarkeningPass> Ptr;
         
         LimbDarkeningPass(const ofVec2f& aspect,
+                          bool arb,
                           float radialScale = 1.2,
                           float brightness = 2.5,
                           const ofVec3f & startColor = ofVec3f(1.0,1.0,1.0),

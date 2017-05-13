@@ -34,15 +34,26 @@
 
 namespace itg
 {
-    void PostProcessing::init(unsigned width, unsigned height)
+    void PostProcessing::init(unsigned width, unsigned height, bool arb)
     {
         this->width = width;
         this->height = height;
+        this->arb = arb;
         
         ofFbo::Settings s;
-        s.width = ofNextPow2(width);
-        s.height = ofNextPow2(height);
-        s.textureTarget = GL_TEXTURE_2D;
+        
+        if (arb)
+        {
+            s.width = width;
+            s.height = height;
+            s.textureTarget = GL_TEXTURE_RECTANGLE_ARB;
+        }
+        else
+        {
+            s.width = ofNextPow2(width);
+            s.height = ofNextPow2(height);
+            s.textureTarget = GL_TEXTURE_2D;
+        }
         
         // no need to use depth for ping pongs
         for (int i = 0; i < 2; ++i)
@@ -129,17 +140,17 @@ namespace itg
     
     void PostProcessing::debugDraw()
     {
-        raw.getTextureReference().draw(10, 10, 300, 300);
+        raw.getTexture().draw(10, 10, 300, 300);
         raw.getDepthTexture().draw(320, 10, 300, 300);
         pingPong[currentReadFbo].draw(630, 10, 300, 300);
     }
     
-    void PostProcessing::draw(float x, float y)
+    void PostProcessing::draw(float x, float y) const
     {
         draw(x, y, width, height);
     }
     
-    void PostProcessing::draw(float x, float y, float w, float h)
+    void PostProcessing::draw(float x, float y, float w, float h) const
     {
         if (flip)
         {
@@ -155,22 +166,34 @@ namespace itg
     
     ofTexture& PostProcessing::getProcessedTextureReference()
     {
-        if (numProcessedPasses) return pingPong[currentReadFbo].getTextureReference();
-        else return raw.getTextureReference();
+        if (numProcessedPasses) return pingPong[currentReadFbo].getTexture();
+        else return raw.getTexture();
     }
     
     // need to have depth enabled for some fx
-    void PostProcessing::process(ofFbo& raw)
+    void PostProcessing::process(ofFbo& raw, bool hasDepthAsTexture)
     {
         numProcessedPasses = 0;
         for (int i = 0; i < passes.size(); ++i)
         {
             if (passes[i]->getEnabled())
             {
-                if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
-                else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
-                currentReadFbo = 1 - currentReadFbo;
-                numProcessedPasses++;
+                if (arb && !passes[i]->hasArbShader()) ofLogError() << "Arb mode is enabled but pass " << passes[i]->getName() << " does not have an arb shader.";
+                else
+                {
+                    if (hasDepthAsTexture)
+                    {
+                        if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                        else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo], raw.getDepthTexture());
+                    }
+                    else
+                    {
+                        if (numProcessedPasses == 0) passes[i]->render(raw, pingPong[1 - currentReadFbo]);
+                        else passes[i]->render(pingPong[currentReadFbo], pingPong[1 - currentReadFbo]);
+                    }
+                    currentReadFbo = 1 - currentReadFbo;
+                    numProcessedPasses++;
+                }
             }
         }
     }

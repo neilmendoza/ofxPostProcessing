@@ -44,8 +44,6 @@
 
 namespace itg
 {
-    using namespace tr1;
-    
     class RenderPass
 #ifdef _ITG_TWEAKABLE
         : public Tweakable
@@ -54,7 +52,7 @@ namespace itg
     public:
         typedef shared_ptr<RenderPass> Ptr;
         
-        RenderPass(const ofVec2f& aspect, const string& name);
+        RenderPass(const ofVec2f& aspect, bool arb, const string& name);
         
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
@@ -69,6 +67,10 @@ namespace itg
         bool& getEnabledRef() { return enabled; }
         
         void setAspect(const ofVec2f& aspect){ this->aspect = aspect; }
+        
+        void setArb(bool arb) { this->arb = arb; }
+        
+        virtual bool hasArbShader() { return false; }
 
 #ifndef _ITG_TWEAKABLE
         string getName() const { return name; }
@@ -78,6 +80,8 @@ namespace itg
         void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
         
         ofVec2f aspect;
+        
+        bool arb;
     
     private:
 #ifndef _ITG_TWEAKABLE

@@ -34,11 +34,12 @@
 namespace itg
 {
     LimbDarkeningPass::LimbDarkeningPass(const ofVec2f& aspect,
+                                         bool arb,
                                          float radialScale,
                                          float brightness,
                                          const ofVec3f & startColor,
                                          const ofVec3f & endColor) :
-    radialScale(radialScale), brightness(brightness), startColor(startColor), endColor(endColor), RenderPass(aspect, "limbdarkening")
+    radialScale(radialScale), brightness(brightness), startColor(startColor), endColor(endColor), RenderPass(aspect, arb, "limbdarkening")
     {
         
         string fragShaderSrc = STRINGIFY(
@@ -81,7 +82,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("myTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("myTexture", readFbo.getTexture(), 0);
         shader.setUniform1f("fAspect", 1);
         shader.setUniform3f("startColor", 1, 1, 1);
         shader.setUniform3f("endColor", 0, 0, 0);

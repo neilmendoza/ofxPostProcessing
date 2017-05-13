@@ -40,7 +40,7 @@ namespace itg
     public:
         typedef shared_ptr<NoiseWarpPass> Ptr;
         
-        NoiseWarpPass(const ofVec2f& aspect, float frequency = 4.f, float amplitude = .1f, float speed = .1f);
+        NoiseWarpPass(const ofVec2f& aspect, bool arb, float frequency = 4.f, float amplitude = .1f, float speed = .1f);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         

@@ -34,8 +34,8 @@
 
 namespace itg
 {
-    GodRaysPass::GodRaysPass(const ofVec2f& aspect, const ofVec3f & lightPositionOnScreen, float lightDirDOTviewDir) :
-        lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir), RenderPass(aspect, "godrays")
+    GodRaysPass::GodRaysPass(const ofVec2f& aspect, bool arb, const ofVec3f & lightPositionOnScreen, float lightDirDOTviewDir) :
+        lightPositionOnScreen(lightPositionOnScreen), lightDirDOTviewDir(lightDirDOTviewDir), RenderPass(aspect, arb, "godrays")
     {
         
         string vertShaderSrc = STRINGIFY(
@@ -101,8 +101,8 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("otex", readFbo.getTextureReference(), 0);
-        shader.setUniformTexture("rtex", readFbo.getTextureReference(), 1);
+        shader.setUniformTexture("otex", readFbo.getTexture(), 0);
+        shader.setUniformTexture("rtex", readFbo.getTexture(), 1);
         shader.setUniform2f("lightPositionOnScreen", lightPositionOnScreen.x, lightPositionOnScreen.y);
         shader.setUniform1f("lightDirDOTviewDir", lightDirDOTviewDir);
         

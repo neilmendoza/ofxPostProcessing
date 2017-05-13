@@ -1,7 +1,7 @@
 /*
- *  VerticalTiltShifPass.cpp
+ *  HsbShiftPass.cpp
  *
- *  Copyright (c) 2013, satcy, http://satcy.net
+ *  Copyright (c) 2013, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved. 
  *  
  *  Redistribution and use in source and binary forms, with or without 
@@ -29,54 +29,53 @@
  *  POSSIBILITY OF SUCH DAMAGE. 
  *
  */
-#include "VerticalTiltShifPass.h"
+#include "HsbShiftPass.h"
 
 namespace itg
 {
-    VerticalTiltShifPass::VerticalTiltShifPass(const ofVec2f& aspect, bool arb) :
-        RenderPass(aspect, arb, "verticaltiltshift"), v(2.0/512.0), r(0.5)
+    HsbShiftPass::HsbShiftPass(const ofVec2f& aspect, bool arb, float hueShift, float saturationShift, float brightnessShift) :
+        hueShift(hueShift), saturationShift(saturationShift), brightnessShift(brightnessShift), RenderPass(aspect, arb, "hsbshift")
     {
         string fragShaderSrc = STRINGIFY(
-            uniform sampler2D tDiffuse;
-            uniform float v;
-            uniform float r;
-
-            void main() {
-                vec2 vUv = gl_TexCoord[0].st;
-                vec4 sum = vec4( 0.0 );
-
-                float vv = v * abs( r - vUv.y );
-
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y - 4.0 * vv ) ) * 0.051;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y - 3.0 * vv ) ) * 0.0918;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y - 2.0 * vv ) ) * 0.12245;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y - 1.0 * vv ) ) * 0.1531;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y ) ) * 0.1633;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y + 1.0 * vv ) ) * 0.1531;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y + 2.0 * vv ) ) * 0.12245;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y + 3.0 * vv ) ) * 0.0918;
-                sum += texture2D( tDiffuse, vec2( vUv.x, vUv.y + 4.0 * vv ) ) * 0.051;
-
-                gl_FragColor = sum;
+            uniform sampler2D tex;
+            uniform float hueShift;
+            uniform float saturationShift;
+            uniform float brightnessShift;
+                                         
+            // https://love2d.org/wiki/HSV_color
+            vec3 hsbToRgb(vec3 c) { return mix(vec3(1.),clamp((abs(fract(c.x+vec3(3.,2.,1.)/3.)*6.-3.)-1.),0.,1.),c.y)*c.z; }
+            // http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
+            vec3 rgbToHsb(vec3 c)
+            {
+                vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+                vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+                vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+                
+                float d = q.x - min(q.w, q.y);
+                float e = 1.0e-10;
+                return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+            }
+                                         
+            void main()
+            {
+                vec3 hsb = rgbToHsb(texture2D(tex, gl_TexCoord[0].st).rgb);
+                vec3 rgb = hsbToRgb(vec3(hsb.x + hueShift, hsb.y + saturationShift, hsb.z + brightnessShift));
+                gl_FragColor = vec4(rgb, 1.0);
             }
         );
         
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
         shader.linkProgram();
-#ifdef _ITG_TWEAKABLE
-        addParameter("f", this->v, "min=0 max=1");
-        addParameter("r", this->r, "min=0 max=1");
-#endif
     }
     
-    void VerticalTiltShifPass::render(ofFbo& readFbo, ofFbo& writeFbo)
+    void HsbShiftPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
     {
         writeFbo.begin();
-        
         shader.begin();
-        shader.setUniformTexture("tDiffuse", readFbo.getTexture(), 0);
-        shader.setUniform1f("v", v);
-        shader.setUniform1f("r", r);
+        shader.setUniformTexture("tex", readFbo.getTextureReference(), 0);
+        shader.setUniform1f("hueShift", hueShift);
+        shader.setUniform1f("saturationShift", saturationShift);
+        shader.setUniform1f("brightnessShift", brightnessShift);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         

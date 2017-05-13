@@ -33,8 +33,8 @@
 
 namespace itg
 {
-    RimHighlightingPass::RimHighlightingPass(const ofVec2f& aspect) :
-        RenderPass(aspect, "rimhighlighting")
+    RimHighlightingPass::RimHighlightingPass(const ofVec2f& aspect, bool arb) :
+        RenderPass(aspect, arb, "rimhighlighting")
     {
         string vertShaderSrc = STRINGIFY(
                                          varying vec3 normal;
@@ -93,7 +93,7 @@ namespace itg
         writeFbo.begin();
         
         shader.begin();
-        shader.setUniformTexture("myTexture", readFbo.getTextureReference(), 0);
+        shader.setUniformTexture("myTexture", readFbo.getTexture(), 0);
         
         texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
         
