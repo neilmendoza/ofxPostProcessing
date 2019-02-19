@@ -32,7 +32,7 @@
 #pragma once
 
 //#define _ITG_TWEAKABLE
-
+#include "ofMain.h"
 #include "ofFbo.h"
 #include "ofVec3f.h"
 #include "ofShader.h"
@@ -41,6 +41,8 @@
 #endif
 
 #define STRINGIFY(A) #A
+
+using namespace std;
 
 namespace itg
 {
