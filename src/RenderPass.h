@@ -42,10 +42,9 @@
 
 #define STRINGIFY(A) #A
 
-using namespace std;
-
 namespace itg
 {
+    using namespace std;
     class RenderPass
 #ifdef _ITG_TWEAKABLE
         : public Tweakable
