@@ -32,7 +32,7 @@
 #pragma once
 
 //#define _ITG_TWEAKABLE
-
+#include "ofMain.h"
 #include "ofFbo.h"
 #include "ofVec3f.h"
 #include "ofShader.h"
@@ -44,6 +44,7 @@
 
 namespace itg
 {
+    using namespace std;
     class RenderPass
 #ifdef _ITG_TWEAKABLE
         : public Tweakable
