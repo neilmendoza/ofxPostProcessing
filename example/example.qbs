@@ -15,12 +15,11 @@ Project{
             'src/main.cpp',
             'src/ofApp.cpp',
             'src/ofApp.h',
-            'src/testApp.cpp',
-            'src/testApp.h',
         ]
 
         of.addons: [
             'ofxPostProcessing',
+            'ofxGui'
         ]
 
         // additional flags for the project. the of module sets some

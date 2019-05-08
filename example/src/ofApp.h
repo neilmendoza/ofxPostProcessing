@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxPostProcessing.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp
 {
@@ -12,8 +13,6 @@ public:
     void update();
     void draw();
 
-    void keyPressed(int key);
-    
     // scene stuff
     ofxPostProcessing post;
     ofEasyCam cam;
@@ -23,4 +22,13 @@ public:
     vector<ofVec3f> posns;
     vector<ofColor> cols;
     ofVboMesh boxMesh;
+
+    ofParameter<float> spread;
+    ofParameter<float> scale;
+
+    std::map<std::string, RenderPass::Ptr> passes;
+
+    ofxPanel gui;
+
+    void toggleListener(const void * sender, bool & value);
 };

@@ -7,29 +7,61 @@ void ofApp::setup()
     
     // Setup post-processing chain
     post.init(ofGetWidth(), ofGetHeight());
-    post.createPass<FxaaPass>()->setEnabled(false);
-    post.createPass<BloomPass>()->setEnabled(false);
-    post.createPass<DofPass>()->setEnabled(false);
-    post.createPass<KaleidoscopePass>()->setEnabled(false);
-    post.createPass<NoiseWarpPass>()->setEnabled(false);
-    post.createPass<PixelatePass>()->setEnabled(false);
-    post.createPass<EdgePass>()->setEnabled(false);
-    post.createPass<VerticalTiltShifPass>()->setEnabled(false);
-    post.createPass<GodRaysPass>()->setEnabled(false);
-    
+
+    post.createPass<BleachBypassPass>();
+    post.createPass<BloomPass>();
+    post.createPass<ContrastPass>();
+    post.createPass<ConvolutionPass>();
+    post.createPass<DofAltPass>();
+    post.createPass<DofPass>();
+    post.createPass<EdgePass>();
+    post.createPass<FakeSSSPass>();
+    post.createPass<FxaaPass>();
+    post.createPass<GodRaysPass>();
+    post.createPass<HorizontalTiltShifPass>();
+    //post.createPass<HsbShiftPass>(); // use of undeclared identifier 'HsbShiftPass'
+    post.createPass<KaleidoscopePass>();
+    post.createPass<LimbDarkeningPass>();
+    post.createPass<LUTPass>();
+    post.createPass<NoiseWarpPass>();
+    post.createPass<PixelatePass>();
+    post.createPass<RGBShiftPass>();
+    post.createPass<RimHighlightingPass>();
+    post.createPass<SSAOPass>();
+    post.createPass<ToonPass>();
+    post.createPass<VerticalTiltShifPass>();
+    post.createPass<ZoomBlurPass>();
+
+    gui.setup("panel");
+    gui.add(spread.set("spread", 100.0f, 50.0f, 300.0f));
+    gui.add(scale.set("scale", 20.0f, 20.0f, 200.0f));
+
+    for(auto & pass : post.getPasses()) {
+        pass->setEnabled(false);
+        ofParameter<bool> param;
+        gui.add(param.set(pass->getName(), false));
+        param.addListener(this, &ofApp::toggleListener);
+        passes[pass->getName()] = pass;
+    }
+
     // Setup box positions
-    for (unsigned i = 0; i < NUM_BOXES; ++i)
-    {
-        posns.push_back(ofVec3f(ofRandom(-300, 300), ofRandom(-300, 300), ofRandom(-300, 300)));
-        cols.push_back(ofColor::fromHsb(255 * i / (float)NUM_BOXES, 255, 255, 255));
+    for (unsigned i = 0; i < NUM_BOXES; ++i) {
+        posns.push_back(ofVec3f(ofRandomf(), ofRandomf(), ofRandomf()));
+        cols.push_back(ofColor::fromHsb(i * 255.0f / NUM_BOXES, 255, ofRandom(255), 255));
     }
     
     // Setup light
 	light.setPosition(1000, 1000, 2000);
-    
+    light.enable();
+
     // create our own box mesh as there is a bug with
     // normal scaling and ofDrawBox() at the moment
-    boxMesh = ofMesh::box(20, 20, 20);
+    boxMesh = ofMesh::box(1, 1, 1);
+}
+
+void ofApp::toggleListener(const void * sender, bool & value) {
+    auto name = ((const ofParameter<bool>*) sender)->getName();
+    passes[name]->setEnabled(value);
 }
 
 void ofApp::update()
@@ -41,8 +73,8 @@ void ofApp::draw()
 {
     // setup gl state
     ofEnableDepthTest();
-    light.enable();
-    
+    ofEnableLighting();
+
     // begin scene to post process
     post.begin(cam);
     
@@ -51,7 +83,10 @@ void ofApp::draw()
     {
         ofSetColor(cols[i]);
         ofPushMatrix();
-        ofTranslate(posns[i]);
+        ofTranslate(posns[i] * spread);
+        ofRotateXRad(i);
+        ofRotateYRad(i*3);
+        ofScale(scale);
         boxMesh.draw();
         ofPopMatrix();
     }
@@ -61,21 +96,9 @@ void ofApp::draw()
     // end scene and draw
     post.end();
     
-    // draw help
-    ofSetColor(0, 255, 255);
-    ofDrawBitmapString("Number keys toggle effects, mouse rotates scene", 10, 20);
-    for (unsigned i = 0; i < post.size(); ++i)
-    {
-        if (post[i]->getEnabled()) ofSetColor(0, 255, 255);
-        else ofSetColor(255, 0, 0);
-        ostringstream oss;
-        oss << i << ": " << post[i]->getName() << (post[i]->getEnabled()?" (on)":" (off)");
-        ofDrawBitmapString(oss.str(), 10, 20 * (i + 2));
-    }
-}
+    ofDisableDepthTest();
+    ofDisableLighting();
 
-void ofApp::keyPressed(int key)
-{
-    unsigned idx = key - '0';
-    if (idx < post.size()) post[idx]->setEnabled(!post[idx]->getEnabled());
+    ofSetColor(ofColor::white);
+    gui.draw();
 }
