@@ -47,10 +47,10 @@ namespace itg
         VerticalTiltShifPass(const ofVec2f& aspect, bool arb);
         
         void render(ofFbo& readFbo, ofFbo& writeFbo);
-        
-        float getH() { return v; }
-        void setH(float val) { v = val; }
-        
+
+        float getV() { return v; }
+        void setV(float val) { v = val; }
+
         float getR() { return r; }
         void setR(float val) { r = val; }
         
