@@ -33,15 +33,46 @@
 
 namespace itg
 {
+    ofVboMesh RenderPass::quadMesh;
+    
+    const string RenderPass::PROGRAMMABLE_VERTEX_SRC = R"(
+        #version 150
+
+        uniform mat4 modelViewProjectionMatrix;
+        
+        in vec4 position;
+        in vec2 texcoord;
+        
+        out vec2 texCoordVarying;
+        
+        void main()
+        {
+            texCoordVarying = texcoord;
+            gl_Position = modelViewProjectionMatrix * position;
+        }
+    )";
+    
     RenderPass::RenderPass(const ofVec2f& aspect, bool arb, const string& name) :
-#ifdef _ITG_TWEAKABLE
-        aspect(aspect), enabled(true), arb(arb), Tweakable(name)
-    {
-        addParameter("enable", enabled);
-#else
         aspect(aspect), enabled(true), arb(arb), name(name)
     {
-#endif
+        if (quadMesh.getNumVertices() == 0)
+        {
+            quadMesh.setMode(OF_PRIMITIVE_TRIANGLE_FAN);
+            
+            quadMesh.addVertices({
+                glm::vec3(-1.f, -1.f, 0.f),
+                glm::vec3(-1.f, 1.f, 0.f),
+                glm::vec3(1.f, 1.f, 0.f),
+                glm::vec3(1.f, -1.f, 0.f)
+            });
+            
+            quadMesh.addTexCoords({
+                glm::vec2(0.f, 0.f),
+                glm::vec2(0.f, 1.f),
+                glm::vec2(1.f, 1.f),
+                glm::vec2(1.f, 0.f)
+            });
+        }
     }
     
     void RenderPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)

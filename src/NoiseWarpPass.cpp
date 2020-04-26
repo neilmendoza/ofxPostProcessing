@@ -36,14 +36,18 @@ namespace itg
     NoiseWarpPass::NoiseWarpPass(const ofVec2f& aspect, bool arb, float frequency, float amplitude, float speed) :
         frequency(frequency), amplitude(amplitude), speed(speed), RenderPass(aspect, arb, "noisewarp")
     {
-        string fragShaderSrc = STRINGIFY(
+        string fragShaderSrc = R"(
+            VERSION
+            
             uniform sampler2D tex;
 
             uniform float frequency;
             uniform float amplitude;
             uniform float time;
             uniform float speed;
-
+            
+            INOUT
+            
             //
             // Description : Array and textureless GLSL 2D/3D/4D simplex
             //               noise functions.
@@ -150,21 +154,35 @@ namespace itg
                                          
             void main()
             {
-                vec2 texCoords = gl_TexCoord[0].st + vec2(
-                    amplitude * (snoise(vec3(frequency * gl_TexCoord[0].s, frequency * gl_TexCoord[0].t, speed * time))),
-                    amplitude * (snoise(vec3(frequency * gl_TexCoord[0].s + 17.0, frequency * gl_TexCoord[0].t, speed * time)))
+                vec2 texCoords = TEX_COORD.st + vec2(
+                    amplitude * (snoise(vec3(frequency * TEX_COORD.s, frequency * TEX_COORD.t, speed * time))),
+                    amplitude * (snoise(vec3(frequency * TEX_COORD.s + 17.0, frequency * TEX_COORD.t, speed * time)))
                 );
-                gl_FragColor = texture2D(tex, texCoords);
+                FRAG_COLOR = vec4(1.0, 0.0, 1.0, 1.0);//TEXTURE_FUNCTION(tex, texCoords);
             }
-        );
+        )";
         
+        if (ofIsGLProgrammableRenderer())
+        {
+            ofStringReplace(fragShaderSrc, "VERSION", "#version 150\n");
+            ofStringReplace(fragShaderSrc, "INOUT", "in vec2 texCoordVarying;\nout vec4 fragColor;\n");
+            ofStringReplace(fragShaderSrc, "TEX_COORD", "texCoordVarying");
+            ofStringReplace(fragShaderSrc, "TEXTURE_FUNCTION", "texture");
+            ofStringReplace(fragShaderSrc, "FRAG_COLOR", "fragColor");
+        }
+        else
+        {
+            ofStringReplace(fragShaderSrc, "VERSION", "#version 150\n");
+            ofStringReplace(fragShaderSrc, "INOUT", "");
+            ofStringReplace(fragShaderSrc, "TEX_COORD", "gl_TexCoord[0]");
+            ofStringReplace(fragShaderSrc, "TEXTURE_FUNCTION", "texture2D");
+            ofStringReplace(fragShaderSrc, "gl_FragColor", "fragColor");
+        }
+        
+        shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
         shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
+        if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
         shader.linkProgram();
-#ifdef _ITG_TWEAKABLE
-        addParameter("amplitude", this->amplitude, "min=0 max=10");
-        addParameter("frequency", this->frequency, "min=0 max=20");
-        addParameter("speed", this->speed, "min=0 max=10");
-#endif
     }
     
     void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)

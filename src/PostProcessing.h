@@ -41,7 +41,17 @@ namespace itg
     public:
         typedef shared_ptr<PostProcessing> Ptr;
         
+        struct Settings
+        {
+            unsigned width {0};
+            unsigned height {0};
+            unsigned numSamples {0};
+            bool arb {false};
+        };
+        
         void init(unsigned width = ofGetWidth(), unsigned height = ofGetHeight(), bool arb = false);
+        void init(const Settings& settings);
+        
         void begin();
         void begin(ofCamera& cam);
         void end(bool autoDraw = true);

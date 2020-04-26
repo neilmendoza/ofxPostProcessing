@@ -36,35 +36,45 @@ namespace itg
 {
     void PostProcessing::init(unsigned width, unsigned height, bool arb)
     {
-        this->width = width;
-        this->height = height;
-        this->arb = arb;
+        Settings s;
+        s.width = width;
+        s.height = height;
+        s.arb = arb;
+        init(s);
+    }
+    
+    void PostProcessing::init(const Settings& settings)
+    {
+        if (settings.width) width = settings.width;
+        else width = ofGetWidth();
+        if (settings.height) height = ofGetHeight();
+        else height = ofGetHeight();
+        arb = settings.arb;
         
-        ofFbo::Settings s;
-        
+        ofFboSettings fboSettings;
         if (arb)
         {
-            s.width = width;
-            s.height = height;
-            s.textureTarget = GL_TEXTURE_RECTANGLE_ARB;
+            fboSettings.width = width;
+            fboSettings.height = height;
+            fboSettings.textureTarget = GL_TEXTURE_RECTANGLE_ARB;
         }
         else
         {
-            s.width = ofNextPow2(width);
-            s.height = ofNextPow2(height);
-            s.textureTarget = GL_TEXTURE_2D;
+            fboSettings.width = ofNextPow2(width);
+            fboSettings.height = ofNextPow2(height);
+            fboSettings.textureTarget = GL_TEXTURE_2D;
         }
         
         // no need to use depth for ping pongs
         for (int i = 0; i < 2; ++i)
         {
-            pingPong[i].allocate(s);
+            pingPong[i].allocate(fboSettings);
         }
         
-        s.useDepth = true;
-        s.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
-        s.depthStencilAsTexture = true;
-        raw.allocate(s);
+        fboSettings.useDepth = true;
+        fboSettings.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
+        fboSettings.depthStencilAsTexture = true;
+        raw.allocate(fboSettings);
         
         numProcessedPasses = 0;
         currentReadFbo = 0;
