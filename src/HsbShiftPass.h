@@ -33,7 +33,7 @@
 
 #include "RenderPass.h"
 
-namespace itg
+namespace nm
 {
     class HsbShiftPass : public RenderPass
     {

@@ -31,7 +31,7 @@
  */
 #include "NoiseWarpPass.h"
 
-namespace itg
+namespace nm
 {
     NoiseWarpPass::NoiseWarpPass(const ofVec2f& aspect, bool arb, float frequency, float amplitude, float speed) :
         frequency(frequency), amplitude(amplitude), speed(speed), RenderPass(aspect, arb, "noisewarp")
@@ -158,7 +158,7 @@ namespace itg
                     amplitude * (snoise(vec3(frequency * TEX_COORD.s, frequency * TEX_COORD.t, speed * time))),
                     amplitude * (snoise(vec3(frequency * TEX_COORD.s + 17.0, frequency * TEX_COORD.t, speed * time)))
                 );
-                FRAG_COLOR = vec4(1.0, 0.0, 1.0, 1.0);//TEXTURE_FUNCTION(tex, texCoords);
+                FRAG_COLOR = TEXTURE_FUNCTION(tex, texCoords);
             }
         )";
         
@@ -172,17 +172,19 @@ namespace itg
         }
         else
         {
-            ofStringReplace(fragShaderSrc, "VERSION", "#version 150\n");
+            ofStringReplace(fragShaderSrc, "VERSION", "#version 120\n");
             ofStringReplace(fragShaderSrc, "INOUT", "");
             ofStringReplace(fragShaderSrc, "TEX_COORD", "gl_TexCoord[0]");
             ofStringReplace(fragShaderSrc, "TEXTURE_FUNCTION", "texture2D");
             ofStringReplace(fragShaderSrc, "gl_FragColor", "fragColor");
         }
         
-        shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
-        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
-        if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
-        shader.linkProgram();
+        setupShaderFromFragmentSource(fragShaderSrc, shader);
+        
+        //shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
+        //shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
+        //if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
+        //shader.linkProgram();
     }
     
     void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
@@ -195,7 +197,8 @@ namespace itg
         shader.setUniform1f("amplitude", amplitude);
         shader.setUniform1f("speed", speed);
         
-        texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
+        //texturedQuad(0, 0, writeFbo.getWidth(), writeFbo.getHeight());
+        quadMesh.draw();
         
         shader.end();
         writeFbo.end();

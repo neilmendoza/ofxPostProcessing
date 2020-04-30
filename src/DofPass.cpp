@@ -32,7 +32,7 @@
 #include "DofPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     DofPass::DofPass(const ofVec2f& aspect, bool arb, float focus, float aperture, float maxBlur) :
         focus(focus), aperture(aperture), maxBlur(maxBlur), RenderPass(aspect, arb, "dof")

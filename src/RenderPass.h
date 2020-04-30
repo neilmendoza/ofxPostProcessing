@@ -38,7 +38,7 @@
 
 #define STRINGIFY(A) #A
 
-namespace itg
+namespace nm
 {
     class RenderPass
     {
@@ -70,17 +70,19 @@ namespace itg
         string getName() const { return name; }
 
     protected:
+        static ofVboMesh quadMesh;
+        
+        static void setupShaderFromFragmentSource(const string& fragmentSource, ofShader& shader);
+        
         void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);
         
         ofVec2f aspect;
         
         bool arb;
-    
+        
     private:
         string name;
         
         bool enabled;
-        
-        static ofVboMesh quadMesh;
     };
 }

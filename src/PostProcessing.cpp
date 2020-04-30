@@ -32,7 +32,7 @@
 #include "PostProcessing.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     void PostProcessing::init(unsigned width, unsigned height, bool arb)
     {

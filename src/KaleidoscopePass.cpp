@@ -31,7 +31,7 @@
  */
 #include "KaleidoscopePass.h"
 
-namespace itg
+namespace nm
 {
     KaleidoscopePass::KaleidoscopePass(const ofVec2f& aspect, bool arb, float segments) :
         segments(segments), RenderPass(aspect, arb, "kaleido")

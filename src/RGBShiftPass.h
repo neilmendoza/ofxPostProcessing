@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofShader.h"
 
-namespace itg
+namespace nm
 {
     /*
      * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/RGBShiftShader.js

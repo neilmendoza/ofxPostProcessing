@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofShader.h"
 
-namespace itg
+namespace nm
 {
     class BleachBypassPass : public RenderPass
     {

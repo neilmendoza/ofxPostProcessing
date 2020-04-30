@@ -32,7 +32,7 @@
 #include "ToonPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     ToonPass::ToonPass(const ofVec2f& aspect, bool arb, float edgeThreshold, float level,
                        const ofVec4f& ambientColor,

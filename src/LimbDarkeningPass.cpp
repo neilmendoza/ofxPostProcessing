@@ -31,7 +31,7 @@
  */
 #include "LimbDarkeningPass.h"
 
-namespace itg
+namespace nm
 {
     LimbDarkeningPass::LimbDarkeningPass(const ofVec2f& aspect,
                                          bool arb,

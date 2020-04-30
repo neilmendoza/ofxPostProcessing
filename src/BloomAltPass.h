@@ -1,7 +1,7 @@
 /*
- *  LUTPass.h
+ *  BloomAltPass.h
  *
- *  Copyright (c) 2012, Neil Mendoza, http://www.neilmendoza.com
+ *  Copyright (c) 2020, Neil Mendoza, http://www.neilmendoza.com
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -29,28 +29,16 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#pragma once
 
-#include "RenderPass.h"
+#pragma once
 
 namespace nm
 {
-class LUTPass : public RenderPass
-{
-public:
-    typedef shared_ptr<LUTPass> Ptr;
+    class BloomAltPass
+    {
+    public:
+        
+    private:
 
-    LUTPass(const ofVec2f& aspect, bool arb);
-    ~LUTPass();
-
-    LUTPass*loadLUT(string path);
-    void render(ofFbo& readFbo, ofFbo& writeFbo);
-
-private:
-
-    GLuint lut_tex;
-    ofShader shader;
-
-    void dispose();
-};
+    };
 }

@@ -32,7 +32,7 @@
 #include "ZoomBlurPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     ZoomBlurPass::ZoomBlurPass(const ofVec2f& aspect, bool arb, float centerX, float centerY,
                                    float exposure, float decay, float density,

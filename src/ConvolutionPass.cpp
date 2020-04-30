@@ -32,7 +32,7 @@
 #include "ConvolutionPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     ConvolutionPass::ConvolutionPass(const ofVec2f& aspect, bool arb, const ofVec2f& imageIncrement, float sigma, unsigned kernelSize) :
         imageIncrement(imageIncrement), RenderPass(aspect, arb, "convolution")

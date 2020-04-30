@@ -31,7 +31,7 @@
  */
 #include "PixelatePass.h"
 
-namespace itg
+namespace nm
 {
     PixelatePass::PixelatePass(const ofVec2f& aspect, bool arb, const ofVec2f& resolution) :
         resolution(resolution), RenderPass(aspect, arb, "pixelate")

@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ConvolutionPass.h"
 
-namespace itg
+namespace nm
 {
     class BloomPass : public RenderPass
     {

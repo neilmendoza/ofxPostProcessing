@@ -33,7 +33,7 @@
 
 #include "RenderPass.h"
 
-namespace itg
+namespace nm
 {
     //http://irrlicht.sourceforge.net/forum/viewtopic.php?f=4&t=47888
     class RimHighlightingPass : public RenderPass

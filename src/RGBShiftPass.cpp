@@ -32,7 +32,7 @@
 #include "RGBShiftPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     RGBShiftPass::RGBShiftPass(const ofVec2f& aspect, bool arb, float amount, float angle) :
         amount(amount), angle(angle), RenderPass(aspect, arb, "RGBShift")

@@ -32,7 +32,7 @@
 #include "FakeSSSPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     FakeSSSPass::FakeSSSPass(const ofVec2f& aspect,
                              bool arb,

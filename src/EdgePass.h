@@ -33,7 +33,7 @@
 
 #include "RenderPass.h"
 
-namespace itg
+namespace nm
 {
     /*
      * Frei-Chen edge detector ported from code here 

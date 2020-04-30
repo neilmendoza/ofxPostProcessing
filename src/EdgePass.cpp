@@ -31,7 +31,7 @@
  */
 #include "EdgePass.h"
 
-namespace itg
+namespace nm
 {
     EdgePass::EdgePass(const ofVec2f& aspect, bool arb) :
         RenderPass(aspect, arb, "edge"), hue(0.5f), saturation(0.f)

@@ -31,7 +31,7 @@
  */
 #include "FxaaPass.h"
 
-namespace itg
+namespace nm
 {
     FxaaPass::FxaaPass(const ofVec2f& aspect, bool arb) : RenderPass(aspect, arb, "fxaa")
     {

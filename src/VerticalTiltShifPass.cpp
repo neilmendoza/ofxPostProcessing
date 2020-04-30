@@ -31,7 +31,7 @@
  */
 #include "VerticalTiltShifPass.h"
 
-namespace itg
+namespace nm
 {
     VerticalTiltShifPass::VerticalTiltShifPass(const ofVec2f& aspect, bool arb) :
         RenderPass(aspect, arb, "verticaltiltshift"), v(2.0/512.0), r(0.5)

@@ -32,7 +32,7 @@
 #include "BleachBypassPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     BleachBypassPass::BleachBypassPass(const ofVec2f& aspect, bool arb, float opacity) :
         opacity(opacity), RenderPass(aspect, arb, "bleachbypass")

@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofCamera.h"
 
-namespace itg
+namespace nm
 {
     class PostProcessing : public ofBaseDraws
     {

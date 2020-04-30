@@ -31,7 +31,7 @@
  */
 #include "HsbShiftPass.h"
 
-namespace itg
+namespace nm
 {
     HsbShiftPass::HsbShiftPass(const ofVec2f& aspect, bool arb, float hueShift, float saturationShift, float brightnessShift) :
         hueShift(hueShift), saturationShift(saturationShift), brightnessShift(brightnessShift), RenderPass(aspect, arb, "hsbshift")

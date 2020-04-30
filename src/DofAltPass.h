@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofShader.h"
 
-namespace itg
+namespace nm
 {
     /*
      * @see http://blenderartists.org/forum/showthread.php?237488-GLSL-depth-of-field-with-bokeh-v2-4-(update)

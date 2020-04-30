@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofShader.h"
 
-namespace itg
+namespace nm
 {
     /*
      * @see http://github.com/mrdoob/three.js/blob/master/examples/js/ShaderExtras.js 

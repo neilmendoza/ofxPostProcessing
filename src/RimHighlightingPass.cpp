@@ -31,7 +31,7 @@
  */
 #include "RimHighlightingPass.h"
 
-namespace itg
+namespace nm
 {
     RimHighlightingPass::RimHighlightingPass(const ofVec2f& aspect, bool arb) :
         RenderPass(aspect, arb, "rimhighlighting")

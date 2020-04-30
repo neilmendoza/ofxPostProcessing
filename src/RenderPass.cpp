@@ -31,15 +31,13 @@
  */
 #include "RenderPass.h"
 
-namespace itg
+namespace nm
 {
     ofVboMesh RenderPass::quadMesh;
     
     const string RenderPass::PROGRAMMABLE_VERTEX_SRC = R"(
         #version 150
 
-        uniform mat4 modelViewProjectionMatrix;
-        
         in vec4 position;
         in vec2 texcoord;
         
@@ -48,7 +46,7 @@ namespace itg
         void main()
         {
             texCoordVarying = texcoord;
-            gl_Position = modelViewProjectionMatrix * position;
+            gl_Position = position;
         }
     )";
     
@@ -73,6 +71,14 @@ namespace itg
                 glm::vec2(1.f, 0.f)
             });
         }
+    }
+    
+    void RenderPass::setupShaderFromFragmentSource(const string& fragmentSource, ofShader& shader)
+    {
+        shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentSource);
+        if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
+        shader.linkProgram();
     }
     
     void RenderPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)

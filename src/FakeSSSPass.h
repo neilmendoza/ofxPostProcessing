@@ -34,7 +34,7 @@
 #include "RenderPass.h"
 #include "ofShader.h"
 
-namespace itg
+namespace nm
 {
     /*
      * @see http://machinesdontcare.wordpress.com/2008/10/29/subsurface-scatter-shader/

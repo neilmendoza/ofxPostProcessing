@@ -32,7 +32,7 @@
 #include "ContrastPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     ContrastPass::ContrastPass(const ofVec2f& aspect, bool arb, float contrast, float brightness) :
         contrast(contrast), brightness(brightness), RenderPass(aspect, arb, "contrast")

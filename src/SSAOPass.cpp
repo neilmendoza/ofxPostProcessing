@@ -32,7 +32,7 @@
 #include "SSAOPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     SSAOPass::SSAOPass(const ofVec2f& aspect, bool arb, float cameraNear, float cameraFar, float fogNear, float fogFar, bool fogEnabled, bool onlyAO, float aoClamp, float lumInfluence) :
         cameraNear(cameraNear), cameraFar(cameraFar), fogNear(fogNear), fogFar(fogFar), fogEnabled(fogEnabled), onlyAO(onlyAO), aoClamp(aoClamp), lumInfluence(lumInfluence), RenderPass(aspect, arb, "SSAO")

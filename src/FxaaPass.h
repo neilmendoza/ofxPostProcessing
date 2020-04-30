@@ -33,7 +33,7 @@
 
 #include "RenderPass.h"
 
-namespace itg
+namespace nm
 {
     /*
      * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/FXAAShader.js

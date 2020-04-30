@@ -32,7 +32,7 @@
 #include "BloomPass.h"
 #include "ofMain.h"
 
-namespace itg
+namespace nm
 {
     BloomPass::BloomPass(const ofVec2f& aspect, bool arb, const ofVec2f& xBlur, const ofVec2f& yBlur, unsigned resolution, bool aspectCorrect) : RenderPass(aspect, arb, "bloom")
     {

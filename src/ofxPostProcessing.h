@@ -56,6 +56,6 @@
 #include "RimHighlightingPass.h"
 #include "LimbDarkeningPass.h"
 
-typedef itg::PostProcessing ofxPostProcessing;
+typedef nm::PostProcessing ofxPostProcessing;
 
-using namespace itg;
+using namespace nm;
