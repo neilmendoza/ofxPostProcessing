@@ -32,13 +32,37 @@
 
 #pragma once
 
+#include "RenderPass.h"
+
+// TODO: make blur parameters (e.g. kernel), not hardcoded
 namespace nm
 {
-    class BloomAltPass
+    class BloomAltPass : public RenderPass
     {
     public:
+        typedef shared_ptr<BloomAltPass> Ptr;
+        
+        BloomAltPass(const ofVec2f& aspect, bool arb, float downSampleFactor = .125f);
+        
+        void render(ofFbo& readFbo, ofFbo& writeFbo);
+        
+        ofFbo& getDownSampledFbo(unsigned idx) { return downSampledFbos[idx]; }
+        
+        ofParameterGroup& getParameters() { return parameters; }
         
     private:
-
+        ofShader luminanceShader;
+        ofShader blurShader;
+        ofShader combineShader;
+        
+        float downSampleFactor;
+        ofFbo downSampledFbos[2];
+        
+        ofParameter<float> luminanceThreshold {"luminanceThreshold", .9f, 0.f, 1.f};
+        
+        ofParameterGroup parameters {
+            "bloomAltParameters",
+            luminanceThreshold
+        };
     };
 }

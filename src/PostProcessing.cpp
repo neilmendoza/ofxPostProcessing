@@ -71,9 +71,10 @@ namespace nm
             pingPong[i].allocate(fboSettings);
         }
         
+        fboSettings.numSamples = settings.numSamples;
         fboSettings.useDepth = true;
         fboSettings.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
-        fboSettings.depthStencilAsTexture = true;
+        //fboSettings.depthStencilAsTexture = true;
         raw.allocate(fboSettings);
         
         numProcessedPasses = 0;

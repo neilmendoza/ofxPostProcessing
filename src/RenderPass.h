@@ -48,6 +48,7 @@ namespace nm
         static const string PROGRAMMABLE_VERTEX_SRC;
 
         RenderPass(const ofVec2f& aspect, bool arb, const string& name);
+        virtual ~RenderPass() {}
         
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth);
         virtual void render(ofFbo& readFbo, ofFbo& writeFbo) {}
@@ -72,6 +73,7 @@ namespace nm
     protected:
         static ofVboMesh quadMesh;
         
+        static void replacePlaceHolders(string& shaderSource);
         static void setupShaderFromFragmentSource(const string& fragmentSource, ofShader& shader);
         
         void texturedQuad(float x, float y, float width, float height, float s = 1.0, float t = 1.0);

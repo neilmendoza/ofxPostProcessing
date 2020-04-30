@@ -73,14 +73,6 @@ namespace nm
         }
     }
     
-    void RenderPass::setupShaderFromFragmentSource(const string& fragmentSource, ofShader& shader)
-    {
-        shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
-        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentSource);
-        if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
-        shader.linkProgram();
-    }
-    
     void RenderPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)
     {
         render(readFbo, writeFbo);
@@ -102,5 +94,33 @@ namespace nm
         glTexCoord2f(0, t);
         glVertex3f(x, y + height, 0);
         glEnd();
+    }
+    
+    void RenderPass::replacePlaceHolders(string& shaderSource)
+    {
+        if (ofIsGLProgrammableRenderer())
+        {
+            ofStringReplace(shaderSource, "VERSION", "#version 150\n");
+            ofStringReplace(shaderSource, "INOUT", "in vec2 texCoordVarying;\nout vec4 fragColor;\n");
+            ofStringReplace(shaderSource, "TEX_COORD", "texCoordVarying");
+            ofStringReplace(shaderSource, "TEXTURE_FUNCTION", "texture");
+            ofStringReplace(shaderSource, "FRAG_COLOR", "fragColor");
+        }
+        else
+        {
+            ofStringReplace(shaderSource, "VERSION", "#version 120\n");
+            ofStringReplace(shaderSource, "INOUT", "");
+            ofStringReplace(shaderSource, "TEX_COORD", "gl_TexCoord[0]");
+            ofStringReplace(shaderSource, "TEXTURE_FUNCTION", "texture2D");
+            ofStringReplace(shaderSource, "gl_FragColor", "fragColor");
+        }
+    }
+    
+    void RenderPass::setupShaderFromFragmentSource(const string& fragmentSource, ofShader& shader)
+    {
+        shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
+        shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragmentSource);
+        if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
+        shader.linkProgram();
     }
 }

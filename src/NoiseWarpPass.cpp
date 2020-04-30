@@ -179,12 +179,7 @@ namespace nm
             ofStringReplace(fragShaderSrc, "gl_FragColor", "fragColor");
         }
         
-        setupShaderFromFragmentSource(fragShaderSrc, shader);
-        
-        //shader.setupShaderFromSource(GL_VERTEX_SHADER, PROGRAMMABLE_VERTEX_SRC);
-        //shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fragShaderSrc);
-        //if (ofIsGLProgrammableRenderer()) shader.bindDefaults();
-        //shader.linkProgram();
+        RenderPass::setupShaderFromFragmentSource(fragShaderSrc, shader);
     }
     
     void NoiseWarpPass::render(ofFbo& readFbo, ofFbo& writeFbo, ofTexture& depth)

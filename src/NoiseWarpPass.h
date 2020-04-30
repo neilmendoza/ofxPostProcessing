@@ -59,5 +59,4 @@ namespace nm
         float amplitude;
         float speed;
     };
-    
 }
