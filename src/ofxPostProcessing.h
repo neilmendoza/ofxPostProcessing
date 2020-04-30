@@ -55,6 +55,7 @@
 #include "GodRaysPass.h"
 #include "RimHighlightingPass.h"
 #include "LimbDarkeningPass.h"
+#include "BloomAltPass.h"
 
 typedef nm::PostProcessing ofxPostProcessing;
 
