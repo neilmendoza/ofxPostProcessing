@@ -47,8 +47,8 @@ namespace itg
         void end(bool autoDraw = true);
         
         // float rather than int and not const to override ofBaseDraws
-        void draw(float x = 0.f, float y = 0.f) const;
-        void draw(float x, float y, float w, float h) const;
+        void draw(float x = 0.f, float y = 0.f) ;
+        void draw(float x, float y, float w, float h) ;
         float getWidth() const { return width; }
         float getHeight() const { return height; }
         
@@ -79,6 +79,10 @@ namespace itg
         unsigned getNumProcessedPasses() const { return numProcessedPasses; }
         
         ofFbo& getRawRef() { return raw; }
+        
+         float getHeight(){ return 0 ; };
+         float getWidth(){ return 0 ; };
+
         
     private:
         void process();
